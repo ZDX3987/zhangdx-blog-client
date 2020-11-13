@@ -1,6 +1,10 @@
 <template>
   <div class="list-content">
-    <ul class="article-ul">
+    <ul v-if="!isLoading" class="article-ul">
+      <li></li>
+      <el-divider></el-divider>
+    </ul>
+    <ul v-if="isLoading" class="article-ul">
       <li v-for="i of 3" :key="i">
         <skeleton
           type="custom"
@@ -27,6 +31,7 @@ export default {
     return {
       articleList: [],
       pageSize: 15,
+      isLoading: false,
     };
   },
 };
@@ -39,9 +44,10 @@ export default {
 }
 .article-ul {
   list-style: none;
+  width: 100%;
   padding: 20px 2%;
 }
 .article-ul li {
-    height: 200px;
+  height: 200px;
 }
 </style>
