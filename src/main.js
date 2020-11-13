@@ -6,7 +6,9 @@ import router from './router'
 import VueWechatTitle from 'vue-wechat-title'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import skeleton from 'vue-skeleton-component'
 
+Vue.use(skeleton)
 Vue.use(VueWechatTitle)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
