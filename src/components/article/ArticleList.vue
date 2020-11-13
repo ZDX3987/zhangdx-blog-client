@@ -1,8 +1,17 @@
 <template>
   <div class="list-content">
     <ul v-if="!isLoading" class="article-ul">
-      <li></li>
-      <el-divider></el-divider>
+      <li>
+        <div>
+          <el-image>
+            <div slot="error" class="image-slot">
+              <i class="el-icon-picture-outline"></i>
+            </div>
+          </el-image>
+        </div>
+        <el-divider></el-divider>
+      </li>
+
     </ul>
     <ul v-if="isLoading" class="article-ul">
       <li v-for="i of 3" :key="i">
@@ -32,6 +41,7 @@ export default {
       articleList: [],
       pageSize: 15,
       isLoading: false,
+      src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
     };
   },
 };
@@ -45,7 +55,8 @@ export default {
 .article-ul {
   list-style: none;
   width: 100%;
-  padding: 20px 2%;
+  padding: 20px 0;
+
 }
 .article-ul li {
   height: 200px;

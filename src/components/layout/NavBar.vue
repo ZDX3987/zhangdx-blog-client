@@ -8,7 +8,7 @@
       </el-col>
       <el-col :span="29" :offset="1">
         <el-menu mode="horizontal">
-          <el-menu-item v-for="menu of menuList" :index="menu.index">{{menu.text}}</el-menu-item>
+          <el-menu-item v-for="menu of menuList" :key="menu.index" :index="menu.index">{{menu.text}}</el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
