@@ -20,12 +20,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: config.dev.devtool,
 
-  // these devServer options should be customized in /config/js.js
+  // these devServer options should be customized in /config/index.js
   devServer: {
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'js.html') },
+        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
     },
     hot: true,
@@ -53,8 +53,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'js.html',
-      template: 'js.html',
+      filename: 'index.html',
+      template: 'index.html',
       inject: true
     }),
     // copy custom static assets
