@@ -1,15 +1,19 @@
 <template>
   <div class="list-content">
     <ul v-if="!isLoading" class="article-ul">
-      <li>
-        <div>
-          <el-image>
-            <div slot="error" class="image-slot">
-              <i class="el-icon-picture-outline"></i>
-            </div>
-          </el-image>
+      <li v-for="i of 3" :key="i">
+        <div class="article-item">
+          <el-row>
+            <el-col :span="8" class="item-left">
+              <el-image :src="src"></el-image>
+            </el-col>
+            <el-col :span="16" class="item-right">
+              <p>{{ "这是标题" }}</p>
+              <p>{{ "这是正文部分截取" }}</p>
+              <span>{{ "2020 - 11 - 14" }}</span>
+            </el-col>
+          </el-row>
         </div>
-        <el-divider></el-divider>
       </li>
 
     </ul>
@@ -52,13 +56,25 @@ export default {
   width: 60%;
   background-color: #FFF;
 }
+
 .article-ul {
   list-style: none;
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
 
 }
+
 .article-ul li {
-  height: 200px;
+  padding: 20px 20px;
+  border-bottom: 1px solid rgb(220,223,230);
 }
+
+.article-item {
+
+}
+
+.item-left {
+  width: 200px;
+}
+
 </style>

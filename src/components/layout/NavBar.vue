@@ -1,17 +1,21 @@
 <template>
   <div class="navbar-content">
-    <el-row>
-      <el-col :span="3" :offset="1">
-        <router-link :to="{name: 'Index'}">
-          <h2 class="navbar-title">{{ title }}</h2>
-        </router-link>
-      </el-col>
-      <el-col :span="29" :offset="1">
-        <el-menu mode="horizontal">
-          <el-menu-item v-for="menu of menuList" :key="menu.index" :index="menu.index">{{menu.text}}</el-menu-item>
-        </el-menu>
-      </el-col>
-    </el-row>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="#">
+        <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" v-for="menu of menuList" :key="menu.index">
+            <a class="nav-link" href="#">{{ menu.text }} <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -34,15 +38,18 @@ export default {
   height: 100%;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
+
 .navbar-title {
   height: 100%;
   background-image: linear-gradient(to right, #17b3a1, #e0142b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 a {
   text-decoration: none;
 }
+
 .el-menu {
   height: 100%;
   border: none;

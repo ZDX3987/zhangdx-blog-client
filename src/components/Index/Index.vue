@@ -34,15 +34,18 @@ export default {
   background-color: rgb(239, 239, 239);
   height: 100%;
 }
+
 .el-container {
   height: 100%;
 }
+
 .el-header,
 .el-main,
 .el-footer {
   padding: 0;
   height: 100%;
 }
+
 .main-content {
   padding: 0 10%;
 }

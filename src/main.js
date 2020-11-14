@@ -7,6 +7,9 @@ import VueWechatTitle from 'vue-wechat-title'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import skeleton from 'vue-skeleton-component'
+import $ from 'jquery'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min'
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)
