@@ -1,20 +1,21 @@
 <template>
   <div class="index-content">
     <el-container>
-      <NavBar />
+      <NavBar/>
       <el-main class="main-content">
         <el-row>
-          <el-col :md="16" >
-            <ArticleList />
+          <el-col :md="16">
+            <ArticleList/>
           </el-col>
-          <el-col  :md="8">
+          <el-col :md="8">
           </el-col>
         </el-row>
       </el-main>
       <el-footer>
-        <Footer />
+        <Footer/>
       </el-footer>
     </el-container>
+    <BackTop/>
   </div>
 </template>
 
@@ -22,6 +23,8 @@
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import ArticleList from "../article/ArticleList";
+import BackTop from "../layout/BackTop";
+import '../../../static/js/back-top.js'
 
 export default {
   name: "Index",
@@ -29,6 +32,7 @@ export default {
     NavBar,
     ArticleList,
     Footer,
+    BackTop
   },
 };
 </script>
@@ -44,11 +48,14 @@ export default {
   height: 100%;
 }
 
-.el-header,
 .el-main,
 .el-footer {
   padding: 0;
   height: 100%;
+}
+
+.el-main {
+  margin-top: 80px;
 }
 
 .main-content {

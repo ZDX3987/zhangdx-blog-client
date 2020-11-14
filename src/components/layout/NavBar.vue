@@ -37,7 +37,11 @@ export default {
 <style scoped>
 .navbar-content {
   background-color: #FFF;
-  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  transition: all 0.5s;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 

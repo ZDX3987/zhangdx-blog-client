@@ -1,7 +1,7 @@
 <template>
   <div class="list-content">
     <ul v-if="!isLoading" class="article-ul">
-      <li v-for="article of articleList" :key="article.id">
+      <li v-for="(article, index) of articleList" :key="index">
         <div class="article-item">
           <el-row>
             <el-col :span="8" class="item-left">
