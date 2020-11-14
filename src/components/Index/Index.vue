@@ -1,11 +1,15 @@
 <template>
   <div class="index-content">
     <el-container>
-      <el-header>
-        <NavBar />
-      </el-header>
+      <NavBar />
       <el-main class="main-content">
-        <ArticleList />
+        <el-row>
+          <el-col :md="16" >
+            <ArticleList />
+          </el-col>
+          <el-col  :md="8">
+          </el-col>
+        </el-row>
       </el-main>
       <el-footer>
         <Footer />
@@ -33,6 +37,7 @@ export default {
 .index-content {
   background-color: rgb(239, 239, 239);
   height: 100%;
+  overflow: hidden;
 }
 
 .el-container {
@@ -47,6 +52,6 @@ export default {
 }
 
 .main-content {
-  padding: 0 10%;
+  padding: 20px 10%;
 }
 </style>

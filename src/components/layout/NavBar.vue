@@ -1,14 +1,16 @@
 <template>
   <div class="navbar-content">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">
-        <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
-      </a>
+    <nav class="navbar navbar-expand-lg navbar-light row">
+      <div class="col-3">
+        <a class="navbar-brand" href="#">
+          <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
+        </a>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" v-for="menu of menuList" :key="menu.index">
             <a class="nav-link" href="#">{{ menu.text }} <span class="sr-only">(current)</span></a>
@@ -41,6 +43,7 @@ export default {
 
 .navbar-title {
   height: 100%;
+  font-weight: bold;
   background-image: linear-gradient(to right, #17b3a1, #e0142b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -48,10 +51,5 @@ export default {
 
 a {
   text-decoration: none;
-}
-
-.el-menu {
-  height: 100%;
-  border: none;
 }
 </style>

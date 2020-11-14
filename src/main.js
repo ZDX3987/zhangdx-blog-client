@@ -10,6 +10,7 @@ import skeleton from 'vue-skeleton-component'
 import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)
