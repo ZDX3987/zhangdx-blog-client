@@ -3,13 +3,7 @@
     <el-container>
       <NavBar/>
       <el-main class="main-content">
-        <el-row>
-          <el-col :md="16">
-            <ArticleList/>
-          </el-col>
-          <el-col :md="8">
-          </el-col>
-        </el-row>
+        <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"/>
       </el-main>
       <el-footer>
         <Footer/>

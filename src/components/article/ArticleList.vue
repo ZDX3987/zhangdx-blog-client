@@ -5,13 +5,15 @@
         <div class="article-item">
           <el-row>
             <el-col :span="8" class="item-left">
-              <a href="#">
-                <el-image :src="article.imgUrl"></el-image>
-              </a>
+              <router-link :to="{name: 'ArticlePreview', params: {id: article.id}}">
+                <el-image :src="article.coverImg"></el-image>
+              </router-link>
             </el-col>
             <el-col :span="16" class="item-right">
-              <a href="#" class="item-title">{{ article.title }}</a>
-              <p class="item-text">{{ article.text }}</p>
+              <router-link class="item-title" :to="{name: 'ArticlePreview', params: {id: article.id}}">
+                {{ article.title }}
+              </router-link>
+              <p class="item-text">{{ article.digest }}</p>
               <div class="item-date">
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
                 {{ article.createDate | dateFormat('yyyy-MM-dd') }}
@@ -139,7 +141,7 @@ export default {
   text-align: justify;
   font-size: 13px;
   margin: 10px 0;
-  height: 50px;
+  height: 60px;
   overflow: hidden;
   font-weight: 300;
 }

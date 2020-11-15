@@ -2,7 +2,7 @@
   <div class="navbar-content">
     <nav class="navbar navbar-expand-lg navbar-light row">
       <div class="col-3">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
         </a>
       </div>
