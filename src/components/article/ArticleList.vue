@@ -14,7 +14,7 @@
               <p class="item-text">{{ article.text }}</p>
               <div class="item-date">
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
-                {{ article.createDate }}
+                {{ article.createDate | dateFormat('yyyy-MM-dd') }}
               </div>
             </el-col>
           </el-row>
@@ -22,7 +22,8 @@
       </li>
       <li>
         <div class="load-more">
-          <a @click="loadMoreArticle">点击加载更多</a>
+          <a v-if="!listEnd" @click="loadMoreArticle">点击加载更多</a>
+          <p v-if="listEnd">已经到底了...</p>
         </div>
       </li>
     </ul>
@@ -51,24 +52,37 @@ export default {
   name: "ArticleList",
   data() {
     return {
-      articleList: [
-        {
-          id: 1,
-          title: '这是标题',
-          text: '这是正文部分截取',
-          imgUrl: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-          createDate: '2020年11月14日'
-        }
-      ],
+      articleList: [],
+      queryStatus: 2,
+      sort: 'DESC',
       pageSize: 15,
+      pageIndex: 0,
       isLoading: false,
+      listEnd: false,
       src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
     };
   },
+  created() {
+    this.queryArticle(0);
+  },
   methods: {
     loadMoreArticle() {
-      this.articleList.push(this.articleList[0]);
+      this.queryArticle(++this.pageIndex);
     },
+    queryArticle(pageIndex) {
+      let formData = {
+        pageSize: this.pageSize,
+        pageIndex: pageIndex,
+        articleStatus: this.queryStatus,
+        sort: this.sort
+      }
+      this.$api.articleApi.getArticleByPage(formData).then(res => {
+        if (res.data.elements.length === 0) {
+          this.listEnd = true;
+        }
+        this.articleList = this.articleList.concat(res.data.elements);
+      }).catch(error => console.log(error));
+    }
   }
 };
 </script>

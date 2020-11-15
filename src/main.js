@@ -11,15 +11,19 @@ import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'font-awesome/css/font-awesome.min.css'
+import filters from './filters/index'
+import api from './api/index'
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)
 Vue.use(ElementUI)
+Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
+Vue.prototype.$api = api
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
