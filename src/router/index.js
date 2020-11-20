@@ -6,7 +6,7 @@ import IndexContent from "../components/Index/IndexContent";
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -23,9 +23,15 @@ export default new Router({
         {
           path: '/article/:id.html',
           name: 'ArticlePreview',
-          component: ArticlePreview
+          component: ArticlePreview,
+          meta: {
+            title: '文章详情'
+          }
         }
       ]
     }
   ]
 })
+
+export default router
+
