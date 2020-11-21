@@ -35,7 +35,6 @@ export default {
 .index-content {
   background-color: rgb(239, 239, 239);
   height: 100%;
-  overflow: hidden;
 }
 
 .el-container {

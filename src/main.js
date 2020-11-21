@@ -13,6 +13,7 @@ import 'bootstrap/dist/js/bootstrap.min'
 import 'font-awesome/css/font-awesome.min.css'
 import filters from './filters/index'
 import api from './api/index'
+import 'element-ui/lib/theme-chalk/display.css';
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)

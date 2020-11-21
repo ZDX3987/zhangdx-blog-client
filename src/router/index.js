@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from "../components/Index/Index";
 import ArticlePreview from "../components/article/ArticlePreview";
 import IndexContent from "../components/Index/IndexContent";
+import Error from '../components/common/Error'
 
 Vue.use(Router)
 
@@ -18,7 +19,7 @@ const router = new Router({
           path: '/',
           name: 'IndexContent',
           component: IndexContent,
-          meta: {title: '首页'},
+          meta: { title: '首页' },
         },
         {
           path: '/article/:id.html',
@@ -29,6 +30,14 @@ const router = new Router({
           }
         }
       ]
+    },
+    {
+      path: '/error',
+      name: 'Error',
+      component: Error,
+      meta: {
+        title: '页面出错了'
+      }
     }
   ]
 })
