@@ -47,7 +47,7 @@
     <el-col :md="8" class="hidden-sm-and-down">
       <div
         id="articleDirectory"
-        class="article-directory"
+        class="article-directory-fixed clear-fixed"
         ref="articleDirectory"
       ></div>
     </el-col>
@@ -65,6 +65,7 @@ export default {
       articleId: "",
       article: "",
       isLoading: true,
+      scrollHeight: 0
     };
   },
   created() {
@@ -82,6 +83,9 @@ export default {
         console.log(error);
       });
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, true);
+  },
   methods: {
     renderArticle(article) {
       this.$nextTick(() => {
@@ -95,6 +99,24 @@ export default {
           this.$refs.showText.innerHTML = article.text;
         }
       });
+    },
+    handleScroll() {
+      // 页面滚动距顶部距离
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
+        document.body.scrollTop
+      let scroll = scrollTop - this.scrollHeight;
+      this.scrollHeight = scrollTop;
+      if (scroll < 0) {
+        $(".clear-fixed").removeClass("article-directory");
+        $(".clear-fixed").addClass("article-directory-fixed");
+      } else {
+        let element1 = $(".article-content").height();
+        let element2 = $(".clear-fixed").offset().top;
+        if (element1 <= element2 + 320.3) {
+          $(".clear-fixed").removeClass("article-directory-fixed");
+          $(".clear-fixed").addClass("article-directory");
+        }
+      }
     },
   },
 };
@@ -118,7 +140,12 @@ export default {
   color: #999;
 }
 
+.article-date {
+  font-size: 14px;
+}
+
 .article-author {
+  font-size: 14px;
   line-height: 40px;
   height: 40px;
 }
@@ -126,7 +153,17 @@ export default {
 .article-coverImg {
   width: 30%;
 }
+
 .article-directory {
+  width: 23%;
+  height: 500px;
+  background-color: #fff;
+  margin: 0 3%;
+  position: absolute;
+  bottom: 0;
+}
+
+.article-directory-fixed {
   width: 23%;
   height: 500px;
   background-color: #fff;

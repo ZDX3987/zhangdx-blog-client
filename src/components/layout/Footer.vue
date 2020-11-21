@@ -17,7 +17,8 @@
         <div class="shared-icon">
           <ul>
             <li v-for="(iconItem, i) of sharedIcons" :key="i">
-              <a :href="iconItem.href" class="shared-a">
+              <a :href="iconItem.type === 'show' ? '#' : iconItem.href"
+                 class="shared-a" :title="iconItem.title">
                 <i :class="iconItem.iconClass" aria-hidden="true"></i>
                 <el-image
                   class="qrcode-img"
@@ -41,11 +42,11 @@ export default {
     return {
       currentYear: new Date().getFullYear(),
       otherLinks: [
-        { text: "其他链接", href: "#" },
-        { text: "其他链接", href: "#" },
-        { text: "其他链接", href: "#" },
-        { text: "其他链接", href: "#" },
-        { text: "其他链接", href: "#" },
+        {text: "其他链接", href: "#"},
+        {text: "其他链接", href: "#"},
+        {text: "其他链接", href: "#"},
+        {text: "其他链接", href: "#"},
+        {text: "其他链接", href: "#"},
       ],
       sharedIcons: [
         {
@@ -60,7 +61,13 @@ export default {
           type: "href",
           href: "https://github.com/ZDX3987",
         },
-        { iconClass: "fa fa-weibo", title: "Github", type: "href", href: "" },
+        {iconClass: "fa fa-weibo", title: "微博", type: "href", href: ""},
+        {
+          iconClass: "fa fa-feed",
+          title: "反馈",
+          type: "href",
+          href: "mailto:zdx3987@163.com?&subject=ZHANGDX博客反馈邮件"
+        },
       ],
     };
   },
@@ -73,19 +80,24 @@ export default {
   background-color: rgb(23, 28, 62);
   padding: 80px 0;
 }
+
 .other-links {
   height: 40px;
 }
+
 .other-links li {
   font-size: 16px;
 }
+
 .other-links a {
   color: #fff;
 }
+
 .copyright {
   color: rgb(176, 183, 189);
   font-size: 14px;
 }
+
 .shared-icon a {
   width: 50px;
   height: 50px;
@@ -95,6 +107,7 @@ export default {
   line-height: 50px;
   position: relative;
 }
+
 .qrcode-img {
   width: 100px;
   height: 100px;
@@ -105,6 +118,7 @@ export default {
   left: -25px;
   top: -25px;
 }
+
 .shared-a:hover .qrcode-img {
   transform: scale(1, 1);
   transform: translate(-100px, 0);
@@ -117,15 +131,18 @@ ul {
   text-align: center;
   padding-left: 0;
 }
+
 ul li {
   display: inline;
   margin: 0 1%;
 }
+
 a {
   color: rgb(176, 183, 189);
   text-decoration: none;
   transition: all 0.5s;
 }
+
 a:hover {
   color: rgb(31, 193, 93);
 }
