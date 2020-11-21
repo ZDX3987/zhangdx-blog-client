@@ -4,14 +4,14 @@
       <li v-for="(article, index) of articleList" :key="index">
         <div class="article-item">
           <el-row>
-            <el-col :span="8" class="item-left">
+            <el-col :span="6" class="item-left">
               <router-link
                 :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
-                <el-image :src="article.coverImg"></el-image>
+                <el-image :src="article.coverImg" fit="cover"></el-image>
               </router-link>
             </el-col>
-            <el-col :span="16" class="item-right">
+            <el-col :span="18" class="item-right">
               <router-link
                 class="item-title"
                 :to="{ name: 'ArticlePreview', params: { id: article.id } }"
@@ -117,7 +117,9 @@ export default {
   border-bottom: 1px solid rgb(220, 223, 230);
 }
 
-.article-item {
+.article-item .el-image {
+  width: 100%; height: 150px;
+  transform: scale(0.5， 0.5);
 }
 
 .item-left {
