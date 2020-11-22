@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :md="16">
+    <el-col :md="17">
       <div class="article-content" v-if="isLoading">
         <skeleton
           type="custom"
@@ -16,7 +16,7 @@
           ]"
         />
       </div>
-      <div class="article-content" v-if="!isLoading">
+      <div id="article-content" class="article-content" v-if="!isLoading">
         <el-row>
           <el-col :span="24">
             <h2 class="article-title">{{ article.title }}</h2>
@@ -44,12 +44,14 @@
         <div id="showText" ref="showText" class="article-text"></div>
       </div>
     </el-col>
-    <el-col :md="8" class="hidden-sm-and-down">
+    <el-col :md="7" class="hidden-sm-and-down">
       <div
         id="articleDirectory"
-        class="article-directory-fixed clear-fixed"
+        :class="articleDirectoryClassName"
         ref="articleDirectory"
-      ></div>
+      >
+        这是一个目录
+      </div>
     </el-col>
   </el-row>
 </template>
@@ -65,7 +67,8 @@ export default {
       articleId: "",
       article: "",
       isLoading: true,
-      scrollHeight: 0
+      scrollHeight: 0,
+      articleDirectoryClassName: 'article-directory-fixed'
     };
   },
   created() {
@@ -105,16 +108,15 @@ export default {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
         document.body.scrollTop
       let scroll = scrollTop - this.scrollHeight;
+      console.log(document.body.offsetHeight, this.scrollHeight)
       this.scrollHeight = scrollTop;
-      if (scroll < 0) {
-        $(".clear-fixed").removeClass("article-directory");
-        $(".clear-fixed").addClass("article-directory-fixed");
+      if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
+        this.articleDirectoryClassName = 'article-directory-fixed';
       } else {
-        let element1 = $(".article-content").height();
-        let element2 = $(".clear-fixed").offset().top;
+        let element1 = $("#article-content").height();
+        let element2 = $(".article-directory-fixed").offset().top;
         if (element1 <= element2 + 320.3) {
-          $(".clear-fixed").removeClass("article-directory-fixed");
-          $(".clear-fixed").addClass("article-directory");
+          this.articleDirectoryClassName = 'article-directory';
         }
       }
     },
@@ -127,6 +129,7 @@ export default {
   background-color: #fff;
   padding: 40px;
   text-align: left;
+  margin-right: 3%;
 }
 
 .article-title {
@@ -155,19 +158,15 @@ export default {
 }
 
 .article-directory {
-  width: 23%;
   height: 500px;
   background-color: #fff;
-  margin: 0 3%;
   position: absolute;
   bottom: 0;
 }
 
 .article-directory-fixed {
-  width: 23%;
   height: 500px;
   background-color: #fff;
-  margin: 0 2%;
   position: fixed;
 }
 </style>
