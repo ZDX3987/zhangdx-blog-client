@@ -93,6 +93,7 @@ export default {
         if (article.source === 2) {
           let that = this;
           VditorPreview.preview(this.$refs.showText, article.text, {
+            speech: {enable: true},
             after() {
               VditorPreview.outlineRender(
                 that.$refs.showText,
