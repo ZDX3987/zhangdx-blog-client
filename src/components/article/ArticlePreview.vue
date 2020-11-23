@@ -49,9 +49,7 @@
         id="articleDirectory"
         :class="articleDirectoryClassName"
         ref="articleDirectory"
-      >
-        这是一个目录
-      </div>
+      ></div>
     </el-col>
   </el-row>
 </template>
@@ -68,7 +66,7 @@ export default {
       article: "",
       isLoading: true,
       scrollHeight: 0,
-      articleDirectoryClassName: 'article-directory-fixed'
+      articleDirectoryClassName: "article-directory-fixed",
     };
   },
   created() {
@@ -87,17 +85,21 @@ export default {
       });
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll, true);
+    window.addEventListener("scroll", this.handleScroll, true);
   },
   methods: {
     renderArticle(article) {
       this.$nextTick(() => {
         if (article.source === 2) {
-          VditorPreview.preview(this.$refs.showText, article.text);
-          VditorPreview.outlineRender(
-            this.$refs.showText,
-            this.$refs.articleDirectory
-          );
+          let that = this;
+          VditorPreview.preview(this.$refs.showText, article.text, {
+            after() {
+              VditorPreview.outlineRender(
+                that.$refs.showText,
+                that.$refs.articleDirectory
+              );
+            },
+          });
         } else {
           this.$refs.showText.innerHTML = article.text;
         }
@@ -105,18 +107,19 @@ export default {
     },
     handleScroll() {
       // 页面滚动距顶部距离
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop ||
-        document.body.scrollTop
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       let scroll = scrollTop - this.scrollHeight;
-      console.log(document.body.offsetHeight, this.scrollHeight)
       this.scrollHeight = scrollTop;
       if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
-        this.articleDirectoryClassName = 'article-directory-fixed';
-      } else {
+        this.articleDirectoryClassName = "article-directory-fixed";
+      } else if (scroll >= 0) {
         let element1 = $("#article-content").height();
-        let element2 = $(".article-directory-fixed").offset().top;
+        let element2 = $("#articleDirectory").offset().top;
         if (element1 <= element2 + 320.3) {
-          this.articleDirectoryClassName = 'article-directory';
+          this.articleDirectoryClassName = "article-directory";
         }
       }
     },
@@ -157,16 +160,19 @@ export default {
   width: 30%;
 }
 
+#articleDirectory {
+  color: #333;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
 .article-directory {
   height: 500px;
-  background-color: #fff;
   position: absolute;
   bottom: 0;
 }
-
 .article-directory-fixed {
   height: 500px;
-  background-color: #fff;
   position: fixed;
 }
 </style>
