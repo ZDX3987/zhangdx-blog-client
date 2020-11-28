@@ -158,7 +158,7 @@ export default {
 }
 
 .article-coverImg {
-  width: 30%;
+  
 }
 
 #articleDirectory {

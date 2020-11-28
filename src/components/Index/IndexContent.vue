@@ -4,13 +4,14 @@
       <ArticleList/>
     </el-col>
     <el-col :md="8" class="hidden-sm-and-down">
-      <div class="others"></div>
+      <CateCloud/>
     </el-col>
   </el-row>
 </template>
 
 <script>
 import ArticleList from "../article/ArticleList";
+import CateCloud from "../Category/CateCloud";
 
 export default {
   name: "IndexContent",
@@ -18,16 +19,11 @@ export default {
     return {}
   },
   components: {
-    ArticleList
+    ArticleList,
+    CateCloud
   }
 }
 </script>
 
 <style scoped>
-.others {
-  width: 96%;
-  height: 500px;
-  background-color: #fff;
-  margin-left: 4%;
-}
 </style>
