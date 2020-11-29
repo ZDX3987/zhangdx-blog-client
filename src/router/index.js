@@ -4,6 +4,7 @@ import Index from "../components/Index/Index";
 import ArticlePreview from "../components/article/ArticlePreview";
 import IndexContent from "../components/Index/IndexContent";
 import Error from '../components/common/Error'
+import CateList from "../components/Category/CateList";
 
 Vue.use(Router)
 
@@ -14,6 +15,7 @@ const router = new Router({
       path: '/',
       name: 'Index',
       component: Index,
+      meta: { title: '首页' },
       children: [
         {
           path: '/',
@@ -28,7 +30,15 @@ const router = new Router({
           meta: {
             title: '文章详情'
           }
-        }
+        },
+        {
+          path: '/cate/:id.html',
+          name: 'CateList',
+          component: CateList,
+          meta: {
+            title: '分类标签'
+          }
+        },
       ]
     },
     {

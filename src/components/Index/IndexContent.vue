@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row class="index-content">
     <el-col :md="16">
       <ArticleList/>
     </el-col>
@@ -26,4 +26,7 @@ export default {
 </script>
 
 <style scoped>
+.index-content {
+
+}
 </style>

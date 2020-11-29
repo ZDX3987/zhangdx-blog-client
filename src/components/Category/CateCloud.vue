@@ -1,11 +1,11 @@
 <template>
   <div class="cloud-content">
     <svg :height='height' @mousemove='listener($event)'>
-      <a :href="tag.href" v-for='tag in tags'>
+      <router-link :to="{name: 'CateList', params: {tag: tag, id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
         <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>
-          {{ tag.text }}
+          {{ tag.cateName }}
         </text>
-      </a>
+      </router-link>
     </svg>
   </div>
 </template>
@@ -21,7 +21,8 @@ export default {
       RADIUS: 200,
       speedX: Math.PI / 360,
       speedY: Math.PI / 360,
-      tags: []
+      tags: [],
+      cateCloudList: [],
     }
   },
   computed: {
@@ -33,20 +34,7 @@ export default {
     }
   },
   created() {//初始化标签位置
-    let tags = [];
-    for (let i = 0; i < this.tagsNum; i++) {
-      let tag = {};
-      let k = -1 + (2 * (i + 1) - 1) / this.tagsNum;
-      let a = Math.acos(k);
-      let b = a * Math.sqrt(this.tagsNum * Math.PI);
-      tag.text = i + 'tag';
-      tag.x = this.CX + this.RADIUS * Math.sin(a) * Math.cos(b);
-      tag.y = this.CY + this.RADIUS * Math.sin(a) * Math.sin(b);
-      tag.z = this.RADIUS * Math.cos(a);
-      tag.href = 'https://imgss.github.io';
-      tags.push(tag);
-    }
-    this.tags = tags;
+    this.initCategories();
   },
   mounted() {//使球开始旋转
     setInterval(() => {
@@ -55,10 +43,31 @@ export default {
     }, 17)
   },
   methods: {
+    initCategories() {
+      this.$api.categoryApi.getAllCategory().then(res => {
+        this.genCateCloud(res.data);
+      }).catch(error => this.$message.error("标签云加载失败"))
+    },
+    genCateCloud(categories) {
+      let length = categories.length;
+      let tags = [];
+      for (let i = 0; i < length; i++) {
+        let tag = categories[i];
+        let k = -1 + (2 * (i + 1) - 1) / length;
+        let a = Math.acos(k);
+        let b = a * Math.sqrt(length * Math.PI);
+        tag.x = this.CX + this.RADIUS * Math.sin(a) * Math.cos(b);
+        tag.y = this.CY + this.RADIUS * Math.sin(a) * Math.sin(b);
+        tag.z = this.RADIUS * Math.cos(a);
+        tag.href = '#';
+        tags.push(tag);
+      }
+      this.cateCloudList = tags;
+    },
     rotateX(angleX) {
       var cos = Math.cos(angleX);
       var sin = Math.sin(angleX);
-      for (let tag of this.tags) {
+      for (let tag of this.cateCloudList) {
         var y1 = (tag.y - this.CY) * cos - tag.z * sin + this.CY;
         var z1 = tag.z * cos + (tag.y - this.CY) * sin;
         tag.y = y1;
@@ -68,7 +77,7 @@ export default {
     rotateY(angleY) {
       var cos = Math.cos(angleY);
       var sin = Math.sin(angleY);
-      for (let tag of this.tags) {
+      for (let tag of this.cateCloudList) {
         var x1 = (tag.x - this.CX) * cos - tag.z * sin + this.CX;
         var z1 = tag.z * cos + (tag.x - this.CX) * sin;
         tag.x = x1;

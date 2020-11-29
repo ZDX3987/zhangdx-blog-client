@@ -80,9 +80,7 @@ export default {
         this.$route.meta.title = this.article.title;
         this.renderArticle(this.article);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -158,7 +156,7 @@ export default {
 }
 
 .article-coverImg {
-  
+
 }
 
 #articleDirectory {
@@ -172,6 +170,7 @@ export default {
   position: absolute;
   bottom: 0;
 }
+
 .article-directory-fixed {
   height: 500px;
   position: fixed;
