@@ -70,6 +70,9 @@ export default {
         "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
     };
   },
+  props: {
+    queryCateId: 0
+  },
   created() {
     this.queryArticle(0);
   },
@@ -84,6 +87,7 @@ export default {
         pageIndex: pageIndex,
         articleStatus: this.queryStatus,
         sort: this.sort,
+        cateId: this.queryCateId
       };
       this.$api.articleApi
         .getArticleByPage(formData)

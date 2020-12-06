@@ -6,4 +6,8 @@ export default {
   getAllCategory() {
     return http.get(url + '/categories');
   },
+
+  getCategoryById(cateId) {
+    return http.get(url + '/category/' + cateId);
+  },
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="cloud-content">
     <svg :height='height' @mousemove='listener($event)'>
-      <router-link :to="{name: 'CateList', params: {tag: tag, id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
+      <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
         <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>
           {{ tag.cateName }}
         </text>

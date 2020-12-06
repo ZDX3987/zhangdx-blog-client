@@ -15,13 +15,14 @@ const router = new Router({
       path: '/',
       name: 'Index',
       component: Index,
-      meta: { title: '首页' },
+      meta: {title: '首页'},
+      redirect: {name: 'IndexContent'},
       children: [
         {
           path: '/',
           name: 'IndexContent',
           component: IndexContent,
-          meta: { title: '首页' },
+          meta: {title: '首页'},
         },
         {
           path: '/article/:id.html',
