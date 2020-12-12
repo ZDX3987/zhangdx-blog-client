@@ -10,4 +10,7 @@ export default {
   getCategoryById(cateId) {
     return http.get(url + '/category/' + cateId);
   },
+  getChildCateById(cateId) {
+    return http.get(url + '/category/' + cateId + '/child');
+  },
 }

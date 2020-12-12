@@ -1,7 +1,6 @@
 <template>
   <el-row>
     <el-col :md="17">
-      <button @click="test()">测试</button>
       <div class="article-content" v-if="isLoading">
         <skeleton
           type="custom"
@@ -87,10 +86,6 @@ export default {
     window.addEventListener("scroll", this.handleScroll, true);
   },
   methods: {
-    test() {
-      this.$route.meta.title = this.article.title;
-      console.log(this.$route.meta.title)
-    },
     renderArticle(article) {
       this.$nextTick(() => {
         if (article.source === 2) {

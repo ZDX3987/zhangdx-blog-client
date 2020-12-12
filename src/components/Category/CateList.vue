@@ -16,6 +16,19 @@
         <div class="article-total">{{ '共' + articleTotal + '篇' }}</div>
       </el-col>
     </el-row>
+    <el-row class="child-cate" v-if="childCate.length !== 0">
+      <el-col>
+        <ul>
+          <li v-for="cate of childCate" :key="cate" :class="currentCate.id === cate.id
+           ? 'active-cate-li' : ''">
+            <router-link :to="{name: 'CateList', params: {id: cate.id}}">
+              {{ cate.cateName + '(' + cate.articleCount + ')' }}
+            </router-link>
+          </li>
+        </ul>
+      </el-col>
+    </el-row>
+    <el-row class="divider-margin"></el-row>
     <el-row>
       <el-col>
         <ArticleList :query-cate-id="$route.params.id"/>
@@ -32,7 +45,8 @@ export default {
   data() {
     return {
       currentCate: null,
-      articleTotal: 0
+      articleTotal: 0,
+      childCate: []
     }
   },
   components: {
@@ -44,8 +58,11 @@ export default {
   methods: {
     queryInit() {
       let cateId = this.$route.params.id;
-      this.$api.categoryApi.getCategoryById(cateId).then(res => {
-        this.currentCate = res.data;
+      let categoryHttp = this.$api.categoryApi.getCategoryById(cateId);
+      let childCateHttp = this.$api.categoryApi.getChildCateById(cateId);
+      Promise.all([categoryHttp, childCateHttp]).then(res => {
+        this.currentCate = res[0].data;
+        this.childCate = res[1].data;
         this.$route.meta.title = this.currentCate.cateName;
         this.articleTotal = this.currentCate.articleCount;
       }).catch(error => this.$message.error(error.msg))
@@ -59,7 +76,6 @@ export default {
   width: 100%;
   height: 50px;
   background-color: #FFF;
-  margin-bottom: 30px;
   padding: 0 20px;
 }
 
@@ -77,5 +93,45 @@ export default {
   font-weight: 400;
   color: #606266;
   font-size: 14px;
+}
+
+.child-cate {
+  width: 100%;
+  height: 50px;
+  background-color: #FFF;
+  padding: 10px 0;
+  border-top: 1px solid rgb(220, 223, 230);
+}
+
+.child-cate ul {
+  list-style: none;
+}
+
+.child-cate li {
+  float: left;
+  padding: 3px 5px;
+  margin: 0 20px;
+}
+
+.child-cate a {
+  color: #666;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.child-cate li:not(.active-cate-li):hover a {
+  color: #55bd66;
+}
+
+.active-cate-li {
+  background-color: #55bd66;
+}
+
+.active-cate-li a {
+  color: #FFF;
+}
+.divider-margin {
+  margin-bottom: 30px;
 }
 </style>

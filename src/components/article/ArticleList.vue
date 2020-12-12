@@ -123,7 +123,6 @@ export default {
 
 .article-item .el-image {
   width: 100%; height: 150px;
-  transform: scale(0.5， 0.5);
 }
 
 .item-left {
