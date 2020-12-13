@@ -1,7 +1,7 @@
 <template>
   <div class="index-content">
     <el-container>
-      <NavBar/>
+      <NavBar class="header"/>
       <el-main class="main-content">
         <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
                      :key="$route.fullPath"/>
@@ -35,21 +35,28 @@ export default {
 <style scoped>
 .index-content {
   background-color: rgb(239, 239, 239);
-  height: 100%;
+  min-height: 100%;
 }
 
 .el-container {
-  height: 100%;
+  display: flex;
+  min-height: 69.1vh;
+  flex-direction: column;
 }
 
-.el-main,
+.el-main {
+  margin-top: 80px;
+  padding: 0;
+  height: 100%;
+  flex: 1;
+}
+
 .el-footer {
   padding: 0;
   height: 100%;
 }
 
-.el-main {
-  margin-top: 80px;
+.header {
 }
 
 .main-content {
