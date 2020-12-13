@@ -3,7 +3,8 @@
     <el-container>
       <NavBar/>
       <el-main class="main-content">
-        <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"/>
+        <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
+                     :key="$route.fullPath"/>
       </el-main>
       <el-footer>
         <Footer/>

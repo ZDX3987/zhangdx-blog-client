@@ -19,7 +19,7 @@
     <el-row class="child-cate" v-if="childCate.length !== 0">
       <el-col>
         <ul>
-          <li v-for="cate of childCate" :key="cate" :class="currentCate.id === cate.id
+          <li v-for="cate of childCate" :key="cate.id" :class="currentCate.id === cate.id
            ? 'active-cate-li' : ''">
             <router-link :to="{name: 'CateList', params: {id: cate.id}}">
               {{ cate.cateName + '(' + cate.articleCount + ')' }}
@@ -131,6 +131,7 @@ export default {
 .active-cate-li a {
   color: #FFF;
 }
+
 .divider-margin {
   margin-bottom: 30px;
 }
