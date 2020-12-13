@@ -101,4 +101,8 @@ export default {
   background-color: #fff;
   margin-left: 4%;
 }
+
+svg {
+  width: 94%;
+}
 </style>
