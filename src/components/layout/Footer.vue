@@ -4,7 +4,7 @@
       <el-col :md="12">
         <ul class="other-links">
           <li v-for="(link, i) of otherLinks" :key="i">
-            <a :href="link.href">{{ link.text }}</a>
+            <a :href="link.linkUrl">{{ link.linkName }}</a>
           </li>
         </ul>
         <p class="copyright">
@@ -41,13 +41,7 @@ export default {
   data() {
     return {
       currentYear: new Date().getFullYear(),
-      otherLinks: [
-        {text: "其他链接", href: "#"},
-        {text: "其他链接", href: "#"},
-        {text: "其他链接", href: "#"},
-        {text: "其他链接", href: "#"},
-        {text: "其他链接", href: "#"},
-      ],
+      otherLinks: [],
       sharedIcons: [
         {
           iconClass: "fa fa-weixin",
@@ -71,6 +65,18 @@ export default {
       ],
     };
   },
+  created() {
+    this.query();
+  },
+  methods: {
+    query() {
+      this.loading = true;
+      this.$api.settingsApi.getAllFriendshipLink().then(res => {
+        this.otherLinks = res.data;
+        this.loading = false;
+      }).catch(error => this.$message.error(error.msg));
+    }
+  }
 };
 </script>
 
