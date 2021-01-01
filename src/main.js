@@ -14,6 +14,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import filters from './filters/index'
 import api from './api/index'
 import 'element-ui/lib/theme-chalk/display.css';
+import store from './store/index';
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)
@@ -26,5 +27,6 @@ new Vue({
   el: '#app',
   router,
   components: {App},
-  template: '<App/>'
+  template: '<App/>',
+  store
 })

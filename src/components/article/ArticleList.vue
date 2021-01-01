@@ -6,15 +6,15 @@
           <el-row>
             <el-col :span="6" class="item-left">
               <router-link
-                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
                 <el-image :src="article.coverImg" fit="cover"></el-image>
               </router-link>
             </el-col>
             <el-col :span="18" class="item-right">
               <router-link
-                class="item-title"
-                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                  class="item-title"
+                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
                 {{ article.title }}
               </router-link>
@@ -30,9 +30,9 @@
       <ul class="article-ul" v-if="isLoading">
         <li v-for="i of 3" :key="i">
           <skeleton
-            type="custom"
-            :options="{ width: '100%', height: '100%' }"
-            :childrenOption="[
+              type="custom"
+              :options="{ width: '100%', height: '100%' }"
+              :childrenOption="[
               {
                 type: 'card',
                 rules: 'a, d, g',
@@ -67,7 +67,7 @@ export default {
       isLoading: true,
       listEnd: false,
       src:
-        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+          "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
     };
   },
   props: {
@@ -90,15 +90,15 @@ export default {
         cateId: this.queryCateId
       };
       this.$api.articleApi
-        .getArticleByPage(formData)
-        .then((res) => {
-          if (res.data.elements.length === 0) {
-            this.listEnd = true;
-          }
-          this.articleList = this.articleList.concat(res.data.elements);
-          this.isLoading = false;
-        })
-        .catch((error) => console.log(error));
+          .getArticleByPage(formData)
+          .then((res) => {
+            if (res.data.elements.length === 0) {
+              this.listEnd = true;
+            }
+            this.articleList = this.articleList.concat(res.data.elements);
+            this.isLoading = false;
+          })
+          .catch((error) => console.log(error));
     },
   },
 };
@@ -107,7 +107,7 @@ export default {
 <style scoped>
 .list-content {
   width: 100%;
-  background-color: #fff;
+  background-color: var(--bgColor);
 }
 
 .article-ul {
@@ -118,11 +118,12 @@ export default {
 
 .article-ul li {
   padding: 20px 20px;
-  border-bottom: 1px solid rgb(220, 223, 230);
+  border-bottom: 1px solid var(--borderColor);
 }
 
 .article-item .el-image {
-  width: 100%; height: 150px;
+  width: 100%;
+  height: 150px;
 }
 
 .item-left {
@@ -143,7 +144,7 @@ export default {
   text-align: left;
   font-size: 18px;
   text-decoration: none;
-  color: #333;
+  color: var(--fontColor);
   transition: all 0.5s;
   overflow: hidden;
 }
@@ -159,6 +160,7 @@ export default {
   height: 60px;
   overflow: hidden;
   font-weight: 300;
+  color: var(--subFontColor);
 }
 
 .item-date {
@@ -166,6 +168,7 @@ export default {
   font-size: 12px;
   text-align: left;
   margin-top: 20px;
+  color: var(--dateColor);
 }
 
 .load-more a {

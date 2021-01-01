@@ -98,11 +98,14 @@ export default {
 .cloud-content {
   width: 96%;
   height: 500px;
-  background-color: #fff;
+  background-color: var(--bgColor);
   margin-left: 4%;
 }
 
 svg {
   width: 94%;
+}
+svg text {
+  fill: var(--fontColor);
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="fixed-tool">
-    <div :class="skinToggle">
-      <a title="切换皮肤" @click="toggleSkin()">
-        <span :class="skinIcon"></span>
+    <div class="theme-toggle">
+      <a :title="currentTheme === 'light' ? '切换至黑夜':'切换至白天'" @click="toggleSkin()">
+        <span :class="themeIcon"></span>
       </a>
     </div>
     <div class="back-top">
@@ -17,22 +17,21 @@
 export default {
   name: "BackTop",
   data() {
-    return {
-      currentSkin: true,
-      skinToggle: 'skin-toggle skin-toggle-bg-white',
-      skinIcon: 'skin-icon skin-white fa fa-sun-o',
+    return {}
+  },
+  computed: {
+    currentTheme() {
+      return this.$store.state.themeToggle;
+    },
+    themeIcon() {
+      return this.currentTheme === 'light' ? 'theme-icon fa fa-sun-o'
+        : 'theme-icon fa fa-moon-o';
     }
   },
   methods: {
     toggleSkin() {
-      this.currentSkin = !this.currentSkin;
-      if (this.currentSkin) {
-        this.skinToggle = 'skin-toggle skin-toggle-bg-white';
-        this.skinIcon = 'skin-icon skin-white fa fa-sun-o';
-      } else {
-        this.skinToggle = 'skin-toggle skin-toggle-bg-black';
-        this.skinIcon = 'skin-icon skin-black fa fa-moon-o';
-      }
+      let newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+      this.$store.commit('toggleTheme', newTheme);
     }
   }
 }
@@ -50,37 +49,23 @@ export default {
   transform: translateX(100px);
 }
 
-.skin-toggle {
+.theme-toggle {
   width: 40px;
   height: 40px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.5s;
+  background: var(--bgColor);
 }
 
-.skin-toggle-bg-white {
-  background: #FFF;
-}
-
-.skin-toggle-bg-black {
-  background: #000;
-}
-
-.skin-icon {
+.theme-icon {
   display: inline-block;
   width: 40px;
   height: 40px;
   line-height: 40px;
-  font-size: 26px;
+  font-size: 20px;
   margin: 0 auto;
-}
-
-.skin-white {
-  color: #000;
-}
-
-.skin-black {
-  color: #FFF;
+  color: var(--fontColor);
 }
 
 /* 返回顶部 */

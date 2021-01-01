@@ -20,7 +20,8 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-skeleton-component": "^1.1.2",
-    "vue-wechat-title": "^2.0.7"
+    "vue-wechat-title": "^2.0.7",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

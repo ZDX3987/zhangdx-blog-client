@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .navbar-content {
-  background-color: #FFF;
+  background-color: var(--bgColor);
   width: 100%;
   position: fixed;
   z-index: 20;
@@ -55,5 +55,6 @@ export default {
 
 a {
   text-decoration: none;
+  color: var(--fontColor) !important;
 }
 </style>

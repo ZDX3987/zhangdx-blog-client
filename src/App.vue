@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    let theme = sessionStorage.getItem('theme');
+    if (theme) {
+      this.$store.commit('toggleTheme', theme);
+    }
+  }
 }
 </script>
 

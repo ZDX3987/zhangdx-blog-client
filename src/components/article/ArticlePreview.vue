@@ -128,7 +128,7 @@ export default {
 
 <style scoped>
 .article-content {
-  background-color: #fff;
+  background-color: var(--bgColor);
   padding: 40px;
   text-align: left;
   margin-right: 3%;

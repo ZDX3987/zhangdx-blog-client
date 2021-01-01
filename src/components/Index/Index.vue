@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .index-content {
-  background-color: rgb(239, 239, 239);
+  background-color: var(--bodyBgColor);
   min-height: 100%;
 }
 
