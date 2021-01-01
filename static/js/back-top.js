@@ -19,9 +19,9 @@ $(function () {
 
     //出现回到顶部按钮
     if ($(document).scrollTop() > 100) {
-      $(".back-top").css('transform', 'translateX(0)')
+      $(".fixed-tool").css('transform', 'translateX(0)')
     } else {
-      $(".back-top").css('transform', 'translateX(100px)')
+      $(".fixed-tool").css('transform', 'translateX(100px)')
     }
 
   })
