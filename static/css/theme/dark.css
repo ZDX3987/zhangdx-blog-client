@@ -1,7 +1,12 @@
 :root {
   --bodyBgColor: rgb(38,42,45);
   --bgColor: #1b1f23;
-  --fontColor: #fff;
-  --subFontColor: #BBBCBE;
+  --fontColor: rgb(232, 230, 227);
+  --subFontColor: rgb(232, 230, 227);
+  --dateColor: #AEC2D3;
   --borderColor: #2B2F33;
+  --articleTitle: rgb(174, 194, 211);
+  --articleText: rgb(206, 202, 195);
+  --codeBg: rgb(28, 30, 31);
+  --aBg: rgb(174, 194, 211);
 }

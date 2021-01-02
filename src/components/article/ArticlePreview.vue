@@ -85,6 +85,24 @@ export default {
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
   },
+  computed: {
+    codeTheme() {
+      return this.$store.state.themeToggle;
+    }
+  },
+  watch: {
+    codeTheme: {
+      handler(newVal, oldVal) {
+        if (newVal === 'light') {
+          VditorPreview.setCodeTheme('github');
+        } else {
+          console.log(newVal)
+          VditorPreview.setCodeTheme('native');
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     renderArticle(article) {
       this.$nextTick(() => {
@@ -97,7 +115,13 @@ export default {
                 that.$refs.showText,
                 that.$refs.articleDirectory
               );
+              that.showStyle();
             },
+            lazyLoadImage: 'Loading',
+            hljs: {
+              style: that.codeTheme === 'light' ? 'github' : 'native',
+              lineNumber: true
+            }
           });
         } else {
           this.$refs.showText.innerHTML = article.text;
@@ -122,7 +146,15 @@ export default {
         }
       }
     },
-  },
+    showStyle() {
+      this.$refs['articleDirectory'].childNodes.forEach(node => {
+        if (node.dataset.id === '1-概述_0') {
+          node.style.background = 'rgba(235,237,239, 0.4)'
+          node.style.color = '#55bd66'
+        }
+      });
+    }
+  }
 };
 </script>
 
@@ -136,6 +168,7 @@ export default {
 
 .article-title {
   margin: 0;
+  color: var(--articleTitle);
 }
 
 .article-info {
@@ -159,20 +192,25 @@ export default {
 
 }
 
+.article-text {
+  color: var(--articleText);
+}
+
 #articleDirectory {
-  color: #333;
   font-size: 14px;
   padding-right: 20px;
+  background-color: var(--bgColor);
+  height: 500px;
+  text-align: left;
+  color: var(--fontColor);
 }
 
 .article-directory {
-  height: 500px;
   position: absolute;
   bottom: 0;
 }
 
 .article-directory-fixed {
-  height: 500px;
   position: fixed;
 }
 </style>

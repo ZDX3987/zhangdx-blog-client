@@ -175,4 +175,7 @@ export default {
   text-decoration: none;
   cursor: pointer;
 }
+.load-more a, p {
+  color: var(--aBg);
+}
 </style>
