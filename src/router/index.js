@@ -4,7 +4,7 @@ import Index from "../components/Index/Index";
 import ArticlePreview from "../components/article/ArticlePreview";
 import IndexContent from "../components/Index/IndexContent";
 import Error from '../components/common/Error'
-import CateList from "../components/Category/CateList";
+import CateList from "../components/category/CateList";
 
 Vue.use(Router)
 

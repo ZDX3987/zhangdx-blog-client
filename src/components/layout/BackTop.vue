@@ -1,14 +1,22 @@
 <template>
   <div class="fixed-tool">
     <div class="theme-toggle">
-      <a :title="currentTheme === 'light' ? '切换至黑夜':'切换至白天'" @click="toggleSkin()">
-        <span :class="themeIcon"></span>
-      </a>
+      <el-tooltip class="item" :effect="currentTheme === 'light' ? 'dark' : 'light'"
+                  :content="currentTheme === 'light' ? '切换至黑夜':'切换至白天'"
+                  placement="left">
+        <a @click="toggleSkin()">
+          <span :class="themeIcon"></span>
+        </a>
+      </el-tooltip>
+
     </div>
     <div class="back-top">
-      <a title="返回顶部">
-        <span class="top-icon fa fa-angle-up"></span>
-      </a>
+      <el-tooltip class="item" :effect="currentTheme === 'light' ? 'dark' : 'light'"
+                  content="返回顶部" placement="left">
+        <a>
+          <span class="top-icon fa fa-angle-up"></span>
+        </a>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -47,6 +55,10 @@ export default {
   bottom: 100px;
   transition: all 0.5s;
   transform: translateX(100px);
+}
+
+.fixed-tool:hover {
+  box-shadow: 0 0 10px #999;
 }
 
 .theme-toggle {

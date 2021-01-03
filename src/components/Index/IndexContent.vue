@@ -5,13 +5,15 @@
     </el-col>
     <el-col :md="8" class="hidden-sm-and-down">
       <CateCloud/>
+      <TopicSide/>
     </el-col>
   </el-row>
 </template>
 
 <script>
 import ArticleList from "../article/ArticleList";
-import CateCloud from "../Category/CateCloud";
+import CateCloud from "../category/CateCloud";
+import TopicSide from "../topic/TopicSide";
 
 export default {
   name: "IndexContent",
@@ -20,7 +22,8 @@ export default {
   },
   components: {
     ArticleList,
-    CateCloud
+    CateCloud,
+    TopicSide
   }
 }
 </script>
