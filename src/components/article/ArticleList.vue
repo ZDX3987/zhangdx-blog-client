@@ -4,21 +4,31 @@
       <li v-for="(article, index) of articleList" :key="index">
         <div class="article-item">
           <el-row>
-            <el-col :span="6" class="item-left">
+            <el-col v-if="article.coverImg" :span="6" class="item-left">
               <router-link
-                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
                 <el-image :src="article.coverImg" fit="cover"></el-image>
               </router-link>
             </el-col>
-            <el-col :span="18" class="item-right">
+            <el-col :span="article.coverImg ? 18 : 24" class="item-right">
               <router-link
-                  class="item-title"
-                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                class="item-title"
+                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
                 {{ article.title }}
               </router-link>
-              <p class="item-text">{{ article.digest }}</p>
+              <p v-if="article.digest" class="item-text">
+                {{ article.digest ? article.digest + '......' : '' }}
+              </p>
+              <div class="item-tags">
+                <span v-for="(tag, index) of article.categories" :key="tag.id">
+                  {{ index != 0 ? '&nbsp/&nbsp' : '' }}
+                  <router-link :to="{name: 'CateList', params: {id: tag.id}}">
+                    {{ tag.cateName }}
+                  </router-link>
+                </span>
+              </div>
               <div class="item-date">
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
                 {{ article.createDate | dateFormat("yyyy-MM-dd") }}
@@ -30,9 +40,9 @@
       <ul class="article-ul" v-if="isLoading">
         <li v-for="i of 3" :key="i">
           <skeleton
-              type="custom"
-              :options="{ width: '100%', height: '100%' }"
-              :childrenOption="[
+            type="custom"
+            :options="{ width: '100%', height: '100%' }"
+            :childrenOption="[
               {
                 type: 'card',
                 rules: 'a, d, g',
@@ -67,7 +77,7 @@ export default {
       isLoading: true,
       listEnd: false,
       src:
-          "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
     };
   },
   props: {
@@ -90,15 +100,15 @@ export default {
         cateId: this.queryCateId
       };
       this.$api.articleApi
-          .getArticleByPage(formData)
-          .then((res) => {
-            if (res.data.elements.length === 0) {
-              this.listEnd = true;
-            }
-            this.articleList = this.articleList.concat(res.data.elements);
-            this.isLoading = false;
-          })
-          .catch((error) => console.log(error));
+        .getArticleByPage(formData)
+        .then((res) => {
+          if (res.data.elements.length === 0) {
+            this.listEnd = true;
+          }
+          this.articleList = this.articleList.concat(res.data.elements);
+          this.isLoading = false;
+        })
+        .catch((error) => this.$message.error("文章获取失败，请稍后重试"));
     },
   },
 };
@@ -163,11 +173,25 @@ export default {
   color: var(--subFontColor);
 }
 
+.item-tags {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.item-tags span, a {
+  color: #B2BAC2;
+  font-size: 14px;
+  text-decoration: none;
+}
+.item-tags a:hover {
+  color: #55BD66;
+}
+
 .item-date {
   font-weight: 300;
   font-size: 12px;
   text-align: left;
-  margin-top: 20px;
+  margin-top: 10px;
   color: var(--dateColor);
 }
 
@@ -175,6 +199,7 @@ export default {
   text-decoration: none;
   cursor: pointer;
 }
+
 .load-more a, p {
   color: var(--aBg);
 }
