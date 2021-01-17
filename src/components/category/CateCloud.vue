@@ -2,6 +2,7 @@
   <div class="cloud-content">
     <div class="cloud-title">
       <span><i class="fa fa-tags"></i>&nbsp;标签云</span>
+      <el-link :underline="false">共{{cateCloudList.length}}个</el-link>
     </div>
     <div>
       <svg :height='height' @mousemove='listener($event)'>

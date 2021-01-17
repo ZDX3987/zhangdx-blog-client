@@ -10,24 +10,25 @@
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li :class="'nav-item '+ menu.children ? 'dropdown' : ''"
+      <div class="collapse navbar-collapse col-9 menu-content" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li :class="getNavLiClass(menu)"
               v-for="menu of menuList" :key="menu.index">
-            <a v-if="menu.children" class="nav-link dropdown-toggle"
-               :href="menu.href" :id="'menu_' + menu.index"
-               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <router-link v-if="menu.children" class="nav-link dropdown-toggle"
+                         :id="'menu_' + menu.index" :to="{path: menu.href}"
+                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ menu.text }}
-            </a>
+            </router-link>
             <div v-if="menu.children" class="dropdown-menu"
                  :aria-labelledby="'menu_' + menu.index">
-              <a v-for="child of menu.children" :key="child.index" class="dropdown-item"
-                 :href="child.href">{{ child.text }}</a>
+              <router-link v-for="child of menu.children" :key="child.index" class="dropdown-item"
+                           :to="{path: child.href}">{{ child.text }}
+              </router-link>
             </div>
-            <a v-else class="nav-link"
-               :href="menu.href" :id="'menu_' + menu.index">
+            <router-link v-else class="nav-link" :to="{path: menu.href}"
+                         :id="'menu_' + menu.index">
               {{ menu.text }} <span class="sr-only">(current)</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -44,8 +45,14 @@ export default {
     return {
       title: 'ZHANGDX',
       menuList: navData,
-
     }
+  },
+  methods: {
+    getNavLiClass(menu) {
+      let dropdown = menu.children ? 'dropdown ' : '';
+      let active = this.$route.path === menu.href ? 'active ' : '';
+      return 'nav-item mr-3 ' + dropdown + active;
+    },
   }
 }
 </script>
@@ -76,5 +83,18 @@ a {
 
 .active a {
   color: #55bd66 !important;
+}
+.menu-content {
+  text-align: left;
+}
+.menu-content a:hover {
+  color: #55bd66 !important;
+}
+
+.dropdown-menu {
+  background-color: var(--bgColor);
+}
+.navbar-toggler {
+  border: none;
 }
 </style>

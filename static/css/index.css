@@ -4,6 +4,6 @@ html body {
   padding: 0;
 }
 
-body {
-
+button a {
+  outline: none !important;
 }

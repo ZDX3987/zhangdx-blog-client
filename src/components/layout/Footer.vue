@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-content sticky-top">
+  <div class="footer-content">
     <el-row>
       <el-col :md="12">
         <ul class="other-links">
