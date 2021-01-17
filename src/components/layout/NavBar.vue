@@ -12,8 +12,22 @@
       </button>
       <div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" v-for="menu of menuList" :key="menu.index">
-            <a class="nav-link" href="#">{{ menu.text }} <span class="sr-only">(current)</span></a>
+          <li :class="'nav-item '+ menu.children ? 'dropdown' : ''"
+              v-for="menu of menuList" :key="menu.index">
+            <a v-if="menu.children" class="nav-link dropdown-toggle"
+               :href="menu.href" :id="'menu_' + menu.index"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ menu.text }}
+            </a>
+            <div v-if="menu.children" class="dropdown-menu"
+                 :aria-labelledby="'menu_' + menu.index">
+              <a v-for="child of menu.children" :key="child.index" class="dropdown-item"
+                 :href="child.href">{{ child.text }}</a>
+            </div>
+            <a v-else class="nav-link"
+               :href="menu.href" :id="'menu_' + menu.index">
+              {{ menu.text }} <span class="sr-only">(current)</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -22,13 +36,15 @@
 </template>
 
 <script>
+import {navData} from "../../util/nav-data";
+
 export default {
   name: "NavBar",
   data() {
     return {
       title: 'ZHANGDX',
-      menuList: [{index: 1, text: 'Java学习'}, {index: 2, text: '计算机知识'},
-        {index: 3, text: '其他工具'}]
+      menuList: navData,
+
     }
   }
 }
@@ -56,5 +72,9 @@ export default {
 a {
   text-decoration: none;
   color: var(--fontColor) !important;
+}
+
+.active a {
+  color: #55bd66 !important;
 }
 </style>

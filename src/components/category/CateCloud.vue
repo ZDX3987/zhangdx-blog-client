@@ -1,12 +1,17 @@
 <template>
   <div class="cloud-content">
-    <svg :height='height' @mousemove='listener($event)'>
-      <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
-        <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>
-          {{ tag.cateName }}
-        </text>
-      </router-link>
-    </svg>
+    <div class="cloud-title">
+      <span><i class="fa fa-tags"></i>&nbsp;标签云</span>
+    </div>
+    <div>
+      <svg :height='height' @mousemove='listener($event)'>
+        <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
+          <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>
+            {{ tag.cateName }}
+          </text>
+        </router-link>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -102,6 +107,16 @@ export default {
   margin-left: 4%;
   margin-bottom: 20px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.cloud-title {
+  height: 50px;
+  border-bottom: 1px solid var(--borderColor);
+  font-size: 18px;
+  line-height: 50px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--fontColor);
 }
 
 svg {

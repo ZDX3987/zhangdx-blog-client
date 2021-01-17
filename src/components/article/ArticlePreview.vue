@@ -115,7 +115,8 @@ export default {
                 that.$refs.showText,
                 that.$refs.articleDirectory
               );
-              that.showStyle();
+              that.outlineRender(that.$refs.articleDirectory)
+              that.enableStyle();
             },
             lazyLoadImage: 'Loading',
             hljs: {
@@ -134,6 +135,21 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
+      this.handleTrackDirectory(scrollTop);
+      this.handleFixedDirectory(scrollTop);
+    },
+    handleTrackDirectory(scrollTop) {
+      let that = this;
+      $('#showText :header').each(function () {
+        let top = $(this).offset().top - scrollTop;
+        if (top < 20 && top > -20) {
+          that.enableStyle($(this)[0].id);
+        } else if (top < 200 && top > 20) {
+          that.disableStyle($(this)[0].id)
+        }
+      })
+    },
+    handleFixedDirectory(scrollTop) {
       let scroll = scrollTop - this.scrollHeight;
       this.scrollHeight = scrollTop;
       if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
@@ -146,11 +162,29 @@ export default {
         }
       }
     },
-    showStyle() {
+    outlineRender(html) {
+      console.log(html)
+    },
+    enableStyle(headerId) {
       this.$refs['articleDirectory'].childNodes.forEach(node => {
-        if (node.dataset.id === '1-概述_0') {
-          node.style.background = 'rgba(235,237,239, 0.4)'
+        if (node.dataset.id === headerId) {
+          node.style.background = 'rgba(255, 255, 255, 0.5)'
           node.style.color = '#55bd66'
+        } else {
+          node.style.background = ''
+          node.style.color = '#333'
+        }
+      });
+    },
+    disableStyle(headerId) {
+      this.$refs['articleDirectory'].childNodes.forEach((node, index, list) => {
+        if (node.dataset.id === headerId) {
+          node.style.background = ''
+          node.style.color = '#333'
+          if (index !== 0) {
+            list[index - 1].style.background = 'rgba(255, 255, 255, 0.5)';
+            list[index - 1].style.color = '#55bd66'
+          }
         }
       });
     }
@@ -199,12 +233,11 @@ export default {
 #articleDirectory {
   font-size: 14px;
   padding-right: 20px;
-  background-color: var(--bgColor);
+  /*background-color: var(--bgColor);*/
   height: 500px;
   text-align: left;
   color: var(--fontColor);
 }
-
 .article-directory {
   position: absolute;
   bottom: 0;

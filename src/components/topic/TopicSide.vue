@@ -1,7 +1,7 @@
 <template>
   <div class="topic-side-content">
     <div class="topic-side-header">
-      <span>最新专题</span>
+      <span><i class="fa fa-coffee"></i>&nbsp;最新专题</span>
       <el-link type="success" :underline="false">更多>></el-link>
     </div>
     <div class="topic-side-body">
