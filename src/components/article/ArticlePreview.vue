@@ -3,9 +3,9 @@
     <el-col :md="17">
       <div class="article-content" v-if="isLoading">
         <skeleton
-          type="custom"
-          :options="{ width: '100%', height: '100%' }"
-          :childrenOption="[
+            type="custom"
+            :options="{ width: '100%', height: '100%' }"
+            :childrenOption="[
             {
               type: 'card',
               rules: 'a, d, g',
@@ -27,8 +27,8 @@
               </el-col>
               <el-col :md="4" :xs="9" :sm="8" class="article-author">
                 <el-avatar
-                  :src="article.author.avatar"
-                  size="small"
+                    :src="article.author.avatar"
+                    size="small"
                 ></el-avatar>
                 {{ article.author.username }}
               </el-col>
@@ -37,19 +37,21 @@
         </el-row>
         <el-divider></el-divider>
         <el-image
-          class="article-coverImg"
-          :src="article.coverImg"
-          fit="scale-down"
+            class="article-coverImg"
+            :src="article.coverImg"
+            fit="scale-down"
         ></el-image>
         <div id="showText" ref="showText" class="article-text"></div>
       </div>
     </el-col>
     <el-col :md="7" class="hidden-sm-and-down">
       <div
-        id="articleDirectory"
-        :class="articleDirectoryClassName"
-        ref="articleDirectory"
-      ></div>
+          id="articleDirectory"
+          :class="articleDirectoryClassName"
+          ref="articleDirectory"
+      >
+        <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
+      </div>
     </el-col>
   </el-row>
 </template>
@@ -57,6 +59,8 @@
 <script>
 import VditorPreview from "vditor/dist/method.min";
 import "vditor/dist/index.css";
+import SideCatalog from 'vue-side-catalog'
+import 'vue-side-catalog/lib/vue-side-catalog.css'
 
 export default {
   name: "ArticlePreview",
@@ -67,20 +71,25 @@ export default {
       isLoading: true,
       scrollHeight: 0,
       articleDirectoryClassName: "article-directory-fixed",
+      catalogProps: {container: '#showText', activeColor: '#55bd66', title: '目录'},
+      sideCatalogShow: false,
     };
+  },
+  components: {
+    SideCatalog
   },
   created() {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-      .getArticleById(this.articleId)
-      .then((res) => {
-        this.article = res.data;
-        this.$route.meta.title = this.article.title;
-        this.isLoading = false;
-        this.renderArticle(this.article);
-      })
-      .catch(error => this.$message.error("文章内容加载失败"));
+        .getArticleById(this.articleId)
+        .then((res) => {
+          this.article = res.data;
+          this.$route.meta.title = this.article.title;
+          this.isLoading = false;
+          this.renderArticle(this.article);
+        })
+        .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -96,7 +105,6 @@ export default {
         if (newVal === 'light') {
           VditorPreview.setCodeTheme('github');
         } else {
-          console.log(newVal)
           VditorPreview.setCodeTheme('native');
         }
       },
@@ -111,12 +119,8 @@ export default {
           VditorPreview.preview(this.$refs.showText, article.text, {
             speech: {enable: true},
             after() {
-              VditorPreview.outlineRender(
-                that.$refs.showText,
-                that.$refs.articleDirectory
-              );
-              that.outlineRender(that.$refs.articleDirectory)
-              that.enableStyle();
+              // 动态加载侧边栏目录
+              that.sideCatalogShow = true;
             },
             lazyLoadImage: 'Loading',
             hljs: {
@@ -132,22 +136,10 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      this.handleTrackDirectory(scrollTop);
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
-    },
-    handleTrackDirectory(scrollTop) {
-      let that = this;
-      $('#showText :header').each(function () {
-        let top = $(this).offset().top - scrollTop;
-        if (top < 20 && top > -20) {
-          that.enableStyle($(this)[0].id);
-        } else if (top < 200 && top > 20) {
-          that.disableStyle($(this)[0].id)
-        }
-      })
     },
     handleFixedDirectory(scrollTop) {
       let scroll = scrollTop - this.scrollHeight;
@@ -161,32 +153,6 @@ export default {
           this.articleDirectoryClassName = "article-directory";
         }
       }
-    },
-    outlineRender(html) {
-      console.log(html)
-    },
-    enableStyle(headerId) {
-      this.$refs['articleDirectory'].childNodes.forEach(node => {
-        if (node.dataset.id === headerId) {
-          node.style.background = 'rgba(255, 255, 255, 0.5)'
-          node.style.color = '#55bd66'
-        } else {
-          node.style.background = ''
-          node.style.color = '#333'
-        }
-      });
-    },
-    disableStyle(headerId) {
-      this.$refs['articleDirectory'].childNodes.forEach((node, index, list) => {
-        if (node.dataset.id === headerId) {
-          node.style.background = ''
-          node.style.color = '#333'
-          if (index !== 0) {
-            list[index - 1].style.background = 'rgba(255, 255, 255, 0.5)';
-            list[index - 1].style.color = '#55bd66'
-          }
-        }
-      });
     }
   }
 };
@@ -238,6 +204,7 @@ export default {
   text-align: left;
   color: var(--fontColor);
 }
+
 .article-directory {
   position: absolute;
   bottom: 0;
