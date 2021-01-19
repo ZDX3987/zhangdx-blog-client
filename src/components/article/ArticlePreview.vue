@@ -1,11 +1,12 @@
 <template>
-  <el-row>
-    <el-col :md="17">
-      <div class="article-content" v-if="isLoading">
-        <skeleton
-            type="custom"
-            :options="{ width: '100%', height: '100%' }"
-            :childrenOption="[
+  <div>
+    <el-row>
+      <el-col :md="17">
+        <div class="article-content" v-if="isLoading">
+          <skeleton
+              type="custom"
+              :options="{ width: '100%', height: '100%' }"
+              :childrenOption="[
             {
               type: 'card',
               rules: 'a, d, g',
@@ -14,46 +15,57 @@
             },
             { type: 'listcom', rules: 'b, c, e, f, h, i', active: true },
           ]"
-        />
-      </div>
-      <div id="article-content" class="article-content" v-if="!isLoading">
-        <el-row>
-          <el-col :span="24">
-            <h2 class="article-title">{{ article.title }}</h2>
-            <el-row class="article-info">
-              <el-col :md="4" :xs="9" :sm="8" class="article-date">
-                <span class="fa fa-calendar-o"></span>
-                {{ article.createDate | dateFormat("yyyy-MM-dd") }}
-              </el-col>
-              <el-col :md="4" :xs="9" :sm="8" class="article-author">
-                <el-avatar
-                    :src="article.author.avatar"
-                    size="small"
-                ></el-avatar>
-                {{ article.author.username }}
-              </el-col>
-            </el-row>
-          </el-col>
-        </el-row>
-        <el-divider></el-divider>
-        <el-image
-            class="article-coverImg"
-            :src="article.coverImg"
-            fit="scale-down"
-        ></el-image>
-        <div id="showText" ref="showText" class="article-text"></div>
-      </div>
-    </el-col>
-    <el-col :md="7" class="hidden-sm-and-down">
-      <div
-          id="articleDirectory"
-          :class="articleDirectoryClassName"
-          ref="articleDirectory"
-      >
-        <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
-      </div>
-    </el-col>
-  </el-row>
+          />
+        </div>
+        <div id="article-content" class="article-content" v-if="!isLoading">
+          <el-row>
+            <el-col :span="24">
+              <h2 class="article-title">{{ article.title }}</h2>
+              <el-row class="article-info">
+                <el-col :md="4" :xs="9" :sm="8" class="article-date">
+                  <span class="fa fa-calendar-o"></span>
+                  {{ article.createDate | dateFormat("yyyy-MM-dd") }}
+                </el-col>
+                <el-col :md="4" :xs="9" :sm="8" class="article-author">
+                  <el-avatar
+                      :src="article.author.avatar"
+                      size="small"
+                  ></el-avatar>
+                  {{ article.author.username }}
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+          <el-divider></el-divider>
+          <el-image
+              class="article-coverImg"
+              :src="article.coverImg"
+              fit="scale-down"
+          ></el-image>
+          <div id="showText" ref="showText" class="article-text"></div>
+        </div>
+      </el-col>
+      <el-col :md="7" class="hidden-sm-and-down">
+        <div
+            id="articleDirectory"
+            :class="articleDirectoryClassName"
+            ref="articleDirectory"
+        >
+          <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
+        </div>
+      </el-col>
+      <el-col class="hidden-md-and-up">
+        <el-button @click="drawer = true" type="primary" class="side-drawer-btn">
+          点我打开
+        </el-button>
+        <el-drawer
+            :visible.sync="drawer"
+            :direction="direction">
+          <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
+        </el-drawer>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -73,6 +85,8 @@ export default {
       articleDirectoryClassName: "article-directory-fixed",
       catalogProps: {container: '#showText', activeColor: '#55bd66', title: '目录'},
       sideCatalogShow: false,
+      drawer: false,
+      direction: 'rtl',
     };
   },
   components: {
@@ -212,5 +226,9 @@ export default {
 
 .article-directory-fixed {
   position: fixed;
+}
+.side-drawer-btn {
+  position: fixed;
+  right: 0; top: 100px;
 }
 </style>
