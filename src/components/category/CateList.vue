@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cate-content">
     <el-row class="cate-title">
       <el-col :span="20">
         <div>
@@ -72,6 +72,9 @@ export default {
 </script>
 
 <style scoped>
+.cate-content {
+  padding: 20px 10%;
+}
 .cate-title {
   width: 100%;
   height: 50px;

@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="article-preview">
     <el-row>
-      <el-col :md="17">
+      <el-col :md="18">
         <div class="article-content" v-if="isLoading">
           <skeleton
-              type="custom"
-              :options="{ width: '100%', height: '100%' }"
-              :childrenOption="[
+            type="custom"
+            :options="{ width: '100%', height: '100%' }"
+            :childrenOption="[
             {
               type: 'card',
               rules: 'a, d, g',
@@ -28,8 +28,8 @@
                 </el-col>
                 <el-col :md="4" :xs="9" :sm="8" class="article-author">
                   <el-avatar
-                      :src="article.author.avatar"
-                      size="small"
+                    :src="article.author.avatar"
+                    size="small"
                   ></el-avatar>
                   {{ article.author.username }}
                 </el-col>
@@ -38,29 +38,31 @@
           </el-row>
           <el-divider></el-divider>
           <el-image
-              class="article-coverImg"
-              :src="article.coverImg"
-              fit="scale-down"
+            class="article-coverImg"
+            :src="article.coverImg"
+            fit="scale-down"
           ></el-image>
           <div id="showText" ref="showText" class="article-text"></div>
         </div>
       </el-col>
-      <el-col :md="7" class="hidden-sm-and-down">
+      <el-col :md="6" class="hidden-sm-and-down">
         <div
-            id="articleDirectory"
-            :class="articleDirectoryClassName"
-            ref="articleDirectory"
+          id="articleDirectory"
+          :class="articleDirectoryClassName"
+          ref="articleDirectory"
         >
           <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
         </div>
       </el-col>
       <el-col class="hidden-md-and-up">
-        <el-button @click="drawer = true" type="primary" class="side-drawer-btn">
-          点我打开
-        </el-button>
+        <a @click="drawer = true" class="side-drawer-btn fa fa-caret-left"
+           :class="drawer ? 'side-drawer-show-btn' : ''">
+        </a>
         <el-drawer
-            :visible.sync="drawer"
-            :direction="direction">
+          :visible.sync="drawer"
+          direction="rtl"
+          :class="'drawer-content'"
+          size="40%">
           <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
         </el-drawer>
       </el-col>
@@ -83,7 +85,7 @@ export default {
       isLoading: true,
       scrollHeight: 0,
       articleDirectoryClassName: "article-directory-fixed",
-      catalogProps: {container: '#showText', activeColor: '#55bd66', title: '目录'},
+      catalogProps: {container: '#showText', activeColor: '#55bd66'},
       sideCatalogShow: false,
       drawer: false,
       direction: 'rtl',
@@ -96,14 +98,14 @@ export default {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-        .getArticleById(this.articleId)
-        .then((res) => {
-          this.article = res.data;
-          this.$route.meta.title = this.article.title;
-          this.isLoading = false;
-          this.renderArticle(this.article);
-        })
-        .catch(error => this.$message.error("文章内容加载失败"));
+      .getArticleById(this.articleId)
+      .then((res) => {
+        this.article = res.data;
+        this.$route.meta.title = this.article.title;
+        this.isLoading = false;
+        this.renderArticle(this.article);
+      })
+      .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -150,34 +152,38 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
     },
     handleFixedDirectory(scrollTop) {
-      let scroll = scrollTop - this.scrollHeight;
-      this.scrollHeight = scrollTop;
-      if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
-        this.articleDirectoryClassName = "article-directory-fixed";
-      } else if (scroll >= 0) {
-        let element1 = $("#article-content").height();
-        let element2 = $("#articleDirectory").offset().top;
-        if (element1 <= element2 + 320.3) {
-          this.articleDirectoryClassName = "article-directory";
-        }
-      }
+      // let scroll = scrollTop - this.scrollHeight;
+      // this.scrollHeight = scrollTop;
+      // if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
+      //   this.articleDirectoryClassName = "article-directory-fixed";
+      // } else if (scroll >= 0) {
+      //   let element1 = $("#article-content").height();
+      //   let element2 = $("#articleDirectory").offset().top;
+      //   if (element1 <= element2 + 320.3) {
+      //     this.articleDirectoryClassName = "article-directory";
+      //   }
+      // }
     }
   }
 };
 </script>
 
 <style scoped>
+.article-preview {
+  padding: 20px 10%;
+}
 .article-content {
   background-color: var(--bgColor);
   padding: 40px;
   text-align: left;
   margin-right: 3%;
+
 }
 
 .article-title {
@@ -214,7 +220,6 @@ export default {
   font-size: 14px;
   padding-right: 20px;
   /*background-color: var(--bgColor);*/
-  height: 500px;
   text-align: left;
   color: var(--fontColor);
 }
@@ -227,8 +232,30 @@ export default {
 .article-directory-fixed {
   position: fixed;
 }
+
 .side-drawer-btn {
   position: fixed;
-  right: 0; top: 100px;
+  right: 0;
+  top: 200px;
+  width: 30px;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s;
+  background: var(--bgColor);
+  color: var(--fontColor);
+  font-size: 28px;
 }
+
+.side-drawer-show-btn {
+  transform: translateX(-150px);
+}
+
+.drawer-content {
+  text-align: left;
+  font-size: 14px;
+  color: var(--fontColor);
+}
+
 </style>

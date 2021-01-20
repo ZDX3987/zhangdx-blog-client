@@ -30,6 +30,6 @@ export default {
 
 <style scoped>
 .index-content {
-
+  padding: 20px 10%;
 }
 </style>
