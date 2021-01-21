@@ -7,7 +7,7 @@
     <div>
       <svg :height='height' @mousemove='listener($event)'>
         <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
-          <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>
+          <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)' :fill="randomColor()">
             {{ tag.cateName }}
           </text>
         </router-link>
@@ -95,6 +95,12 @@ export default {
       var y = event.clientY - this.CY;
       this.speedX = x * 0.0001 > 0 ? Math.min(this.RADIUS * 0.00002, x * 0.0001) : Math.max(-this.RADIUS * 0.00002, x * 0.0001);
       this.speedY = y * 0.0001 > 0 ? Math.min(this.RADIUS * 0.00002, y * 0.0001) : Math.max(-this.RADIUS * 0.00002, y * 0.0001);
+    },
+    randomColor() {
+      let r = Math.floor(Math.random()*255);
+      let g = Math.floor(Math.random()*255);
+      let b = Math.floor(Math.random()*255);
+      return 'rgb('+ r +','+ g +','+ b +')';
     }
   }
 }
@@ -123,7 +129,7 @@ export default {
 svg {
   width: 94%;
 }
-svg text {
-  fill: var(--fontColor);
-}
+/*svg text {*/
+/*  fill: var(--fontColor);*/
+/*}*/
 </style>

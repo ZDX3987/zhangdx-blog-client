@@ -12,21 +12,24 @@
       </button>
       <div class="collapse navbar-collapse col-9 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <li :class="getNavLiClass(menu)"
+          <li class="nav-item mr-3" :class="getNavLiClass(menu)"
               v-for="menu of menuList" :key="menu.index">
             <router-link v-if="menu.children" class="nav-link dropdown-toggle"
                          :id="'menu_' + menu.index" :to="{path: menu.href}"
                          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span :class="menu.icon"></span>&nbsp;
               {{ menu.text }}
             </router-link>
             <div v-if="menu.children" class="dropdown-menu"
                  :aria-labelledby="'menu_' + menu.index">
               <router-link v-for="child of menu.children" :key="child.index" class="dropdown-item"
-                           :to="{path: child.href}">{{ child.text }}
+                           :to="{path: child.href}">
+                {{ child.text }}
               </router-link>
             </div>
             <router-link v-else class="nav-link" :to="{path: menu.href}"
                          :id="'menu_' + menu.index">
+              <span :class="menu.icon"></span>&nbsp;
               {{ menu.text }} <span class="sr-only">(current)</span>
             </router-link>
           </li>
@@ -51,7 +54,7 @@ export default {
     getNavLiClass(menu) {
       let dropdown = menu.children ? 'dropdown ' : '';
       let active = this.$route.path === menu.href ? 'active ' : '';
-      return 'nav-item mr-3 ' + dropdown + active;
+      return dropdown + active;
     },
   }
 }
@@ -84,16 +87,29 @@ a {
 .active a {
   color: #55bd66 !important;
 }
+
 .menu-content {
   text-align: left;
 }
+
 .menu-content a:hover {
   color: #55bd66 !important;
 }
 
 .dropdown-menu {
   background-color: var(--bgColor);
+  margin-top: 20px;
+  border: none;
 }
+
+.dropdown-item {
+  border-bottom: 1px solid #fff;
+}
+
+.dropdown-item:nth-last-of-type(1) {
+  border: none;
+}
+
 .navbar-toggler {
   border: none;
 }

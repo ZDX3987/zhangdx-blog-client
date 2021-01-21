@@ -4,9 +4,9 @@
       <el-col :md="18">
         <div class="article-content" v-if="isLoading">
           <skeleton
-            type="custom"
-            :options="{ width: '100%', height: '100%' }"
-            :childrenOption="[
+              type="custom"
+              :options="{ width: '100%', height: '100%' }"
+              :childrenOption="[
             {
               type: 'card',
               rules: 'a, d, g',
@@ -28,8 +28,8 @@
                 </el-col>
                 <el-col :md="4" :xs="9" :sm="8" class="article-author">
                   <el-avatar
-                    :src="article.author.avatar"
-                    size="small"
+                      :src="article.author.avatar"
+                      size="small"
                   ></el-avatar>
                   {{ article.author.username }}
                 </el-col>
@@ -38,20 +38,20 @@
           </el-row>
           <el-divider></el-divider>
           <el-image
-            class="article-coverImg"
-            :src="article.coverImg"
-            fit="scale-down"
+              class="article-coverImg"
+              :src="article.coverImg"
+              fit="scale-down"
           ></el-image>
           <div id="showText" ref="showText" class="article-text"></div>
         </div>
       </el-col>
       <el-col :md="6" class="hidden-sm-and-down">
         <div
-          id="articleDirectory"
-          :class="articleDirectoryClassName"
-          ref="articleDirectory"
+            id="articleDirectory"
+            :class="articleDirectoryClassName"
+            ref="articleDirectory"
         >
-          <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
+          <article-directory :directoryShow="directoryShow"></article-directory>
         </div>
       </el-col>
       <el-col class="hidden-md-and-up">
@@ -59,11 +59,11 @@
            :class="drawer ? 'side-drawer-show-btn' : ''">
         </a>
         <el-drawer
-          :visible.sync="drawer"
-          direction="rtl"
-          :class="'drawer-content'"
-          size="40%">
-          <side-catalog v-if="sideCatalogShow" v-bind="catalogProps"></side-catalog>
+            :visible.sync="drawer"
+            direction="rtl"
+            :class="'drawer-content'"
+            size="40%">
+          <article-directory :directoryShow="directoryShow"></article-directory>
         </el-drawer>
       </el-col>
     </el-row>
@@ -73,8 +73,7 @@
 <script>
 import VditorPreview from "vditor/dist/method.min";
 import "vditor/dist/index.css";
-import SideCatalog from 'vue-side-catalog'
-import 'vue-side-catalog/lib/vue-side-catalog.css'
+import ArticleDirectory from "./ArticleDirectory";
 
 export default {
   name: "ArticlePreview",
@@ -85,27 +84,25 @@ export default {
       isLoading: true,
       scrollHeight: 0,
       articleDirectoryClassName: "article-directory-fixed",
-      catalogProps: {container: '#showText', activeColor: '#55bd66'},
-      sideCatalogShow: false,
+      directoryShow: false,
       drawer: false,
-      direction: 'rtl',
     };
   },
   components: {
-    SideCatalog
+    ArticleDirectory
   },
   created() {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-      .getArticleById(this.articleId)
-      .then((res) => {
-        this.article = res.data;
-        this.$route.meta.title = this.article.title;
-        this.isLoading = false;
-        this.renderArticle(this.article);
-      })
-      .catch(error => this.$message.error("文章内容加载失败"));
+        .getArticleById(this.articleId)
+        .then((res) => {
+          this.article = res.data;
+          this.$route.meta.title = this.article.title;
+          this.isLoading = false;
+          this.renderArticle(this.article);
+        })
+        .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -136,7 +133,7 @@ export default {
             speech: {enable: true},
             after() {
               // 动态加载侧边栏目录
-              that.sideCatalogShow = true;
+              that.directoryShow = true;
             },
             lazyLoadImage: 'Loading',
             hljs: {
@@ -152,9 +149,9 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
     },
     handleFixedDirectory(scrollTop) {
@@ -178,6 +175,7 @@ export default {
 .article-preview {
   padding: 20px 10%;
 }
+
 .article-content {
   background-color: var(--bgColor);
   padding: 40px;
@@ -257,5 +255,7 @@ export default {
   font-size: 14px;
   color: var(--fontColor);
 }
-
+.drawer-content >>> .el-drawer {
+  background-color: var(--bgColor) !important;
+}
 </style>
