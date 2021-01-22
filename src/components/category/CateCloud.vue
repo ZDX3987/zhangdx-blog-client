@@ -7,7 +7,7 @@
     <div>
       <svg :height='height' @mousemove='listener($event)'>
         <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
-          <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)' :fill="randomColor()">
+          <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)' :fill="tag.fill">
             {{ tag.cateName }}
           </text>
         </router-link>
@@ -66,6 +66,7 @@ export default {
         tag.y = this.CY + this.RADIUS * Math.sin(a) * Math.sin(b);
         tag.z = this.RADIUS * Math.cos(a);
         tag.href = '#';
+        tag.fill = this.randomColor();
         tags.push(tag);
       }
       this.cateCloudList = tags;
