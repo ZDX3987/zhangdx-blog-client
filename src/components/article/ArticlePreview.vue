@@ -1,7 +1,7 @@
 <template>
   <div class="article-preview">
     <el-row type="flex" justify="center">
-      <el-col :md="14" :xs="22" :sm="22">
+      <el-col :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <skeleton
               type="custom"
@@ -45,7 +45,7 @@
           <div id="showText" ref="showText" class="article-text"></div>
         </div>
       </el-col>
-      <el-col :md="6" class="hidden-sm-and-down">
+      <el-col :md="5" class="hidden-sm-and-down">
         <div
             id="articleDirectory"
             :class="articleDirectoryClassName"
