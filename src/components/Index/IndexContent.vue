@@ -1,9 +1,9 @@
 <template>
-  <el-row class="index-content">
-    <el-col :md="16">
+  <el-row class="index-content"  type="flex" justify="center">
+    <el-col :md="14" :xs="22" :sm="22">
       <ArticleList :query-cate-id="0"/>
     </el-col>
-    <el-col :md="8" class="hidden-sm-and-down">
+    <el-col :md="6" class="hidden-sm-and-down">
       <CateCloud/>
       <TopicSide/>
     </el-col>
@@ -30,6 +30,7 @@ export default {
 
 <style scoped>
 .index-content {
-  padding: 20px 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 </style>

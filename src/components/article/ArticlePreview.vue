@@ -1,7 +1,7 @@
 <template>
   <div class="article-preview">
-    <el-row>
-      <el-col :md="18">
+    <el-row type="flex" justify="center">
+      <el-col :md="14" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <skeleton
               type="custom"
@@ -49,24 +49,23 @@
         <div
             id="articleDirectory"
             :class="articleDirectoryClassName"
-            ref="articleDirectory"
-        >
+            ref="articleDirectory">
           <article-directory :directoryShow="directoryShow"></article-directory>
         </div>
       </el-col>
-      <el-col class="hidden-md-and-up">
-        <a @click="drawer = true" class="side-drawer-btn fa fa-caret-left"
-           :class="drawer ? 'side-drawer-show-btn' : ''">
-        </a>
-        <el-drawer
-            :visible.sync="drawer"
-            direction="rtl"
-            :class="'drawer-content'"
-            size="40%">
-          <article-directory :directoryShow="directoryShow"></article-directory>
-        </el-drawer>
-      </el-col>
     </el-row>
+    <div class="hidden-md-and-up">
+      <a @click="drawer = true" class="side-drawer-btn fa fa-caret-left"
+         :class="drawer ? 'side-drawer-show-btn' : ''">
+      </a>
+      <el-drawer
+        :visible.sync="drawer"
+        direction="rtl"
+        :class="'drawer-content'"
+        size="40%">
+        <article-directory :directoryShow="directoryShow"></article-directory>
+      </el-drawer>
+    </div>
   </div>
 </template>
 
@@ -95,14 +94,14 @@ export default {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-        .getArticleById(this.articleId)
-        .then((res) => {
-          this.article = res.data;
-          this.$route.meta.title = this.article.title;
-          this.isLoading = false;
-          this.renderArticle(this.article);
-        })
-        .catch(error => this.$message.error("文章内容加载失败"));
+      .getArticleById(this.articleId)
+      .then((res) => {
+        this.article = res.data;
+        this.$route.meta.title = this.article.title;
+        this.isLoading = false;
+        this.renderArticle(this.article);
+      })
+      .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -149,9 +148,9 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
     },
     handleFixedDirectory(scrollTop) {
@@ -173,15 +172,14 @@ export default {
 
 <style scoped>
 .article-preview {
-  padding: 20px 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .article-content {
   background-color: var(--bgColor);
   padding: 40px;
   text-align: left;
-  margin-right: 3%;
-
 }
 
 .article-title {
@@ -220,6 +218,7 @@ export default {
   /*background-color: var(--bgColor);*/
   text-align: left;
   color: var(--fontColor);
+  margin-left: 3%;
 }
 
 .article-directory {
@@ -244,6 +243,7 @@ export default {
   background: var(--bgColor);
   color: var(--fontColor);
   font-size: 28px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 }
 
 .side-drawer-show-btn {
@@ -255,6 +255,7 @@ export default {
   font-size: 14px;
   color: var(--fontColor);
 }
+
 .drawer-content >>> .el-drawer {
   background-color: var(--bgColor) !important;
 }

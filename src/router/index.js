@@ -5,7 +5,7 @@ import ArticlePreview from "../components/article/ArticlePreview";
 import IndexContent from "../components/Index/IndexContent";
 import Error from '../components/common/Error'
 import CateList from "../components/category/CateList";
-import ClassifyList from "../components/classify/ClassifyList";
+import Classify from "../components/classify/Classify";
 
 Vue.use(Router)
 
@@ -43,8 +43,8 @@ const router = new Router({
         },
         {
           path: '/classify',
-          name: 'ClassifyList',
-          component: ClassifyList,
+          name: 'Classify',
+          component: Classify,
           meta: {
             title: '文章分类'
           }

@@ -85,7 +85,7 @@ a {
 }
 
 .active a {
-  color: #55bd66 !important;
+  color: var(--mainThemeColor) !important;
 }
 
 .menu-content {
@@ -93,7 +93,7 @@ a {
 }
 
 .menu-content a:hover {
-  color: #55bd66 !important;
+  color: var(--mainThemeColor) !important;
 }
 
 .dropdown-menu {

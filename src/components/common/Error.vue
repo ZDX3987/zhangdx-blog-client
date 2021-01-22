@@ -41,7 +41,7 @@ p:nth-of-type(2) {
 .back-btn {
   width: 200px;
   height: 50px;
-  background-color: #55bd66;
+  background-color: var(--mainThemeColor);
   border-radius: 50px;
   font-size: 18px;
   color: #fff;

@@ -184,7 +184,7 @@ export default {
   text-decoration: none;
 }
 .item-tags a:hover {
-  color: #55BD66;
+  color: var(--mainThemeColor);
 }
 
 .item-date {

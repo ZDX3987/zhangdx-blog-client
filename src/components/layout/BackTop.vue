@@ -91,7 +91,7 @@ export default {
 }
 
 .back-top:hover {
-  background: #55bd66;
+  background: var(--mainThemeColor);
 }
 
 .top-icon {

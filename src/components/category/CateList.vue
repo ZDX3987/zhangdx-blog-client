@@ -124,11 +124,11 @@ export default {
 }
 
 .child-cate li:not(.active-cate-li):hover a {
-  color: #55bd66;
+  color: var(--mainThemeColor);
 }
 
 .active-cate-li {
-  background-color: #55bd66;
+  background-color: var(--mainThemeColor);
 }
 
 .active-cate-li a {
