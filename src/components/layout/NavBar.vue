@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-content">
-    <nav class="navbar navbar-expand-lg navbar-light row">
-      <div class="col-3">
+    <nav class="navbar navbar-expand-md navbar-light row">
+      <div class="col-md-3 col-6 col-sm-6 offset-3 offset-sm-3 offset-md-0">
         <a class="navbar-brand" href="/">
           <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
         </a>
@@ -10,7 +10,7 @@
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse col-9 menu-content" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse col-md-9 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item mr-3" :class="getNavLiClass(menu)"
               v-for="menu of menuList" :key="menu.index">
@@ -100,6 +100,7 @@ a {
   background-color: var(--bgColor);
   margin-top: 20px;
   border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 }
 
 .dropdown-item {

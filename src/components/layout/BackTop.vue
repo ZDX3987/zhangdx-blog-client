@@ -55,10 +55,7 @@ export default {
   bottom: 100px;
   transition: all 0.5s;
   transform: translateX(100px);
-}
-
-.fixed-tool:hover {
-  box-shadow: 0 0 10px #999;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 }
 
 .theme-toggle {
