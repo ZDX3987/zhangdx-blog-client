@@ -37,7 +37,7 @@
             </el-col>
           </el-row>
           <el-divider></el-divider>
-          <el-image
+          <el-image v-if="article.coverImg"
               class="article-coverImg"
               :src="article.coverImg"
               fit="scale-down"

@@ -2,7 +2,13 @@
   <div>
     <el-row type="flex" justify="center">
       <el-col :md="20" :xs="22" :sm="22">
-        <classify-list></classify-list>
+        <classify-list @query-category="setQueryCateId"></classify-list>
+      </el-col>
+    </el-row>
+    <el-row class="divider-margin"></el-row>
+    <el-row type="flex" justify="center">
+      <el-col :md="20" :xs="22" :sm="22">
+        <article-list :query-cate-id="queryCateId"></article-list>
       </el-col>
     </el-row>
   </div>
@@ -10,17 +16,30 @@
 
 <script>
 import ClassifyList from "./ClassifyList";
+import ArticleList from "../article/ArticleList";
 
 export default {
   name: "Classify",
   data() {
-    return {}
+    return {
+      queryCateId: 0
+    }
   },
   components: {
-    ClassifyList
+    ClassifyList,
+    ArticleList
+  },
+  methods: {
+    setQueryCateId(cateId) {
+      this.queryCateId = cateId;
+      console.log(cateId)
+    }
   }
 }
 </script>
 
 <style scoped>
+.divider-margin {
+  margin-bottom: 30px;
+}
 </style>

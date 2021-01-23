@@ -83,6 +83,11 @@ export default {
   props: {
     queryCateId: 0
   },
+  watch: {
+    queryCateId(value) {
+      this.queryArticle(0);
+    }
+  },
   created() {
     this.queryArticle(0);
   },
@@ -105,7 +110,8 @@ export default {
           if (res.data.elements.length === 0) {
             this.listEnd = true;
           }
-          this.articleList = this.articleList.concat(res.data.elements);
+          this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
+            : res.data.elements;
           this.isLoading = false;
         })
         .catch((error) => this.$message.error("文章获取失败，请稍后重试"));
@@ -183,6 +189,7 @@ export default {
   font-size: 14px;
   text-decoration: none;
 }
+
 .item-tags a:hover {
   color: var(--mainThemeColor);
 }
