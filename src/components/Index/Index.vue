@@ -27,7 +27,7 @@ export default {
     NavBar,
     ArticleList,
     Footer,
-    BackTop
+    BackTop,
   },
 };
 </script>

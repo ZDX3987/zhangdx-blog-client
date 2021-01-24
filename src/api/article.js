@@ -8,5 +8,9 @@ export default {
   },
   getArticleById(id) {
     return http.get(url + '/article/' + id);
+  },
+
+  getArchivesTimeline() {
+    return http.get(url + '/archives/timeline');
   }
 }

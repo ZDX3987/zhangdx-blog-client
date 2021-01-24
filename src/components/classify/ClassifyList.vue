@@ -105,7 +105,7 @@ export default {
 }
 
 .classify-list-content a {
-  color: #666;
+  color: var(--aBg);
   font-size: 13px;
   text-decoration: none;
   transition: all 0.5s;

@@ -6,6 +6,7 @@ import IndexContent from "../components/Index/IndexContent";
 import Error from '../components/common/Error'
 import CateList from "../components/category/CateList";
 import Classify from "../components/classify/Classify";
+import Archives from "../components/archives/Archives";
 
 Vue.use(Router)
 
@@ -47,6 +48,14 @@ const router = new Router({
           component: Classify,
           meta: {
             title: '文章分类'
+          }
+        },
+        {
+          path: '/archives',
+          name: 'Archives',
+          component: Archives,
+          meta: {
+            title: '归档'
           }
         }
       ]
