@@ -3,10 +3,11 @@
     <el-col :md="20" :sm="22" :xs="22" class="archives-content">
       <el-row>
         <el-col :md="6" :sm="6" :xs="24">
-          <archives-timeline></archives-timeline>
+          <archives-timeline @query-date="setQueryDateStr"></archives-timeline>
         </el-col>
         <el-col :md="18" :sm="18" :xs="24">
-          <archives-list></archives-list>
+          <archives-list v-if="queryDateStr"
+                         :query-date-str="queryDateStr"></archives-list>
         </el-col>
       </el-row>
     </el-col>
@@ -20,11 +21,18 @@ import ArchivesTimeline from "./ArchivesTimeline";
 export default {
   name: "Archives",
   data() {
-    return {}
+    return {
+      queryDateStr: null
+    }
   },
   components: {
     ArchivesTimeline,
     ArchivesList
+  },
+  methods: {
+    setQueryDateStr(value) {
+      this.queryDateStr = value;
+    }
   }
 }
 </script>

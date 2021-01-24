@@ -32,7 +32,6 @@ export default {
   methods: {
     setQueryCateId(cateId) {
       this.queryCateId = cateId;
-      console.log(cateId)
     }
   }
 }

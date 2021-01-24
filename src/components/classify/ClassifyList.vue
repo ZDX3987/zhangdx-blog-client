@@ -4,7 +4,7 @@
       <el-col>
         <ul>
           <li :class="currentCateId === 0 ? 'active-cate-li' : ''" @click="chooseCate(null, 0)">
-            <a>全部（999）</a>
+            <a>全部（{{getParentCategoriesCount()}}）</a>
           </li>
           <li v-for="cate of getAllParentCategories()" :key="cate.id" :class="currentCateId === cate.id
            ? 'active-cate-li' : ''" @click="chooseCate(cate, 0)">
@@ -20,7 +20,7 @@
         <el-col>
           <ul>
             <li :class="currentChildCateId === 0 ? 'active-cate-li' : ''" @click="chooseCate(null, 1)">
-              <a>全部（999）</a>
+              <a>全部（{{getChildCategoriesCount()}}）</a>
             </li>
             <li v-for="cate of childCateList" :key="cate.id" :class="currentChildCateId === cate.id
            ? 'active-cate-li' : ''" @click="chooseCate(cate, 1)">
@@ -73,6 +73,16 @@ export default {
       let queryCateId = this.currentCateId ? (this.currentChildCateId
         ? this.currentChildCateId : this.currentCateId) : 0;
       this.$emit('query-category', queryCateId);
+    },
+    getParentCategoriesCount() {
+      return this.getAllParentCategories().reduce((prev, current) => {
+        return prev + current.articleCount;
+      }, 0);
+    },
+    getChildCategoriesCount() {
+      return this.childCateList.reduce((prev, current) => {
+        return prev + current.articleCount;
+      }, 0);
     }
   }
 }

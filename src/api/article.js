@@ -12,5 +12,9 @@ export default {
 
   getArchivesTimeline() {
     return http.get(url + '/archives/timeline');
+  },
+
+  getArticleForArchives(formData) {
+    return http.get(url + '/archives/articles', {params: formData})
   }
 }

@@ -4,7 +4,8 @@
       <el-collapse-item v-for="(value, key, index) of timelineMap" :key="key"
                         :title="key + '（' + getYearCount(key) + '）' " :name="index"
                         class="timeline-title">
-        <div class="timeline-item" v-for="timeline of value" :key="timeline.timeline">
+        <div class="timeline-item" v-for="timeline of value" :key="timeline.timeline"
+        @click="selectTimeline(timeline.timeline)">
           {{ timeline.timeline + '（' + timeline.count + '）' }}
         </div>
       </el-collapse-item>
@@ -27,12 +28,20 @@ export default {
     queryTimeline() {
       this.$api.articleApi.getArchivesTimeline().then(result => {
         this.timelineMap = result.data;
+        this.selectDefaultQueryDateStr(this.timelineMap);
       }).catch(error => this.$message.error('时间线查询失败'));
     },
     getYearCount(key) {
       return this.timelineMap[key].reduce((prev, current) => {
         return prev + current.count;
       }, 0);
+    },
+    selectTimeline(dateStr) {
+      this.$emit('query-date', dateStr);
+    },
+    selectDefaultQueryDateStr(timelineMap) {
+      let queryDateStr = Object.values(this.timelineMap).flatMap(timeline => timeline).sort()[0];
+      this.selectTimeline(queryDateStr.timeline);
     }
   }
 }
