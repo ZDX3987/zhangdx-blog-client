@@ -6,15 +6,19 @@
           <el-row>
             <el-col v-if="article.coverImg" :span="6" class="item-left">
               <router-link
-                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
-                <el-image :src="article.coverImg" fit="cover"></el-image>
+                <el-image :src="article.coverImg" fit="cover">
+                  <div slot="error">
+                    <el-image :src="errorImgUrl" fit="cover"></el-image>
+                  </div>
+                </el-image>
               </router-link>
             </el-col>
             <el-col :span="article.coverImg ? 18 : 24" class="item-right">
               <router-link
-                class="item-title"
-                :to="{ name: 'ArticlePreview', params: { id: article.id } }"
+                  class="item-title"
+                  :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
                 {{ article.title }}
               </router-link>
@@ -40,9 +44,9 @@
       <ul class="article-ul" v-if="isLoading">
         <li v-for="i of 3" :key="i">
           <skeleton
-            type="custom"
-            :options="{ width: '100%', height: '100%' }"
-            :childrenOption="[
+              type="custom"
+              :options="{ width: '100%', height: '100%' }"
+              :childrenOption="[
               {
                 type: 'card',
                 rules: 'a, d, g',
@@ -76,6 +80,7 @@ export default {
       pageIndex: 0,
       isLoading: true,
       listEnd: false,
+      errorImgUrl: 'static/images/notfound.gif'
     };
   },
   props: {
@@ -103,16 +108,16 @@ export default {
         cateId: this.queryCateId
       };
       this.$api.articleApi
-        .getArticleByPage(formData)
-        .then((res) => {
-          if (res.data.elements.length === 0) {
-            this.listEnd = true;
-          }
-          this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
-            : res.data.elements;
-          this.isLoading = false;
-        })
-        .catch((error) => this.$message.error("文章获取失败，请稍后重试"));
+          .getArticleByPage(formData)
+          .then((res) => {
+            if (res.data.elements.length === 0) {
+              this.listEnd = true;
+            }
+            this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
+                : res.data.elements;
+            this.isLoading = false;
+          })
+          .catch((error) => this.$message.error("文章获取失败，请稍后重试"));
     },
   },
 };

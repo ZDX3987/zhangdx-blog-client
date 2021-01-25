@@ -38,10 +38,13 @@
           </el-row>
           <el-divider></el-divider>
           <el-image v-if="article.coverImg"
-              class="article-coverImg"
-              :src="article.coverImg"
-              fit="scale-down"
-          ></el-image>
+                    class="article-coverImg"
+                    :src="article.coverImg"
+                    fit="scale-down">
+            <div slot="error">
+              <el-image :src="errorImgUrl" fit="scale-down"></el-image>
+            </div>
+          </el-image>
           <div id="showText" ref="showText" class="article-text"></div>
         </div>
       </el-col>
@@ -59,10 +62,10 @@
          :class="drawer ? 'side-drawer-show-btn' : ''">
       </a>
       <el-drawer
-        :visible.sync="drawer"
-        direction="rtl"
-        :class="'drawer-content'"
-        size="40%">
+          :visible.sync="drawer"
+          direction="rtl"
+          :class="'drawer-content'"
+          size="40%">
         <article-directory :directoryShow="directoryShow"></article-directory>
       </el-drawer>
     </div>
@@ -85,6 +88,7 @@ export default {
       articleDirectoryClassName: "article-directory-fixed",
       directoryShow: false,
       drawer: false,
+      errorImgUrl: '/static/images/notfound.gif'
     };
   },
   components: {
@@ -94,14 +98,14 @@ export default {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-      .getArticleById(this.articleId)
-      .then((res) => {
-        this.article = res.data;
-        this.$route.meta.title = this.article.title;
-        this.isLoading = false;
-        this.renderArticle(this.article);
-      })
-      .catch(error => this.$message.error("文章内容加载失败"));
+        .getArticleById(this.articleId)
+        .then((res) => {
+          this.article = res.data;
+          this.$route.meta.title = this.article.title;
+          this.isLoading = false;
+          this.renderArticle(this.article);
+        })
+        .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -148,9 +152,9 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
     },
     handleFixedDirectory(scrollTop) {
@@ -202,10 +206,6 @@ export default {
   font-size: 14px;
   line-height: 40px;
   height: 40px;
-}
-
-.article-coverImg {
-
 }
 
 .article-text {
