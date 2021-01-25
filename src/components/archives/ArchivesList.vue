@@ -72,6 +72,7 @@ export default {
 .article-card a {
   color: var(--fontColor);
   text-decoration: none;
+  transition: all 0.5s;
 }
 
 .article-card a:hover {

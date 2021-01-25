@@ -6,9 +6,9 @@
         <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
                      :key="$route.fullPath"/>
       </el-main>
-      <el-footer>
+      <footer>
         <Footer/>
-      </el-footer>
+      </footer>
     </el-container>
     <BackTop/>
   </div>
@@ -40,25 +40,12 @@ export default {
 
 .el-container {
   display: flex;
-  min-height: 69.1vh;
+  min-height: 100vh;
   flex-direction: column;
 }
 
 .el-main {
   margin-top: 80px;
   padding: 0;
-  height: 100%;
-  flex: 1;
-}
-
-.el-footer {
-  padding: 0;
-  height: 100%;
-}
-
-.header {
-}
-
-.main-content {
 }
 </style>

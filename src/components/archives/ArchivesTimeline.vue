@@ -4,8 +4,9 @@
       <el-collapse-item v-for="(value, key, index) of timelineMap" :key="key"
                         :title="key + '（' + getYearCount(key) + '）' " :name="index"
                         class="timeline-title">
-        <div class="timeline-item" v-for="timeline of value" :key="timeline.timeline"
-        @click="selectTimeline(timeline.timeline)">
+        <div class="timeline-item" :class="queryDateStr === timeline.timeline ? 'timeline-item-active' : ''"
+             v-for="timeline of value" :key="timeline.timeline"
+             @click="selectTimeline(timeline.timeline)">
           {{ timeline.timeline + '（' + timeline.count + '）' }}
         </div>
       </el-collapse-item>
@@ -18,7 +19,8 @@ export default {
   name: "ArchivesTimeline",
   data() {
     return {
-      timelineMap: Map
+      timelineMap: Map,
+      queryDateStr: ''
     }
   },
   created() {
@@ -37,6 +39,7 @@ export default {
       }, 0);
     },
     selectTimeline(dateStr) {
+      this.queryDateStr = dateStr;
       this.$emit('query-date', dateStr);
     },
     selectDefaultQueryDateStr(timelineMap) {
@@ -70,5 +73,8 @@ export default {
   margin-top: 10px;
   font-size: 16px;
   cursor: pointer;
+}
+.timeline-item-active {
+  color: var(--mainThemeColor);
 }
 </style>
