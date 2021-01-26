@@ -10,7 +10,10 @@
           <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
         </a>
       </div>
-      <div class="collapse navbar-collapse col-md-7 menu-content" id="navbarSupportedContent">
+      <div class="col-1 col-md-1 hidden-sm-and-up">
+        <span class="search-btn fa fa-search" @click="searchShow = true"></span>
+      </div>
+      <div class="collapse navbar-collapse col-md-8 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item mr-3" :class="getNavLiClass(menu)"
               v-for="menu of menuList" :key="menu.index">
@@ -35,11 +38,11 @@
           </li>
         </ul>
       </div>
-      <div class="col-1 col-md-2">
+      <div class="col-1 hidden-xs-only">
         <span class="search-btn fa fa-search" @click="searchShow = true"></span>
       </div>
+      <search :search-show="searchShow"></search>
     </nav>
-    <search :search-show="searchShow"></search>
   </div>
 </template>
 

@@ -2,8 +2,7 @@
   <div class="search-content">
     <el-dialog
         title="提示"
-        :visible.sync="searchDialogShow"
-        width="30%">
+        :visible.sync="searchDialogShow">
       <span>这是一段信息</span>
       <span slot="footer" class="dialog-footer">
     <el-button @click="searchDialogShow = false">取 消</el-button>
