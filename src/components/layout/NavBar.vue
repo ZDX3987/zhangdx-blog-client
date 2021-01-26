@@ -35,22 +35,17 @@
           </li>
         </ul>
       </div>
-      <div class="col-1 col-md-2 search-content">
-        <el-form :inline="true">
-          <el-form-item class="m-0">
-            <el-input class="search-input" placeholder="请输入内容"></el-input>
-          </el-form-item>
-          <el-form-item class="m-0">
-            <el-button class="search-btn" icon="fa fa-search" circle></el-button>
-          </el-form-item>
-        </el-form>
+      <div class="col-1 col-md-2">
+        <span class="search-btn fa fa-search" @click="searchShow = true"></span>
       </div>
     </nav>
+    <search :search-show="searchShow"></search>
   </div>
 </template>
 
 <script>
 import {navData} from "../../util/nav-data";
+import Search from "../common/Search";
 
 export default {
   name: "NavBar",
@@ -58,7 +53,11 @@ export default {
     return {
       title: 'ZHANGDX',
       menuList: navData,
+      searchShow: false
     }
+  },
+  components: {
+    Search
   },
   methods: {
     getNavLiClass(menu) {
@@ -66,7 +65,7 @@ export default {
       let active = this.$route.path === menu.href ? 'active ' : '';
       return dropdown + active;
     },
-  }
+  },
 }
 </script>
 
@@ -123,23 +122,11 @@ a {
 
 .navbar-toggler {
   border: none;
-}
-
-.search-content {
-  border-radius: 2em;
-  border: 1px solid #DCDFE6;
-  padding: 0;
-}
-
-.search-input >>> input {
-  border: none;
+  max-width: 100%;
 }
 
 .search-btn {
-  border: none;
-}
-
-.search-btn >>> button {
-  border: none;
+  margin-left: -30px;
+  color: var(--fontColor);
 }
 </style>
