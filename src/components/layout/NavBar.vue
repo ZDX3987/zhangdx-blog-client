@@ -11,7 +11,7 @@
         </a>
       </div>
       <div class="col-1 col-md-1 hidden-sm-and-up">
-        <span class="search-btn fa fa-search" @click="searchShow = true"></span>
+        <span class="search-btn fa fa-search" @click="openSearch"></span>
       </div>
       <div class="collapse navbar-collapse col-md-8 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -39,9 +39,8 @@
         </ul>
       </div>
       <div class="col-1 hidden-xs-only">
-        <span class="search-btn fa fa-search" @click="searchShow = true"></span>
+        <span class="search-btn fa fa-search" @click="openSearch"></span>
       </div>
-      <search :search-show="searchShow"></search>
     </nav>
   </div>
 </template>
@@ -56,11 +55,7 @@ export default {
     return {
       title: 'ZHANGDX',
       menuList: navData,
-      searchShow: false
     }
-  },
-  components: {
-    Search
   },
   methods: {
     getNavLiClass(menu) {
@@ -68,6 +63,9 @@ export default {
       let active = this.$route.path === menu.href ? 'active ' : '';
       return dropdown + active;
     },
+    openSearch() {
+      this.$emit('open-search', true);
+    }
   },
 }
 </script>

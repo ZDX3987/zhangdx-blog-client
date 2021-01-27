@@ -1,13 +1,17 @@
 <template>
-  <div class="search-content">
+  <div>
     <el-dialog
-        title="提示"
-        :visible.sync="searchDialogShow">
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="searchDialogShow = false">取 消</el-button>
-    <el-button type="primary" @click="searchDialogShow = false">确 定</el-button>
-  </span>
+        :visible.sync="searchDialogShow"
+        :before-close="closeDialog">
+      <div class="search-content">
+        <el-input placeholder="请输入内容" v-model="searchWord" class="input-with-select">
+          <el-select v-model="searchCategory" slot="prepend" placeholder="请选择">
+            <el-option v-for="cate of searchCateList" :key="cate.index" :label="cate.text"
+                       :value="cate.index"></el-option>
+          </el-select>
+          <el-button slot="append" icon="fa fa-search"></el-button>
+        </el-input>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -17,7 +21,10 @@ export default {
   name: "Search",
   data() {
     return {
-      searchDialogShow: false
+      searchDialogShow: false,
+      searchCategory: '',
+      searchWord: '',
+      searchCateList: [{text: '文章', index: 1}, {text: '专题', index: 2}, {text: '分类', index: 3}]
     }
   },
   props: {
@@ -31,20 +38,20 @@ export default {
       this.searchDialogShow = value
     }
   },
-  // computed: {
-  //   searchDialogShow: {
-  //     get: function () {
-  //       return this.searchShow;
-  //     },
-  //     set: function (newValue) {
-  //       this.searchShow = newValue;
-  //     }
-  //   }
-  // }
+  methods: {
+    closeDialog() {
+      this.searchDialogShow = false;
+      this.$emit('close-search', this.searchDialogShow)
+    }
+  }
 }
 </script>
 
 <style scoped>
 .search-content {
+  height: 200px;
+}
+.el-select >>> .el-input {
+  width: 100px;
 }
 </style>

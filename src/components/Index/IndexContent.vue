@@ -1,5 +1,5 @@
 <template>
-  <el-row class="index-content"  type="flex" justify="center">
+  <el-row class="index-content" type="flex" justify="center">
     <el-col :md="14" :xs="22" :sm="22">
       <ArticleList :query-cate-id="0"/>
     </el-col>

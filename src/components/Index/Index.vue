@@ -1,7 +1,7 @@
 <template>
   <div class="index-content">
     <el-container>
-      <NavBar class="header"/>
+      <nav-bar @open-search="openSearch" class="header"/>
       <el-main class="main-content">
         <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
                      :key="$route.fullPath"/>
@@ -10,6 +10,7 @@
         <Footer/>
       </footer>
     </el-container>
+    <search :search-show="searchShow" @close-search="closeSearch"></search>
     <BackTop/>
   </div>
 </template>
@@ -20,6 +21,7 @@ import Footer from "../layout/Footer";
 import ArticleList from "../article/ArticleList";
 import BackTop from "../layout/BackTop";
 import '../../../static/js/back-top.js'
+import Search from "../common/Search";
 
 export default {
   name: "Index",
@@ -27,8 +29,22 @@ export default {
     NavBar,
     ArticleList,
     Footer,
+    Search,
     BackTop,
   },
+  data() {
+    return {
+      searchShow: false
+    }
+  },
+  methods: {
+    openSearch(value) {
+      this.searchShow = value;
+    },
+    closeSearch(value) {
+      this.searchShow = value;
+    }
+  }
 };
 </script>
 
