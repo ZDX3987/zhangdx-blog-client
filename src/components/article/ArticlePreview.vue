@@ -45,7 +45,7 @@
               <el-image :src="errorImgUrl" fit="scale-down"></el-image>
             </div>
           </el-image>
-          <div id="showText" ref="showText" class="article-text"></div>
+          <div id="showText" ref="showText" class="article-text" v-viewer.rebuild></div>
         </div>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">

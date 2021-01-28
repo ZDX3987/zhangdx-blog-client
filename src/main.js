@@ -15,18 +15,21 @@ import filters from './filters/index'
 import api from './api/index'
 import 'element-ui/lib/theme-chalk/display.css';
 import store from './store/index';
+import Viewer from 'v-viewer'
+import 'viewerjs/dist/viewer.css'
 
 Vue.use(skeleton)
 Vue.use(VueWechatTitle)
 Vue.use(ElementUI)
+Vue.use(Viewer)
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 Vue.prototype.$api = api
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: {App},
-  template: '<App/>',
-  store
+    el: '#app',
+    router,
+    components: {App},
+    template: '<App/>',
+    store
 })

@@ -80,6 +80,7 @@ export default {
 
 .el-select {
   min-width: 90px;
+  /*background-color: #1c1f20;*/
 }
 
 .search-content >>> input:focus {
