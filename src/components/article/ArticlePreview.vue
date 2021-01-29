@@ -10,16 +10,26 @@
             <el-col :span="24">
               <h2 class="article-title">{{ article.title }}</h2>
               <el-row class="article-info">
-                <el-col :md="4" :xs="9" :sm="8" class="article-date">
+                <el-col :xs="9" :sm="5" class="article-date">
                   <span class="fa fa-calendar-o"></span>
                   {{ article.createDate | dateFormat("yyyy-MM-dd") }}
                 </el-col>
-                <el-col :md="4" :xs="9" :sm="8" class="article-author">
+                <el-col :xs="9" :sm="5" class="article-author">
                   <el-avatar
                       :src="article.author.avatar"
                       size="small"
+                      class="align-middle"
                   ></el-avatar>
                   {{ article.author.username }}
+                </el-col>
+                <el-col v-if="article.categories.length !==0" :xs="9" :sm="10">
+                  <i class="fa fa-tags"></i>
+                  <span v-for="(tag, index) of article.categories" :key="tag.id">
+                    {{ index != 0 ? '&nbsp/&nbsp' : '' }}
+                    <router-link :to="{name: 'CateList', params: {id: tag.id}}">
+                      {{ tag.cateName }}
+                    </router-link>
+                  </span>
                 </el-col>
               </el-row>
             </el-col>
@@ -34,6 +44,13 @@
             </div>
           </el-image>
           <div id="showText" ref="showText" class="article-text" v-viewer.rebuild></div>
+          <el-divider>End</el-divider>
+          <div class="article-footer">
+            <el-button type="primary" round>
+              <i class="fa fa-thumbs-o-up"></i>
+              99
+            </el-button>
+          </div>
         </div>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
@@ -197,11 +214,26 @@ export default {
   line-height: 40px;
   height: 40px;
 }
+.article-tags {
+  margin-top: 10px;
+  text-align: left;
+}
 
+.article-tags span, a {
+  color: #B2BAC2;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.article-tags a:hover {
+  color: var(--mainThemeColor);
+}
 .article-text {
   color: var(--articleText);
 }
-
+.article-footer {
+  text-align: center;
+}
 #articleDirectory {
   font-size: 14px;
   padding-right: 20px;

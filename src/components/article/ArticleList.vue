@@ -4,7 +4,7 @@
       <li v-for="(article, index) of articleList" :key="index">
         <div class="article-item">
           <el-row>
-            <el-col v-if="article.coverImg" :span="6" class="item-left">
+            <el-col v-if="article.coverImg" :sm="8" class="item-left">
               <router-link
                   :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               >
@@ -15,13 +15,15 @@
                 </el-image>
               </router-link>
             </el-col>
-            <el-col :span="article.coverImg ? 18 : 24" class="item-right">
-              <router-link
+            <el-col :sm="article.coverImg ? 16 : 24" class="item-right">
+              <h2>
+                <router-link
                   class="item-title"
                   :to="{ name: 'ArticlePreview', params: { id: article.id } }"
-              >
-                {{ article.title }}
-              </router-link>
+                >
+                  {{ article.title }}
+                </router-link>
+              </h2>
               <p v-if="article.digest" class="item-text">
                 {{ article.digest ? article.digest + '......' : '' }}
               </p>
@@ -33,10 +35,16 @@
                   </router-link>
                 </span>
               </div>
-              <div class="item-date">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
-                {{ article.createDate | dateFormat("yyyy-MM-dd") }}
-              </div>
+              <el-row class="item-date">
+                <el-col :span="6">
+                  <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
+                  {{ article.createDate | dateFormat("yyyy-MM-dd") }}
+                </el-col>
+                <el-col :span="6">
+                  <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
+                  {{ 99 }}
+                </el-col>
+              </el-row>
             </el-col>
           </el-row>
         </div>
@@ -140,18 +148,21 @@ export default {
   border-bottom: 1px solid var(--borderColor);
 }
 
-.article-item .el-image {
+.item-left >>> .el-image {
   width: 100%;
   height: 150px;
-}
-
-.item-left {
   transition: all 0.5s;
   opacity: 1;
+  overflow: hidden;
 }
 
-.item-left:hover {
+.item-left >>> img {
+  transition: all 0.5s;
+}
+
+.item-left >>> img:hover {
   opacity: 0.8;
+  transform: scale(1.2);
 }
 
 .item-right {
@@ -162,14 +173,15 @@ export default {
   display: block;
   text-align: left;
   font-size: 18px;
+  font-weight: 600;
   text-decoration: none;
-  color: var(--fontColor);
+  color: var(--articleTitle);
   transition: all 0.5s;
   overflow: hidden;
 }
 
 .item-title:hover {
-  color: rgb(85, 189, 102);
+  color: var(--mainThemeColor);
 }
 
 .item-text {

@@ -150,6 +150,6 @@ a {
 }
 
 a:hover {
-  color: rgb(31, 193, 93);
+  color: var(--mainThemeColor);
 }
 </style>
