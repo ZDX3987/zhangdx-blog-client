@@ -1,6 +1,6 @@
 # zhangdx-client
 
-> 博客ZHANGDX博客项目客户端项目客户端
+> 博客ZHANGDX博客项目客户端
 
 ## Build Setup
 

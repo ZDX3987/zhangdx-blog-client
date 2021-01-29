@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-md navbar-light row">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="fa fa-bars"></span>
       </button>
       <div class="col-md-3 col-6 col-sm-6 m-auto m-md-0">
         <a class="navbar-brand" href="/">
@@ -104,6 +104,7 @@ a {
 
 .menu-content a:hover {
   color: var(--mainThemeColor) !important;
+  background-color: var(--bgColor) !important;
 }
 
 .dropdown-menu {
@@ -114,7 +115,7 @@ a {
 }
 
 .dropdown-item {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid var(--borderColor);
 }
 
 .dropdown-item:nth-last-of-type(1) {
@@ -124,6 +125,9 @@ a {
 .navbar-toggler {
   border: none;
   max-width: 100%;
+}
+.navbar-toggler >>> span {
+  color: var(--fontColor);
 }
 
 .search-btn {

@@ -7,6 +7,7 @@ import Error from '../components/common/Error'
 import CateList from "../components/category/CateList";
 import Classify from "../components/classify/Classify";
 import Archives from "../components/archives/Archives";
+import UpdateLog from "../components/updatelog/UpdateLog";
 
 Vue.use(Router)
 
@@ -56,6 +57,14 @@ const router = new Router({
           component: Archives,
           meta: {
             title: '归档'
+          }
+        },
+        {
+          path: '/updatelog',
+          name: 'UpdateLog',
+          component: UpdateLog,
+          meta: {
+            title: '更新日志'
           }
         }
       ]

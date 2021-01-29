@@ -1,0 +1,7 @@
+{
+  "global": {
+    "$--color-primary": "#55BD66",
+    "$--color-success": "#55BD66"
+  },
+  "local": {}
+}
