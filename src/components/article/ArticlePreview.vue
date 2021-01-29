@@ -3,19 +3,7 @@
     <el-row type="flex" justify="center">
       <el-col :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
-          <skeleton
-              type="custom"
-              :options="{ width: '100%', height: '100%' }"
-              :childrenOption="[
-            {
-              type: 'card',
-              rules: 'a, d, g',
-              active: true,
-              options: { width: '100%', height: '80%' },
-            },
-            { type: 'listcom', rules: 'b, c, e, f, h, i', active: true },
-          ]"
-          />
+          <article-skeleton></article-skeleton>
         </div>
         <div id="article-content" class="article-content" v-if="!isLoading">
           <el-row>
@@ -76,6 +64,7 @@
 import VditorPreview from "vditor/dist/method.min";
 import "vditor/dist/index.css";
 import ArticleDirectory from "./ArticleDirectory";
+import ArticleSkeleton from "./ArticleSkeleton";
 
 export default {
   name: "ArticlePreview",
@@ -92,6 +81,7 @@ export default {
     };
   },
   components: {
+    ArticleSkeleton,
     ArticleDirectory
   },
   created() {
@@ -101,7 +91,7 @@ export default {
         .getArticleById(this.articleId)
         .then((res) => {
           this.article = res.data;
-          this.$route.meta.title = this.article.title;
+          document.title = this.article.title + ' - ZHANGDX的博客';
           this.isLoading = false;
           this.renderArticle(this.article);
         })
