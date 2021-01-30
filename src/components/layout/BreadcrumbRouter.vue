@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     isHomePage() {
+      console.log(this.$route)
       return this.$route.path !== '/';
     }
   }
