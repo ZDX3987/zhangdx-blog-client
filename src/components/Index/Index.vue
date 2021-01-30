@@ -3,7 +3,8 @@
     <el-container>
       <nav-bar @open-search="openSearch" class="header"/>
       <el-main class="main-content">
-        <router-view v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
+        <breadcrumb-router></breadcrumb-router>
+        <router-view class="main-router" v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
                      :key="$route.fullPath"/>
       </el-main>
       <footer>
@@ -22,11 +23,13 @@ import ArticleList from "../article/ArticleList";
 import BackTop from "../layout/BackTop";
 import '../../../static/js/back-top.js'
 import Search from "../common/Search";
+import BreadcrumbRouter from "../layout/BreadcrumbRouter";
 
 export default {
   name: "Index",
   components: {
     NavBar,
+    BreadcrumbRouter,
     ArticleList,
     Footer,
     Search,
@@ -61,7 +64,7 @@ export default {
 }
 
 .el-main {
-  margin-top: 80px;
+  margin-top: 65px;
   padding: 0;
 }
 </style>

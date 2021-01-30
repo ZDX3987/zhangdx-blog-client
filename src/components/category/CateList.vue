@@ -1,39 +1,33 @@
 <template>
   <div class="cate-content">
-    <el-row class="cate-title">
-      <el-col :span="20">
-        <div>
-          <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item
-              v-for="route in $route.matched"
-              :key="route.name"
-              :to="{ name: route.name }">{{ route.meta.title }}
-            </el-breadcrumb-item>
-          </el-breadcrumb>
-        </div>
-      </el-col>
-      <el-col :span="4">
-        <div class="article-total">{{ '共' + articleTotal + '篇' }}</div>
-      </el-col>
-    </el-row>
-    <el-row class="child-cate" v-if="childCate.length !== 0">
-      <el-col>
-        <ul>
-          <li v-for="cate of childCate" :key="cate.id" :class="currentCate.id === cate.id
+    <el-row type="flex" justify="center">
+      <el-col :md="20" :xs="22" :sm="22">
+        <el-row class="cate-title">
+          <el-col :span="20">
+            <h4>{{ currentCate.cateName }}</h4>
+          </el-col>
+          <el-col :span="4">
+            <div class="article-total">{{ '共' + articleTotal + '篇' }}</div>
+          </el-col>
+        </el-row>
+        <el-row class="child-cate" v-if="childCate.length !== 0">
+          <el-col>
+            <ul>
+              <li v-for="cate of childCate" :key="cate.id" :class="currentCate.id === cate.id
            ? 'active-cate-li' : ''">
-            <router-link :to="{name: 'CateList', params: {id: cate.id}}">
-              {{ cate.cateName + '(' + cate.articleCount + ')' }}
-            </router-link>
-          </li>
-        </ul>
+                <router-link :to="{name: 'CateList', params: {id: cate.id}}">
+                  {{ cate.cateName + '(' + cate.articleCount + ')' }}
+                </router-link>
+              </li>
+            </ul>
+          </el-col>
+        </el-row>
+        <el-row class="divider-margin"></el-row>
+        <article-list :query-cate-id="$route.params.id"/>
       </el-col>
     </el-row>
-    <el-row class="divider-margin"></el-row>
-    <el-row>
-      <el-col>
-        <ArticleList :query-cate-id="$route.params.id"/>
-      </el-col>
-    </el-row>
+
+
   </div>
 </template>
 
@@ -73,37 +67,34 @@ export default {
 
 <style scoped>
 .cate-content {
-  padding: 20px 10%;
+  padding-bottom: 20px;
 }
+
 .cate-title {
-  width: 100%;
+  background-color: var(--bgColor);
   height: 50px;
-  background-color: #FFF;
+  line-height: 50px;
   padding: 0 20px;
+  color: var(--subFontColor);
 }
 
-.cate-title .el-col {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.cate-title .el-col {
-  text-align: right;
+.cate-title h4 {
+  text-align: left;
+  line-height: 50px;
 }
 
 .article-total {
   font-weight: 400;
-  color: #606266;
+  color: var(--subFontColor);
   font-size: 14px;
+  text-align: right;
 }
 
 .child-cate {
-  width: 100%;
   height: 50px;
-  background-color: #FFF;
+  background-color: var(--bgColor);
   padding: 10px 0;
-  border-top: 1px solid rgb(220, 223, 230);
+  border-top: 1px solid var(--borderColor);
 }
 
 .child-cate ul {
@@ -117,7 +108,7 @@ export default {
 }
 
 .child-cate a {
-  color: #666;
+  color: var(--aBg);
   font-size: 13px;
   text-decoration: none;
   transition: all 0.5s;
@@ -132,10 +123,10 @@ export default {
 }
 
 .active-cate-li a {
-  color: #FFF;
+  color: var(--aBg);
 }
 
 .divider-margin {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 </style>

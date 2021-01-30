@@ -169,7 +169,6 @@ export default {
       this.praising = true;
       this.$api.articleApi.praiseArticle(1, this.article.id).then(() => {
         this.article.praise++;
-        this.praising = false;
       }).catch(error => this.$message.error('点赞失败'));
     },
     handleFixedDirectory(scrollTop) {

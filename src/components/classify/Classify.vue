@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="classify-content">
     <el-row type="flex" justify="center">
       <el-col :md="20" :xs="22" :sm="22">
         <classify-list @query-category="setQueryCateId"></classify-list>
@@ -38,7 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.classify-content {
+  padding-bottom: 20px;
+}
 .divider-margin {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 </style>

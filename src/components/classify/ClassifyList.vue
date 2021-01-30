@@ -99,7 +99,7 @@ export default {
 }
 
 .child-cate-list {
-  border-top: 1px solid rgb(220, 223, 230);
+  border-top: 1px solid var(--borderColor);
   margin-top: 10px;
   padding-top: 10px;
 }
