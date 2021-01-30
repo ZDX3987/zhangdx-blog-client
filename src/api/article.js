@@ -16,5 +16,9 @@ export default {
 
   getArticleForArchives(formData) {
     return http.get(url + '/archives/articles', {params: formData})
+  },
+
+  praiseArticle(type, articleId) {
+    return http.put(url + '/article/praise/' + articleId, {type: type})
   }
 }

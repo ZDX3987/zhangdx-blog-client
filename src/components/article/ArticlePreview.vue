@@ -16,9 +16,9 @@
                 </el-col>
                 <el-col :xs="9" :sm="5" class="article-author">
                   <el-avatar
-                      :src="article.author.avatar"
-                      size="small"
-                      class="align-middle"
+                    :src="article.author.avatar"
+                    size="small"
+                    class="align-middle"
                   ></el-avatar>
                   {{ article.author.username }}
                 </el-col>
@@ -46,18 +46,18 @@
           <div id="showText" ref="showText" class="article-text" v-viewer.rebuild></div>
           <el-divider>End</el-divider>
           <div class="article-footer">
-            <el-button type="primary" round>
+            <el-button type="primary" round plain @click="praiseArticle" :disabled="praising">
               <i class="fa fa-thumbs-o-up"></i>
-              99
+              {{ article.praise }}
             </el-button>
           </div>
         </div>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
         <div
-            id="articleDirectory"
-            :class="articleDirectoryClassName"
-            ref="articleDirectory">
+          id="articleDirectory"
+          :class="articleDirectoryClassName"
+          ref="articleDirectory">
           <article-directory :directoryShow="directoryShow"></article-directory>
         </div>
       </el-col>
@@ -67,10 +67,10 @@
          :class="drawer ? 'side-drawer-show-btn' : ''">
       </a>
       <el-drawer
-          :visible.sync="drawer"
-          direction="rtl"
-          :class="'drawer-content'"
-          size="40%">
+        :visible.sync="drawer"
+        direction="rtl"
+        :class="'drawer-content'"
+        size="40%">
         <article-directory :directoryShow="directoryShow"></article-directory>
       </el-drawer>
     </div>
@@ -94,7 +94,8 @@ export default {
       articleDirectoryClassName: "article-directory-fixed",
       directoryShow: false,
       drawer: false,
-      errorImgUrl: '/static/images/notfound.gif'
+      errorImgUrl: '/static/images/notfound.gif',
+      praising: false
     };
   },
   components: {
@@ -105,14 +106,14 @@ export default {
     VditorPreview.mermaidRender(document);
     this.articleId = this.$route.params.id;
     this.$api.articleApi
-        .getArticleById(this.articleId)
-        .then((res) => {
-          this.article = res.data;
-          document.title = this.article.title + ' - ZHANGDX的博客';
-          this.isLoading = false;
-          this.renderArticle(this.article);
-        })
-        .catch(error => this.$message.error("文章内容加载失败"));
+      .getArticleById(this.articleId)
+      .then((res) => {
+        this.article = res.data;
+        document.title = this.article.title + ' - ZHANGDX的博客';
+        this.isLoading = false;
+        this.renderArticle(this.article);
+      })
+      .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
@@ -159,10 +160,17 @@ export default {
     handleScroll() {
       // 页面滚动距顶部距离
       let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
+    },
+    praiseArticle() {
+      this.praising = true;
+      this.$api.articleApi.praiseArticle(1, this.article.id).then(() => {
+        this.article.praise++;
+        this.praising = false;
+      }).catch(error => this.$message.error('点赞失败'));
     },
     handleFixedDirectory(scrollTop) {
       // let scroll = scrollTop - this.scrollHeight;
@@ -214,6 +222,7 @@ export default {
   line-height: 40px;
   height: 40px;
 }
+
 .article-tags {
   margin-top: 10px;
   text-align: left;
@@ -228,12 +237,20 @@ export default {
 .article-tags a:hover {
   color: var(--mainThemeColor);
 }
+
 .article-text {
   color: var(--articleText);
 }
+
 .article-footer {
   text-align: center;
 }
+
+.article-footer >>> button {
+  outline: none;
+  font-size: 16px;
+}
+
 #articleDirectory {
   font-size: 14px;
   padding-right: 20px;

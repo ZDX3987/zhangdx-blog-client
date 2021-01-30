@@ -36,13 +36,13 @@
                 </span>
               </div>
               <el-row class="item-date">
-                <el-col :span="6">
+                <el-col :span="7">
                   <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
                   {{ article.createDate | dateFormat("yyyy-MM-dd") }}
                 </el-col>
                 <el-col :span="6">
                   <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
-                  {{ 99 }}
+                  {{ article.praise }}
                 </el-col>
               </el-row>
             </el-col>
