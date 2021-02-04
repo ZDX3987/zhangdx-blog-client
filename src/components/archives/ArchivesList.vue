@@ -1,6 +1,7 @@
 <template>
   <div class="archives-list">
-    <el-timeline>
+    <archives-skeleton v-if="loading"></archives-skeleton>
+    <el-timeline v-else>
       <el-timeline-item v-for="article of articleList" :key="article.id"
                         :timestamp="dateFormat(article.createDate)"
                         placement="top">
@@ -21,6 +22,8 @@
 </template>
 
 <script>
+import ArchivesSkeleton from "./ArchivesSkeleton";
+
 export default {
   name: "ArchivesList",
   data() {
@@ -29,7 +32,11 @@ export default {
       pageSize: 15,
       sort: 'DESC',
       queryStatus: 2,
+      loading: false
     }
+  },
+  components: {
+    ArchivesSkeleton
   },
   props: {
     queryDateStr: String,
@@ -44,6 +51,7 @@ export default {
   },
   methods: {
     queryArchivesArticle(pageIndex) {
+      this.loading = true;
       let formData = {
         queryDateStr: this.queryDateStr,
         pageSize: this.pageSize,
@@ -53,7 +61,7 @@ export default {
       }
       this.$api.articleApi.getArticleForArchives(formData).then(result => {
         this.articleList = result.data.elements;
-      }).catch(error => this.$message.error('文章查询失败'))
+      }).catch(error => this.$message.error('文章查询失败')).finally(() => this.loading = false);
     },
     dateFormat(date) {
       return this.$options.filters['dateFormat'](date, 'yyyy-MM-dd')

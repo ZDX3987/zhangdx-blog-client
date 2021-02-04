@@ -6,8 +6,8 @@
     </div>
     <div class="topic-side-body">
       <ul v-if="topicList.length !== 0">
-        <li>
-          <p>Java集合全解析</p>
+        <li v-for="topic of topicList" :key="topic.id">
+          <p>{{ topic.title }}</p>
         </li>
       </ul>
       <div v-if="topicList.length == 0" class="no-topic">
@@ -22,7 +22,23 @@ export default {
   name: "TopicSide",
   data() {
     return {
-      topicList: []
+      topicList: [],
+      pageSize: 5
+    }
+  },
+  created() {
+    // this.query(0);
+  },
+  methods: {
+    query(pageIndex) {
+      let params = {
+        pageIndex: pageIndex,
+        pageSize: this.pageSize,
+        sort: 'create_date'
+      }
+      this.$api.topicApi.getTopicByPage(params).then(result => {
+        this.topicList = result.data.elements;
+      }).catch(error => this.$message.error('查询失败'));
     }
   }
 }
@@ -51,6 +67,7 @@ export default {
   padding: 0 20px;
   min-height: 300px;
 }
+
 .no-topic {
   height: 300px;
   padding: 125px 0;

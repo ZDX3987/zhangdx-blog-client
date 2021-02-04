@@ -1,6 +1,7 @@
 <template>
   <div class="archives-timeline">
-    <el-collapse class="timeline-collapse" :value="0" :accordion="true">
+    <timeline-skeleton v-if="loading"></timeline-skeleton>
+    <el-collapse v-else class="timeline-collapse" :value="0" :accordion="true">
       <el-collapse-item v-for="(value, key, index) of timelineMap" :key="key"
                         :title="key + '（' + getYearCount(key) + '）' " :name="index"
                         class="timeline-title">
@@ -15,23 +16,30 @@
 </template>
 
 <script>
+import TimelineSkeleton from "./TimelineSkeleton";
+
 export default {
   name: "ArchivesTimeline",
   data() {
     return {
       timelineMap: Map,
-      queryDateStr: ''
+      queryDateStr: '',
+      loading: false
     }
+  },
+  components: {
+    TimelineSkeleton
   },
   created() {
     this.queryTimeline();
   },
   methods: {
     queryTimeline() {
+      this.loading = true;
       this.$api.articleApi.getArchivesTimeline().then(result => {
         this.timelineMap = result.data;
         this.selectDefaultQueryDateStr(this.timelineMap);
-      }).catch(error => this.$message.error('时间线查询失败'));
+      }).catch(error => this.$message.error('时间线查询失败')).finally(() => this.loading = false);
     },
     getYearCount(key) {
       return this.timelineMap[key].reduce((prev, current) => {
@@ -74,6 +82,7 @@ export default {
   font-size: 16px;
   cursor: pointer;
 }
+
 .timeline-item-active {
   color: var(--mainThemeColor);
 }
