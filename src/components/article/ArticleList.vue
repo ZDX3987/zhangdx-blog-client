@@ -24,8 +24,8 @@
                   {{ article.title }}
                 </router-link>
               </h2>
-              <p v-if="article.digest" class="item-text">
-                {{ article.digest ? article.digest + '......' : '' }}
+              <p v-if="article.digest" class="item-text text-wrap text-truncate">
+                {{ article.digest }}
               </p>
               <div class="item-tags">
                 <span v-for="(tag, index) of article.categories" :key="tag.id">
@@ -88,7 +88,7 @@ export default {
       pageIndex: 0,
       isLoading: true,
       listEnd: false,
-      errorImgUrl: 'static/images/notfound.gif'
+      errorImgUrl: '/static/images/notfound.gif'
     };
   },
   props: {
