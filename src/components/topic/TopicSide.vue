@@ -6,10 +6,13 @@
         <el-link :underline="false">更多&gt;</el-link>
       </router-link>
     </div>
-    <div class="topic-side-body">
-      <ul v-if="topicList.length !== 0">
-        <li v-for="topic of topicList" :key="topic.id">
-          <p>{{ topic.title }}</p>
+    <div class="topic-side-body mt-3">
+      <ul v-if="topicList.length !== 0" class="pl-3">
+        <li class="mb-3" v-for="topic of topicList" :key="topic.id">
+          <router-link
+            :to="{ name: 'TopicItem', params: { id: topic.id } }">
+            {{ topic.title }}
+          </router-link>
         </li>
       </ul>
       <div v-if="topicList.length == 0" class="no-topic">
@@ -29,7 +32,7 @@ export default {
     }
   },
   created() {
-    // this.query(0);
+    this.query(0);
   },
   methods: {
     query(pageIndex) {
@@ -64,6 +67,7 @@ export default {
   justify-content: space-between;
   color: var(--fontColor);
 }
+
 .topic-side-header a {
   text-decoration: none;
 }
@@ -71,6 +75,22 @@ export default {
 .topic-side-body {
   padding: 0 20px;
   min-height: 300px;
+  text-align: left;
+}
+
+.topic-side-body li {
+  list-style: none;
+}
+
+.topic-side-body a {
+  color: var(--aBg);
+  text-decoration: none;
+  transition: all 0.5s;
+  font-size: 15px;
+}
+
+.topic-side-body a:hover {
+  color: var(--mainThemeColor);
 }
 
 .no-topic {

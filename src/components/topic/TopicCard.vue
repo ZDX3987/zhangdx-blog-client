@@ -4,7 +4,7 @@
       <router-link class="d-block mb-3 text-truncate" :to="{name: 'TopicItem', params: {id: topicItem.id}}">
         {{ topicItem.title }}
       </router-link>
-      <span class="float-left">更新于：{{ topicItem.updateDate }}</span>
+      <span class="float-left">更新于：{{ topicItem.updateDate | dateFormat("yyyy-MM-dd") }}</span>
       <span class="float-right"><i class="fa fa-heart-o"></i>&nbsp;{{ topicItem.praise }}</span>
       <span class="float-right mr-1"><i class="el-icon-tickets"></i>&nbsp;{{ topicItem.articleCount }}</span>
     </div>

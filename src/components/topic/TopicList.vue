@@ -5,7 +5,7 @@
         <el-row>
           <el-col :md="{span: 11, offset: 0}" :xs="{span: 22, offset: 1}"
                   :sm="{span: 22, offset: 1}" class="mb-3 mr-md-3"
-                  v-for="topic of topicList">
+                  v-for="topic of topicList" :key="topic.id">
             <topic-card :topic-item="topic"></topic-card>
           </el-col>
         </el-row>
@@ -25,46 +25,28 @@ export default {
   data() {
     return {
       loading: false,
-      topicList: [
-        {
-          id: 1,
-          title: '测试标题1',
-          updateDate: '2021年2月5日',
-          praise: 60,
-          articleCount: 5,
-          articleList: [
-            {
-              id: 1,
-              title: '测试文章标题',
-              categories: [{id: 1, cateName: '测试分类'}]
-            },
-            {
-              id: 1,
-              title: '测试文章标题',
-              categories: [{id: 1, cateName: '测试分类'}]
-            },
-            {
-              id: 1,
-              title: '测试文章标题',
-              categories: [{id: 1, cateName: '测试分类'}]
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: '测试标题2',
-          updateDate: '2021年2月5日',
-          praise: 60,
-          articleCount: 5,
-          articleList: []
-        }
-      ]
+      topicList: [],
+      pageSize: 15
     }
   },
   components: {
     TopicCard
   },
-  methods: {}
+  created() {
+    this.query(0);
+  },
+  methods: {
+    query(pageIndex) {
+      let params = {
+        pageIndex: pageIndex,
+        pageSize: this.pageSize,
+        sort: 'create_date'
+      }
+      this.$api.topicApi.getTopicByPage(params).then(result => {
+        this.topicList = result.data.elements;
+      }).catch(error => this.$message.error('查询失败'));
+    }
+  }
 }
 </script>
 

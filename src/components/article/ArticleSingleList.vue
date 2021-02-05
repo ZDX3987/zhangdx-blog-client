@@ -58,6 +58,7 @@ export default {
   name: "ArticleSingleList",
   data() {
     return {
+      errorImgUrl: '/static/images/notfound.gif'
     }
   },
   props: {
