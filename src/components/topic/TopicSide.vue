@@ -2,7 +2,9 @@
   <div class="topic-side-content">
     <div class="topic-side-header">
       <span><i class="fa fa-coffee"></i>&nbsp;最新专题</span>
-      <el-link :underline="false">更多>></el-link>
+      <router-link :to="{name: 'TopicList'}">
+        <el-link :underline="false">更多&gt;</el-link>
+      </router-link>
     </div>
     <div class="topic-side-body">
       <ul v-if="topicList.length !== 0">
@@ -61,6 +63,9 @@ export default {
   display: flex;
   justify-content: space-between;
   color: var(--fontColor);
+}
+.topic-side-header a {
+  text-decoration: none;
 }
 
 .topic-side-body {

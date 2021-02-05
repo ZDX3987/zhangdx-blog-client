@@ -127,6 +127,10 @@ export default {
   color: var(--fontColor);
 }
 
+.cloud-title a {
+  text-decoration: none;
+}
+
 svg {
   width: 94%;
 }

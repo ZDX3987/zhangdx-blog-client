@@ -8,6 +8,8 @@ import CateList from "../components/category/CateList";
 import Classify from "../components/classify/Classify";
 import Archives from "../components/archives/Archives";
 import UpdateLog from "../components/updatelog/UpdateLog";
+import TopicList from "../components/topic/TopicList";
+import TopicItem from "../components/topic/TopicItem";
 
 Vue.use(Router)
 
@@ -57,6 +59,22 @@ const router = new Router({
           component: Archives,
           meta: {
             title: '归档'
+          }
+        },
+        {
+          path: '/topics',
+          name: 'TopicList',
+          component: TopicList,
+          meta: {
+            title: '所有专题'
+          }
+        },
+        {
+          path: '/topic/:id.html',
+          name: 'TopicItem',
+          component: TopicItem,
+          meta: {
+            title: '专题'
           }
         },
         {
