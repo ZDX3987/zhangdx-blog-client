@@ -9,12 +9,12 @@
         <TopicSide/>
       </el-col>
     </el-row>
-<!--    <el-row class="index-content hidden-md-and-up" type="flex" justify="center">-->
-<!--      <el-col :xs="22" :sm="22">-->
-<!--        <CateCloud/>-->
-<!--        <TopicSide/>-->
-<!--      </el-col>-->
-<!--    </el-row>-->
+    <el-row class="index-content hidden-md-and-up" type="flex" justify="center">
+      <el-col :xs="22" :sm="22">
+        <CateCloud/>
+        <TopicSide/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
