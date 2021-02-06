@@ -9,10 +9,13 @@
     <div class="topic-side-body mt-3">
       <ul v-if="topicList.length !== 0" class="pl-3">
         <li class="mb-3" v-for="topic of topicList" :key="topic.id">
-          <router-link
-            :to="{ name: 'TopicItem', params: { id: topic.id } }">
+          <router-link class="text-truncate d-inline-block" :title="topic.title"
+                       :to="{ name: 'TopicItem', params: { id: topic.id } }">
             {{ topic.title }}
           </router-link>
+          <span class="float-right text-truncate d-inline-block" :title="topic.updateDate | dateFormat('yyyy-MM-dd')">更新于：{{
+              topic.updateDate | dateFormat("yyyy-MM-dd")
+            }}</span>
         </li>
       </ul>
       <div v-if="topicList.length == 0" class="no-topic">
@@ -51,9 +54,7 @@ export default {
 
 <style scoped>
 .topic-side-content {
-  width: 96%;
   background-color: var(--bgColor);
-  margin-left: 4%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
 }
 
@@ -87,10 +88,17 @@ export default {
   text-decoration: none;
   transition: all 0.5s;
   font-size: 15px;
+  width: 60%;
 }
 
 .topic-side-body a:hover {
   color: var(--mainThemeColor);
+}
+
+.topic-side-body span {
+  color: var(--subFontColor);
+  font-size: 14px;
+  width: 40%;
 }
 
 .no-topic {
@@ -98,5 +106,6 @@ export default {
   padding: 125px 0;
   color: var(--fontColor);
   font-size: 14px;
+  text-align: center;
 }
 </style>

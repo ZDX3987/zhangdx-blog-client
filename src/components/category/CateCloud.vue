@@ -109,10 +109,8 @@ export default {
 
 <style scoped>
 .cloud-content {
-  width: 96%;
   height: 500px;
   background-color: var(--bgColor);
-  margin-left: 4%;
   margin-bottom: 20px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
