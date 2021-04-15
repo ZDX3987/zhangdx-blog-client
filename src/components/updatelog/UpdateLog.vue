@@ -7,7 +7,7 @@
     </el-row>
     <el-row class="my-2"></el-row>
     <el-row  type="flex" justify="center">
-      <el-col :md="14" :sm="22" :xs="22">
+      <el-col :lg="12" :md="14" :sm="22" :xs="22">
         <update-log-list></update-log-list>
       </el-col>
     </el-row>

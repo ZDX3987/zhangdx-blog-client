@@ -1,13 +1,13 @@
 <template>
   <div class="classify-content">
     <el-row type="flex" justify="center">
-      <el-col :md="20" :xs="22" :sm="22">
+      <el-col :lg="14" :md="20" :xs="22" :sm="22">
         <classify-list @query-category="setQueryCateId"></classify-list>
       </el-col>
     </el-row>
     <el-row class="divider-margin"></el-row>
     <el-row type="flex" justify="center">
-      <el-col :md="20" :xs="22" :sm="22">
+      <el-col :lg="14" :md="20" :xs="22" :sm="22">
         <article-list :query-cate-id="queryCateId"></article-list>
       </el-col>
     </el-row>

@@ -1,6 +1,6 @@
 <template>
   <el-row type="flex" justify="center">
-    <el-col :md="20" :sm="22" :xs="22" class="archives-content">
+    <el-col :lg="14" :md="20" :sm="22" :xs="22" class="archives-content">
       <el-row>
         <el-col :md="6" :sm="6" :xs="24">
           <archives-timeline @query-date="setQueryDateStr"></archives-timeline>

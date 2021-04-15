@@ -1,7 +1,7 @@
 <template>
   <div class="article-preview">
     <el-row type="flex" justify="center">
-      <el-col :md="15" :xs="22" :sm="22">
+      <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <article-skeleton></article-skeleton>
         </div>

@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row class="index-content" type="flex" justify="center">
-      <el-col :md="14" :xs="22" :sm="22">
+      <el-col :lg="10" :md="14" :xs="22" :sm="22">
         <ArticleList :query-cate-id="0"/>
       </el-col>
-      <el-col :md="6" class="hidden-sm-and-down ml-3">
+      <el-col :lg="4" :md="6" class="hidden-sm-and-down ml-3">
         <CateCloud/>
         <TopicSide/>
       </el-col>

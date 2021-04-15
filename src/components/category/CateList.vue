@@ -1,7 +1,7 @@
 <template>
   <div class="cate-content">
     <el-row type="flex" justify="center">
-      <el-col :md="20" :xs="22" :sm="22">
+      <el-col :lg="10" :md="20" :xs="22" :sm="22">
         <el-row class="cate-title">
           <el-col :span="20">
             <h4>{{ currentCate.cateName }}</h4>

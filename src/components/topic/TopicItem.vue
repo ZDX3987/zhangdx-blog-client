@@ -1,7 +1,7 @@
 <template>
   <div class="topic-item">
     <el-row type="flex" justify="center">
-      <el-col :md="16" :xs="22" :sm="22">
+      <el-col :lg="14" :md="16" :xs="22" :sm="22">
         <div class="topic-info p-4 mb-3">
           <h4>{{ topicItem ? topicItem.title : '' }}</h4>
         </div>
