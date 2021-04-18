@@ -1,15 +1,16 @@
 <template>
   <div class="update-list">
     <el-timeline>
-      <el-timeline-item v-for="i of pageSize" :key="i" timestamp="2018/4/12" placement="top">
+      <el-timeline-item v-for="log of updateLogList" :key="log.id" timestamp="2018/4/12" placement="top">
         <el-card class="log-card">
-          <h4>发布第一版本</h4>
-          <p>ZHANGDX 提交于 2018/4/12 20:46</p>
+          <h4>{{log.title}}</h4>
+          <p>ZHANGDX 提交于 {{log.updateDate}}</p>
         </el-card>
       </el-timeline-item>
     </el-timeline>
     <div class="load-more">
-      <el-button type="text" :disabled="loading" @click="query(++pageIndex)">{{loading ? '加载中...' : '加载更多'}}</el-button>
+      <el-button type="text" :disabled="loading" @click="query(++pageIndex)">{{ loading ? '加载中...' : '加载更多' }}
+      </el-button>
     </div>
   </div>
 </template>
@@ -21,16 +22,21 @@ export default {
     return {
       pageSize: 3,
       pageIndex: 0,
-      loading: false
+      loading: false,
+      updateLogList: []
     }
+  },
+  created() {
+    this.query();
   },
   methods: {
     query() {
       this.loading = true;
-      setTimeout(() => {
-        this.pageSize++;
+      this.$api.updateLogApi.getUpdateLogByPage(this.pageSize, this.pageIndex).then(res => {
+        this.updateLogList = res.elements;
+        this.pageIndex++;
         this.loading = false;
-      }, 1000);
+      }).catch(() => this.$message.error('更新日志查询失败'));
     }
   }
 }
