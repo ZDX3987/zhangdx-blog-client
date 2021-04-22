@@ -7,3 +7,11 @@ html body {
 * {
   outline: none !important;
 }
+
+/*鼠标右键选中内容背景颜色*/
+::selection {
+  background: #55bd66 !important;
+}
+::-moz-selection {
+  background: #55bd66 !important;
+}
