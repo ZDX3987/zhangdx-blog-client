@@ -12,6 +12,12 @@ export default {
     if (theme) {
       this.$store.commit('toggleTheme', theme);
     }
+    this.printLog();
+  },
+  methods: {
+    printLog() {
+      console.log();
+    }
   }
 }
 </script>
