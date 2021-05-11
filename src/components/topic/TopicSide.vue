@@ -13,8 +13,8 @@
                        :to="{ name: 'TopicItem', params: { id: topic.id } }">
             {{ topic.title }}
           </router-link>
-          <span class="float-right text-truncate d-inline-block" :title="topic.updateDate | dateFormat('yyyy-MM-dd')">更新于：{{
-              topic.updateDate | dateFormat("yyyy-MM-dd")
+          <span class="float-right text-truncate d-inline-block" :title="topic.updateDate | dateFormat('yyyy-MM-DD')">更新于：{{
+              topic.updateDate | dateFormat("yyyy-MM-DD")
             }}</span>
         </li>
       </ul>

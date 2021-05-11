@@ -14,7 +14,7 @@
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}
                   {{ tag.cateName }}
                 </span>
-            {{ article.createDate | dateFormat("yyyy-MM-dd") }}</p>
+            {{ article.createDate | dateFormat("yyyy-MM-DD") }}</p>
         </el-card>
       </el-timeline-item>
     </el-timeline>
@@ -64,7 +64,7 @@ export default {
       }).catch(error => this.$message.error('文章查询失败')).finally(() => this.loading = false);
     },
     dateFormat(date) {
-      return this.$options.filters['dateFormat'](date, 'yyyy-MM-dd')
+      return this.$options.filters['dateFormat'](date, 'yyyy-MM-DD')
     }
   }
 }
