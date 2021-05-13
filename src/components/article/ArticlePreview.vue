@@ -12,7 +12,7 @@
               <el-row class="article-info">
                 <el-col :xs="9" :sm="5" class="article-date">
                   <span class="fa fa-calendar-o"></span>
-                  {{ article.createDate | dateFormat("yyyy-MM-dd") }}
+                  {{ article.createDate | dateFormat("yyyy-MM-DD") }}
                 </el-col>
                 <el-col :xs="9" :sm="5" class="article-author">
                   <el-avatar
