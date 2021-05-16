@@ -1,7 +1,12 @@
 <template>
   <div class="index-content">
     <el-container>
-      <nav-bar @open-search="openSearch" class="header"/>
+      <div class="fixed-header">
+        <nav-bar @show-search="showSearch"/>
+        <el-collapse-transition>
+          <search v-if="searchShow"></search>
+        </el-collapse-transition>
+      </div>
       <el-main class="main-content">
         <breadcrumb-router></breadcrumb-router>
         <router-view class="main-router" v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
@@ -11,7 +16,6 @@
         <Footer/>
       </footer>
     </el-container>
-    <search :search-show="searchShow" @close-search="closeSearch"></search>
     <BackTop/>
   </div>
 </template>
@@ -29,10 +33,10 @@ export default {
   name: "Index",
   components: {
     NavBar,
+    Search,
     BreadcrumbRouter,
     ArticleList,
     Footer,
-    Search,
     BackTop,
   },
   data() {
@@ -41,10 +45,7 @@ export default {
     }
   },
   methods: {
-    openSearch(value) {
-      this.searchShow = value;
-    },
-    closeSearch(value) {
+    showSearch(value) {
       this.searchShow = value;
     }
   }
@@ -56,7 +57,14 @@ export default {
   background-color: var(--bodyBgColor);
   min-height: 100%;
 }
+.fixed-header {
+  width: 100%;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  transition: all 0.5s;
 
+}
 .el-container {
   display: flex;
   min-height: 100vh;

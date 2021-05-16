@@ -1,19 +1,19 @@
 $(function () {
-  var scrolltop = new Array();
-  var i = 0;
-  scrolltop[0] = 0;
+  let scrollTop = new Array();
+  let i = 0;
+  scrollTop[0] = 0;
 
   $(document).scroll(function () {
     i++;
-    scrolltop[i] = $(document).scrollTop();
+    scrollTop[i] = $(document).scrollTop();
 
-    if (scrolltop[i] < scrolltop[i - 1]) {
-      $(".navbar-content").css({
+    if (scrollTop[i] < scrollTop[i - 1]) {
+      $(".fixed-header").css({
         'transform': 'translate(0, 0)',
       })
     } else {
-      $(".navbar-content").css({
-        'transform': 'translate(0, -80px)',
+      $(".fixed-header").css({
+        'transform': 'translate(0, -160px)',
       })
     }
 

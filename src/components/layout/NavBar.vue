@@ -11,7 +11,7 @@
         </a>
       </div>
       <div class="col-1 col-md-1 hidden-sm-and-up">
-        <span class="search-btn fa fa-search" @click="openSearch"></span>
+        <span class="search-btn fa" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
       </div>
       <div class="collapse navbar-collapse col-md-8 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -39,7 +39,7 @@
         </ul>
       </div>
       <div class="col-1 hidden-xs-only">
-        <span class="search-btn fa fa-search" @click="openSearch"></span>
+        <span class="search-btn fa" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
       </div>
     </nav>
   </div>
@@ -47,7 +47,6 @@
 
 <script>
 import {navData} from "../../util/nav-data";
-import Search from "../common/Search";
 
 export default {
   name: "NavBar",
@@ -55,6 +54,7 @@ export default {
     return {
       title: 'ZHANGDX',
       menuList: navData,
+      searchShowed: false
     }
   },
   methods: {
@@ -63,8 +63,9 @@ export default {
       let active = this.$route.path === menu.href ? 'active ' : '';
       return dropdown + active;
     },
-    openSearch() {
-      this.$emit('open-search', true);
+    showSearch() {
+      this.searchShowed = !this.searchShowed;
+      this.$emit('show-search', this.searchShowed);
     }
   },
 }
@@ -73,11 +74,6 @@ export default {
 <style scoped>
 .navbar-content {
   background-color: var(--bgColor);
-  width: 100%;
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  transition: all 0.5s;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
