@@ -5,7 +5,7 @@
         <el-card class="log-card">
           <h4>{{log.title}}</h4>
           <p>ZHANGDX 提交于 {{log.updateDate | dateFormat}}</p>
-          <div :id="'update-log-' + log.id" :ref="'update-log-' + log.id"></div>
+          <div :id="'update-log-' + log.id" :ref="'update-log-' + log.id" class="log-text"></div>
         </el-card>
       </el-timeline-item>
     </el-timeline>
@@ -84,5 +84,8 @@ export default {
   color: var(--fontColor);
   text-decoration: none;
   transition: all 0.5s;
+}
+.log-text {
+  color: var(--fontColor);
 }
 </style>

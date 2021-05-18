@@ -1,6 +1,7 @@
 <template>
   <div class="index-content">
     <el-container>
+      <bg></bg>
       <div class="fixed-header">
         <nav-bar @show-search="showSearch"/>
         <el-collapse-transition>
@@ -28,10 +29,12 @@ import BackTop from "../layout/BackTop";
 import '../../../static/js/back-top.js'
 import Search from "../common/Search";
 import BreadcrumbRouter from "../layout/BreadcrumbRouter";
+import Bg from '../layout/Bg';
 
 export default {
   name: "Index",
   components: {
+    Bg,
     NavBar,
     Search,
     BreadcrumbRouter,
@@ -54,7 +57,6 @@ export default {
 
 <style scoped>
 .index-content {
-  background-color: var(--bodyBgColor);
   min-height: 100%;
 }
 .fixed-header {
