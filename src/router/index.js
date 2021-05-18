@@ -94,6 +94,14 @@ const router = new Router({
       meta: {
         title: '页面出错了'
       }
+    },
+    {
+      path: '/**',
+      name: 'UnKnown',
+      redirect: 'Error',
+      meta: {
+        title: '页面出错了'
+      }
     }
   ]
 })

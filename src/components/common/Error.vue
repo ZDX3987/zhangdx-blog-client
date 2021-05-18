@@ -3,7 +3,7 @@
     <div class="error-content">
       <el-image :src="imgUrl" fit="cover"></el-image>
       <p>啊~哦~ 您要查看的页面不存在或已删除！</p>
-      <p>请检查您输入的网址是否正确，或者点击链接继续浏览空间</p>
+      <p>请检查您输入的网址是否正确，或者点击按钮继续浏览网站</p>
       <button class="back-btn" @click="back()">返回首页</button>
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.go(-1);
+      this.$router.push({name: 'Index'});
     },
   },
 };
@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .error-content {
-  margin: 0 auto;
+  margin: 100px auto;
   width: 40%;
   text-align: center;
 }
@@ -47,7 +47,7 @@ p:nth-of-type(2) {
   color: #fff;
   transition: all 0.5s;
   border: none;
-  margin-bottom: 60px;
+  margin: 30px 0;
   outline: none;
   cursor: pointer;
 }

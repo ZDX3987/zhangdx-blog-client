@@ -45,6 +45,7 @@ export default {
   height: 45px;
   border: 1px solid var(--borderColor);
   padding-left: 2%;
+  background-color: var(--bgColor);
 }
 .search-input:focus {
   border: 1px solid var(--mainThemeColor);
@@ -56,6 +57,7 @@ export default {
   background-color: var(--mainThemeColor);
   color: var(--btnText);
   margin-left: -2%;
+  transition: all 0.5s;
 }
 .search-btn:hover {
   background-color: #68cd79;
