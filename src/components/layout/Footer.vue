@@ -47,7 +47,7 @@ export default {
           iconClass: "fa fa-weixin",
           title: "微信",
           type: "show",
-          href: "static/images/qrcode_for_gh_6e38291aed7a_258.jpg",
+          href: "/static/images/qrcode_for_gh_6e38291aed7a_258.jpg",
         },
         {
           iconClass: "fa fa-github",
