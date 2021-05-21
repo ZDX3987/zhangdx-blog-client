@@ -6,8 +6,9 @@
         <ArticleList :query-cate-id="0"/>
       </el-col>
       <el-col :xl="4" :lg="5" :md="6" :xs="{span: 22, offset: 1}" :sm="{span: 22, offset: 1}" class="ml-lg-3">
-        <CateCloud/>
-        <TopicSide/>
+        <cate-cloud/>
+        <topic-side/>
+        <web-site-info/>
       </el-col>
     </el-row>
   </div>
@@ -17,6 +18,7 @@
 import ArticleList from "../article/ArticleList";
 import CateCloud from "../category/CateCloud";
 import TopicSide from "../topic/TopicSide";
+import WebSiteInfo from './WebSiteInfo';
 
 export default {
   name: "Home",
@@ -26,7 +28,8 @@ export default {
   components: {
     ArticleList,
     CateCloud,
-    TopicSide
+    TopicSide,
+    WebSiteInfo
   }
 }
 </script>
