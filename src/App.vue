@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import {bannerPrint} from './util/console-print';
+
 export default {
   name: 'App',
   created() {
@@ -16,7 +18,7 @@ export default {
   },
   methods: {
     printLog() {
-      console.log();
+      bannerPrint();
     }
   }
 }
