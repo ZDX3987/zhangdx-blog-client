@@ -38,7 +38,7 @@ export default {
   name: "CateList",
   data() {
     return {
-      currentCate: null,
+      currentCate: {},
       articleTotal: 0,
       childCate: []
     }

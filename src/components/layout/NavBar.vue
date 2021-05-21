@@ -6,9 +6,9 @@
         <span class="fa fa-bars"></span>
       </button>
       <div class="col-md-3 col-6 col-sm-6 m-auto m-md-0">
-        <a class="navbar-brand" href="/">
+        <router-link class="navbar-brand" :to="{name: 'Home'}">
           <span class="navbar-brand mb-0 h1 navbar-title">{{ title }}</span>
-        </a>
+        </router-link>
       </div>
       <div class="col-1 col-md-1 hidden-sm-and-up">
         <span class="search-btn fa" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>

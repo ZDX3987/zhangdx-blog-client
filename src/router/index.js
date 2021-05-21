@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from "../components/Index/Index";
 import ArticlePreview from "../components/article/ArticlePreview";
-import IndexContent from "../components/Index/IndexContent";
 import Error from '../components/common/Error'
 import CateList from "../components/category/CateList";
 import Classify from "../components/classify/Classify";
@@ -10,6 +8,8 @@ import Archives from "../components/archives/Archives";
 import UpdateLog from "../components/updatelog/UpdateLog";
 import TopicList from "../components/topic/TopicList";
 import TopicItem from "../components/topic/TopicItem";
+import Layout from '../components/layout/Layout';
+import Home from '../components/home/Home';
 
 Vue.use(Router)
 
@@ -18,15 +18,15 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
-      component: Index,
+      name: 'Layout',
+      component: Layout,
       meta: {title: '首页'},
-      redirect: {name: 'IndexContent'},
+      redirect: {name: 'Home'},
       children: [
         {
           path: '/',
-          name: 'IndexContent',
-          component: IndexContent,
+          name: 'Home',
+          component: Home,
           meta: {title: '首页'},
         },
         {

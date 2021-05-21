@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import NavBar from "../layout/NavBar";
-import Footer from "../layout/Footer";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 import ArticleList from "../article/ArticleList";
-import BackTop from "../layout/BackTop";
+import BackTop from "../common/BackTop";
 import '../../../static/js/back-top.js'
 import Search from "../common/Search";
-import BreadcrumbRouter from "../layout/BreadcrumbRouter";
-import Bg from '../layout/Bg';
+import BreadcrumbRouter from "../common/BreadcrumbRouter";
+import Bg from './Bg';
 
 export default {
-  name: "Index",
+  name: "Layout",
   components: {
     Bg,
     NavBar,

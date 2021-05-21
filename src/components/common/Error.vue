@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push({name: 'Index'});
+      this.$router.push({name: 'Home'});
     },
   },
 };
