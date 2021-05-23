@@ -18,7 +18,7 @@
             }}</span>
         </li>
       </ul>
-      <div v-if="topicList.length == 0" class="no-topic">
+      <div v-if="topicList.length === 0" class="no-topic">
         <p>暂无专题</p>
       </div>
     </div>
