@@ -118,11 +118,10 @@ export default {
       this.$api.articleApi
           .getArticleByPage(formData)
           .then((res) => {
-            if (res.data.elements.length === 0) {
+            this.articleList = this.articleList.concat(res.data.elements);
+            if (res.data.totalCount === this.articleList.length) {
               this.listEnd = true;
             }
-            this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
-                : res.data.elements;
             this.isLoading = false;
           })
           .catch((error) => this.$message.error("文章获取失败，请稍后重试"));
