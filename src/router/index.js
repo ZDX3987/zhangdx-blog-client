@@ -10,6 +10,7 @@ import TopicList from "../components/topic/TopicList";
 import TopicItem from "../components/topic/TopicItem";
 import Layout from '../components/layout/Layout';
 import Home from '../components/home/Home';
+import SearchResult from '../components/search/SearchResult';
 
 Vue.use(Router)
 
@@ -84,7 +85,15 @@ const router = new Router({
           meta: {
             title: '更新日志'
           }
-        }
+        },
+        {
+          path: '/search/{keyword}',
+          name: 'SearchResult',
+          component: SearchResult,
+          meta: {
+            title: '搜索结果'
+          }
+        },
       ]
     },
     {

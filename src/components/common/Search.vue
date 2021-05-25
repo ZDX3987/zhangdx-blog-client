@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     submitSearch() {
-      alert('搜索功能暂未上线');
+      this.$router.push({name: 'SearchResult', params: {keyword: this.searchForm.searchWord}});
     }
   }
 }
