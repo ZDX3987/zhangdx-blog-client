@@ -1,7 +1,7 @@
 <template>
   <div class="search-result">
     <el-row type="flex" justify="center">
-      <el-col :lg="14" :md="16" :xs="22" :sm="22">
+      <el-col :lg="10" :md="20" :xs="22" :sm="22">
         <article-single-list :article-list="searchResult.elements"/>
       </el-col>
     </el-row>

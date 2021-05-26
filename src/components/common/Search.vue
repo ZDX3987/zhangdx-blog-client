@@ -18,12 +18,18 @@ export default {
     return {
       searchForm: {
         searchWord: '',
-      }
+      },
+      searchShowed: true
     }
   },
   methods: {
     submitSearch() {
       this.$router.push({name: 'SearchResult', params: {keyword: this.searchForm.searchWord}});
+      this.closeSearch();
+    },
+    closeSearch() {
+      this.searchShowed = false;
+      this.$emit('close-search', this.searchShowed);
     }
   }
 }
