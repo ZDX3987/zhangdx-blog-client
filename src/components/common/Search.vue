@@ -24,12 +24,12 @@ export default {
   },
   methods: {
     submitSearch() {
-      this.$router.push({name: 'SearchResult', params: {keyword: this.searchForm.searchWord}});
       this.closeSearch();
+      this.$router.push({name: 'SearchResult', params: {keyword: this.searchForm.searchWord}});
     },
     closeSearch() {
       this.searchShowed = false;
-      this.$emit('close-search', this.searchShowed);
+      this.$store.commit('showSearchBar', this.searchShowed);
     }
   }
 }

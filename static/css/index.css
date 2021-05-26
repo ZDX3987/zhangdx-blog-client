@@ -15,3 +15,8 @@ html body {
 ::-moz-selection {
   background: #55bd66 !important;
 }
+
+/*搜索结果关键字高亮*/
+.search-keyword-highlight {
+    color: var(--mainThemeColor);
+}

@@ -3,9 +3,9 @@
     <el-container>
       <bg></bg>
       <div class="fixed-header">
-        <nav-bar @show-search="showSearch"/>
+        <nav-bar></nav-bar>
         <el-collapse-transition>
-          <search v-if="searchShow" @close-search="showSearch"></search>
+          <search v-if="searchShow"></search>
         </el-collapse-transition>
       </div>
       <el-main class="main-content">
@@ -44,13 +44,14 @@ export default {
   },
   data() {
     return {
-      searchShow: false
+    }
+  },
+  computed: {
+    searchShow() {
+      return this.$store.state.showSearch;
     }
   },
   methods: {
-    showSearch(value) {
-      this.searchShow = value;
-    }
   }
 };
 </script>

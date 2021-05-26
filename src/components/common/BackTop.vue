@@ -39,7 +39,7 @@ export default {
   methods: {
     toggleSkin() {
       let newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-      this.$store.commit('toggleTheme', newTheme);
+      this.$store.commit('switchTheme', newTheme);
     }
   }
 }

@@ -12,7 +12,7 @@ export default {
   created() {
     let theme = sessionStorage.getItem('theme');
     if (theme) {
-      this.$store.commit('toggleTheme', theme);
+      this.$store.commit('switchTheme', theme);
     }
     this.printLog();
   },

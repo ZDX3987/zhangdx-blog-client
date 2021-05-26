@@ -53,8 +53,12 @@ export default {
   data() {
     return {
       title: 'ZHANGDX',
-      menuList: navData,
-      searchShowed: false
+      menuList: navData
+    }
+  },
+  computed: {
+    searchShowed() {
+      return this.$store.state.showSearch;
     }
   },
   methods: {
@@ -64,8 +68,7 @@ export default {
       return dropdown + active;
     },
     showSearch() {
-      this.searchShowed = !this.searchShowed;
-      this.$emit('show-search', this.searchShowed);
+      this.$store.commit('showSearchBar', !this.searchShowed);
     }
   },
 }

@@ -20,13 +20,9 @@
               <router-link
                   class="item-title"
                   :to="{ name: 'ArticlePreview', params: { id: article.id } }"
-              >
-                {{ article.title }}
-              </router-link>
+              v-html="article.title"></router-link>
             </h2>
-            <p v-if="article.digest" class="item-text text-wrap text-truncate">
-              {{ article.digest }}
-            </p>
+            <p v-if="article.digest" class="item-text text-wrap text-truncate" v-html="article.digest"></p>
             <div class="item-tags">
                 <span v-for="(tag, index) of article.categories" :key="tag.id">
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}
