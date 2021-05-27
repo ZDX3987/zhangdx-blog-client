@@ -87,7 +87,7 @@ const router = new Router({
           }
         },
         {
-          path: '/search/{keyword}',
+          path: '/search/_a',
           name: 'SearchResult',
           component: SearchResult,
           meta: {

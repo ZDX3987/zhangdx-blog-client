@@ -1,8 +1,8 @@
 <template>
-  <div class="search-result" v-loading="loading">
+  <div class="search-result">
     <el-row type="flex" justify="center">
       <el-col :lg="10" :md="20" :xs="22" :sm="22">
-        <article-single-list :article-list="searchResult.elements"/>
+        <article-single-list :article-list="searchResult.elements" :loading="loading"/>
       </el-col>
     </el-row>
   </div>
