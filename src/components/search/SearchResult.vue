@@ -29,13 +29,12 @@ export default {
   },
   mounted() {
     this.loading = true;
-    let keyword = this.$route.params.keyword;
-    this.$route.meta.title = '”' + keyword + '“ 的搜索结果';
-    this.$api.searchApi.search(keyword, this.pageIndex, this.pageSize).then(result => {
+    this.keyword = this.$route.query.keyword;
+    this.$route.meta.title = '”' + this.keyword + '“ 的搜索结果';
+    this.$api.searchApi.search(this.keyword, this.pageIndex, this.pageSize).then(result => {
       this.searchResult = result.data;
-      document.title = '”' + keyword + '“ 的搜索结果 - ZHANGDX的博客';
+      document.title = '”' + this.keyword + '“ 的搜索结果 - ZHANGDX的博客';
       this.loading = false;
-      this.$message.success('查询成功');
     }).catch(() => this.$message.error('查询失败'));
   }
 }

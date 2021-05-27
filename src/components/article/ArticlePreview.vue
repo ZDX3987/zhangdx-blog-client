@@ -87,7 +87,7 @@
 import VditorPreview from "vditor/dist/method.min";
 import "vditor/dist/index.css";
 import ArticleDirectory from "./ArticleDirectory";
-import ArticleSkeleton from "./ArticleSkeleton";
+import ArticleSkeleton from "../skeleton/ArticleSkeleton";
 import RelatedArticles from './RelatedArticles';
 
 export default {

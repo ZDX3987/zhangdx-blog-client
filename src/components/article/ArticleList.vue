@@ -39,7 +39,7 @@ export default {
   },
   components: {
     ArticleListSkeleton,
-    ArticleListItem
+    ArticleListItem,
   },
   props: {
     queryCateId: 0

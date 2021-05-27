@@ -25,7 +25,7 @@ export default {
   methods: {
     submitSearch() {
       this.closeSearch();
-      this.$router.push({name: 'SearchResult', params: {keyword: this.searchForm.searchWord}});
+      this.$router.push({name: 'SearchResult', query: {keyword: this.searchForm.searchWord}});
     },
     closeSearch() {
       this.searchShowed = false;
