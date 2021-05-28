@@ -5,7 +5,7 @@
       <div class="fixed-header">
         <nav-bar></nav-bar>
         <el-collapse-transition>
-          <search v-if="searchShow"></search>
+          <search v-show="searchShow"></search>
         </el-collapse-transition>
       </div>
       <el-main class="main-content">

@@ -11,4 +11,8 @@ export default {
         };
         return http.get(url + '/_w', {params: formData});
     },
+
+    getHotWord() {
+        return http.get(url + '/hot_word');
+    }
 }
