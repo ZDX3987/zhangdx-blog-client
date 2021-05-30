@@ -4,12 +4,14 @@
       <div class="search-form align-middle">
         <input type="text" v-model="searchForm.searchWord" class="search-input" placeholder="请输入关键字"
                @keyup.enter="submitSearch(searchForm.searchWord)"></input>
-        <button type="button" class="search-btn" @click="submitSearch(searchForm.searchWord)"><i class="fa fa-search"></i></button>
+        <button type="button" class="search-btn" @click="submitSearch(searchForm.searchWord)"><i
+            class="fa fa-search"></i></button>
       </div>
       <div class="hot-word-list text-justify">
-        <span class="hot-word-label">热搜：</span>
-        <a @click="submitSearch(word)" class="hot-word-item" v-for="word of hotWordList" :key="word">{{word}}</a>
-        <i class="fa fa-refresh hot-word-refresh"></i>
+        <span class="hot-word-label align-middle">热搜：</span>
+        <a @click="submitSearch(word)" class="hot-word-item text-truncate d-inline-block align-middle"
+           v-for="word of hotWordList" :key="word">{{ word }}</a>
+        <i class="fa fa-refresh align-middle" @click="refreshHowWord()"></i>
       </div>
     </el-col>
   </el-row>
@@ -24,14 +26,13 @@ export default {
         searchWord: '',
       },
       searchShowed: true,
-      hotWordList: []
+      hotWordList: [],
+      pageIndex: 0,
+      pageSize: 3
     }
   },
   created() {
-    this.$api.searchApi.getHotWord().then(res => {
-      this.hotWordList = res.data;
-    }).catch(error => {
-    })
+    this.queryHotWord(this.pageIndex);
   },
   methods: {
     submitSearch(keyword) {
@@ -41,7 +42,23 @@ export default {
     closeSearch() {
       this.searchShowed = false;
       this.$store.commit('showSearchBar', this.searchShowed);
+    },
+    queryHotWord(pageIndex) {
+      this.$api.searchApi.getHotWord(pageIndex, this.pageSize).then(res => {
+        let data = res.data;
+        if (data.length === 0) {
+          return;
+        }
+        this.hotWordList = data;
+      }).catch(error => {
+      })
+    },
+    refreshHowWord() {
+      let randomPageIndex = Math.floor(Math.random() * 5);
+      console.log(randomPageIndex)
+      this.queryHotWord(randomPageIndex);
     }
+
   }
 }
 </script>
@@ -89,16 +106,17 @@ export default {
   width: 80%;
   margin: 0 auto;
   font-size: 14px;
+  color: var(--fontColor);
 }
+
 .hot-word-label {
 }
+
 .hot-word-item {
   margin: 0 3% 0 0;
   color: var(--mainThemeColor);
   cursor: pointer;
+  max-width: 15%;
 }
-.hot-word-refresh:active {
-  transform: rotate(360deg);
-  transition: all 1s;
-}
+
 </style>
