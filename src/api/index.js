@@ -4,6 +4,7 @@ import settingsApi from './settings'
 import topicApi from './topic'
 import updateLogApi from './updatelog'
 import searchApi from './search'
+import oauthApi from './oauth'
 
 export default {
   articleApi,
@@ -11,5 +12,6 @@ export default {
   settingsApi,
   topicApi,
   updateLogApi,
-  searchApi
+  searchApi,
+  oauthApi
 }
