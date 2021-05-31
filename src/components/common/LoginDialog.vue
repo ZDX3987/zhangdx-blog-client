@@ -28,7 +28,7 @@ export default {
   methods: {
     launchLogin(type) {
       this.$api.oauthApi.login(type).then(res => {
-        window.open(res.data);
+        window.open(res.data, '_blank', "width=1000,height=500,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true");
       }).catch(error => this.$message.error(error));
     }
   }
