@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     // 全局主题
     themeToggle: 'light',
     // 全局搜索框显示隐藏
-    showSearch: false
+    showSearch: false,
+      userInfo: {}
   },
   mutations: {
     switchTheme(state, theme) {
@@ -19,7 +20,10 @@ const store = new Vuex.Store({
     },
     showSearchBar(state, showed) {
         state.showSearch = showed;
-    }
+    },
+      updateUserInfo(state, userInfo) {
+        state.userInfo = userInfo;
+      }
   }
 })
 

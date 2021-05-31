@@ -55,6 +55,15 @@ export default {
       return this.$store.state.showSearch;
     }
   },
+  mounted() {
+    let token = localStorage.getItem('oauth_token');
+    if (!token) {
+      return;
+    }
+    this.$api.oauthApi.getUserInfo('GITEE', token).then(res => {
+      this.$store.commit('updateUserInfo', res.data);
+    }).catch(error => this.$message.error('登录失败'));
+  },
   methods: {
     showLoginDialog(value) {
       this.$refs.loginDialog.dialogVisible = value;

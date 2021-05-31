@@ -12,7 +12,8 @@
       </div>
       <div class="col-3 col-md-1 hidden-sm-and-up p-0">
         <span class="search-btn fa mr-2 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
-        <span class="align-middle fa fa-user-circle"></span>
+<!--        <span class="align-middle fa fa-user-circle"></span>-->
+        <el-avatar class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
       </div>
       <div class="collapse navbar-collapse col-md-7 col-lg-8 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -41,7 +42,8 @@
       </div>
       <div class="col-md-2 col-lg-1 hidden-xs-only text-left sub-nav-btn p-0">
         <span class="search-btn fa mr-3 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
-        <span class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>
+<!--        <span class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>-->
+        <el-avatar class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
       </div>
     </nav>
   </div>
@@ -61,6 +63,9 @@ export default {
   computed: {
     searchShowed() {
       return this.$store.state.showSearch;
+    },
+    userInfo() {
+      return this.$store.state.userInfo;
     }
   },
   methods: {
@@ -140,6 +145,11 @@ a {
 }
 .search-btn {
   color: var(--fontColor);
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
 }
 
 </style>

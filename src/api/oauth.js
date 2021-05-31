@@ -5,6 +5,10 @@ export default {
 
     login(type) {
         return http.get(url + '/login/' + type);
+    },
+
+    getUserInfo(type, token) {
+        return http.get(url + '/' + type + '/userinfo', {params: {'token': token}});
     }
 
 }
