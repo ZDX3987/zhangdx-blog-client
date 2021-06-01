@@ -55,12 +55,12 @@ export default {
       return this.$store.state.showSearch;
     }
   },
-  mounted() {
+  created() {
     let token = localStorage.getItem('oauth_token');
     if (!token) {
       return;
     }
-    this.$api.oauthApi.getUserInfo('GITEE', token).then(res => {
+    this.$api.oauthApi.getUserInfo('gitee', token).then(res => {
       this.$store.commit('updateUserInfo', res.data);
       this.$message.success('欢迎！' + res.data.nickname);
     }).catch(error => this.$message.error('登录失败'));

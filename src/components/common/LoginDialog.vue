@@ -18,7 +18,7 @@ export default {
       dialogVisible: false,
       loginType: [
         {type: 'QQ', icon: 'iconfont iconQQ', color: 'rgb(94,164,210)', text: 'QQ'},
-        {type: 'GITEE', icon: 'iconfont iconmayun', color: 'rgb(178,53,37)', text: '码云'},
+        {type: 'gitee', icon: 'iconfont iconmayun', color: 'rgb(178,53,37)', text: '码云'},
         {type: 'GITHUB', icon: 'iconfont iconhuaban881', color: 'rgb(51,51,51)', text: 'Github'},
       ]
     }
