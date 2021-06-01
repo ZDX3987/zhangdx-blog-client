@@ -20,7 +20,7 @@ export default {
       dialogVisible: false,
       loginType: [
         {type: 'QQ', icon: 'fa fa-qq', text: 'QQ'},
-        {type: 'GITEE', icon: 'fa fa-qq', text: '码云'},
+        // {type: 'GITEE', icon: 'fa fa-qq', text: '码云'},
         {type: 'GITHUB', icon: 'fa fa-github', text: 'Github'},
       ]
     }

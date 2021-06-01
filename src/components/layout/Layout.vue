@@ -62,6 +62,7 @@ export default {
     }
     this.$api.oauthApi.getUserInfo('GITEE', token).then(res => {
       this.$store.commit('updateUserInfo', res.data);
+      this.$message.success('欢迎！' + res.data.nickname);
     }).catch(error => this.$message.error('登录失败'));
   },
   methods: {

@@ -42,8 +42,8 @@
       </div>
       <div class="col-md-2 col-lg-1 hidden-xs-only text-left sub-nav-btn p-0">
         <span class="search-btn fa mr-3 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
-<!--        <span class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>-->
-        <el-avatar class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
+        <el-avatar v-if="userInfo.nickname" class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
+        <span v-else class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>
       </div>
     </nav>
   </div>
