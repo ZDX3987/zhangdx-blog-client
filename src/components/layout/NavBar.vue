@@ -40,6 +40,7 @@
       </div>
       <div class="col-1 hidden-xs-only">
         <span class="search-btn fa" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
+        <span class="fa fa-qq" style="color: #55bd66; font-size: 24px" title="QQ登录"></span>
       </div>
     </nav>
   </div>
