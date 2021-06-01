@@ -1,27 +1,25 @@
 <template>
-  <el-dialog title="授权登录" :visible="dialogVisible">
-    <ul class="login-type-list">
-      <li v-for="type of loginType" :key="type.type">
-        <a :class="type.icon" :title="type.text" @click="launchLogin(type.type)"></a>
-      </li>
-    </ul>
-    <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
+  <el-dialog title="授权登录" :visible="dialogVisible" @close="dialogVisible = false">
+    <el-row type="flex" justify="center">
+      <el-col>
+        <span class="login-type-item m-3" v-for="type of loginType" :key="type.type" :class="type.icon" :title="type.text"
+              :style="{color:type.color}" @click="launchLogin(type.type)"></span>
+      </el-col>
+    </el-row>
   </el-dialog>
 </template>
 
 <script>
+
 export default {
   name: "LoginDialog",
   data() {
     return {
       dialogVisible: false,
       loginType: [
-        {type: 'QQ', icon: 'fa fa-qq', text: 'QQ'},
-        // {type: 'GITEE', icon: 'fa fa-qq', text: '码云'},
-        {type: 'GITHUB', icon: 'fa fa-github', text: 'Github'},
+        {type: 'QQ', icon: 'iconfont iconQQ', color: 'rgb(94,164,210)', text: 'QQ'},
+        {type: 'GITEE', icon: 'iconfont iconmayun', color: 'rgb(178,53,37)', text: '码云'},
+        {type: 'GITHUB', icon: 'iconfont iconhuaban881', color: 'rgb(51,51,51)', text: 'Github'},
       ]
     }
   },
@@ -36,12 +34,9 @@ export default {
 </script>
 
 <style scoped>
-.login-type-list {
-  list-style: none;
-}
+@import "../../../static/icon/iconfont/iconfont.css";
 
-.login-type-list li {
-  float: left;
-  margin-right: 10%;
+.login-type-item {
+  font-size: 30px;
 }
 </style>

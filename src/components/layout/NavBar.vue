@@ -1,7 +1,8 @@
 <template>
   <div class="navbar-content">
     <nav class="navbar navbar-expand-md navbar-light row">
-      <button class="navbar-toggler col-3 text-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      <button class="navbar-toggler col-3 text-left" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-bars"></span>
       </button>
@@ -11,9 +12,19 @@
         </router-link>
       </div>
       <div class="col-3 col-md-1 hidden-sm-and-up p-0">
-        <span class="search-btn fa mr-2 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
-<!--        <span class="align-middle fa fa-user-circle"></span>-->
-        <el-avatar class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
+        <span class="search-btn fa mr-2 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'"
+              @click="showSearch"></span>
+        <el-dropdown v-if="userInfo.nickname" @command="userCommand">
+          <span class="el-dropdown-link">
+            <el-avatar class="align-middle user-avatar" :src="userInfo.avatar"
+                       :title="userInfo.nickname"></el-avatar>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item icon="fa fa-user">个人中心</el-dropdown-item>
+            <el-dropdown-item icon="fa fa-sign-out" divided command="logout">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span v-else class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>
       </div>
       <div class="collapse navbar-collapse col-md-7 col-lg-8 menu-content" id="navbarSupportedContent">
         <ul class="navbar-nav">
@@ -41,8 +52,18 @@
         </ul>
       </div>
       <div class="col-md-2 col-lg-1 hidden-xs-only text-left sub-nav-btn p-0">
-        <span class="search-btn fa mr-3 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'" @click="showSearch"></span>
-        <el-avatar v-if="userInfo.nickname" class="align-middle user-avatar" :src="userInfo.avatar" :title="userInfo.nickname"></el-avatar>
+        <span class="search-btn fa mr-3 align-middle" :class="searchShowed ? 'fa-close' : 'fa-search'"
+              @click="showSearch"></span>
+        <el-dropdown v-if="userInfo.nickname" @command="userCommand">
+          <span class="el-dropdown-link">
+            <el-avatar class="align-middle user-avatar" :src="userInfo.avatar"
+                       :title="userInfo.nickname"></el-avatar>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item icon="fa fa-user">个人中心</el-dropdown-item>
+            <el-dropdown-item icon="fa fa-sign-out" divided command="logout">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
         <span v-else class="align-middle fa fa-user-circle" @click="showLoginDialog()"></span>
       </div>
     </nav>
@@ -79,6 +100,17 @@ export default {
     },
     showLoginDialog() {
       this.$emit('openLoginDialog', true);
+    },
+    userCommand(command) {
+      this[command]();
+    },
+    logout() {
+      this.$api.oauthApi.logout(this.userInfo.source, localStorage.getItem('oauth_token')).then(res => {
+        this.$store.commit('updateUserInfo', {});
+        localStorage.removeItem('oauth_token');
+        this.$message.success(res.msg);
+      }).catch(error => {
+      });
     }
   },
 }
@@ -135,6 +167,7 @@ a {
   border: none;
   max-width: 100%;
 }
+
 .navbar-toggler >>> span {
   color: var(--fontColor);
 }
@@ -143,6 +176,7 @@ a {
   font-size: 24px;
   font-weight: 500;
 }
+
 .search-btn {
   color: var(--fontColor);
 }

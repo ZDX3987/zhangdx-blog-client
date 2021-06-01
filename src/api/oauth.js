@@ -7,6 +7,10 @@ export default {
         return http.get(url + '/login/' + type);
     },
 
+    logout(type, token) {
+        return http.get(url + '/revoke/' + type + '/' + token);
+    },
+
     getUserInfo(type, token) {
         return http.get(url + '/' + type + '/userinfo', {params: {'token': token}});
     }
