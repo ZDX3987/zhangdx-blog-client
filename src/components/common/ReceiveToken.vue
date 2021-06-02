@@ -12,7 +12,8 @@ export default {
   },
   created() {
     this.accessToken = this.$route.query.accessToken;
-    localStorage.setItem('oauth_token', this.accessToken);
+    this.type = this.$route.query.type;
+    localStorage.setItem('oauth_type', this.type);
     window.opener.location.reload();
     window.close();
   }

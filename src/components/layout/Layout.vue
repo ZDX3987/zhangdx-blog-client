@@ -57,10 +57,11 @@ export default {
   },
   created() {
     let token = localStorage.getItem('oauth_token');
-    if (!token) {
+    let type = localStorage.getItem('oauth_type');
+    if (!token || !type) {
       return;
     }
-    this.$api.oauthApi.getUserInfo('gitee', token).then(res => {
+    this.$api.oauthApi.getUserInfo(type, token).then(res => {
       this.$store.commit('updateUserInfo', res.data);
       this.$message.success('欢迎！' + res.data.nickname);
     }).catch(error => this.$message.error('登录失败'));
