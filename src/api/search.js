@@ -11,4 +11,12 @@ export default {
         };
         return http.get(url + '/_w', {params: formData});
     },
+
+    getHotWord(pageIndex, pageSize) {
+        let formData = {
+            pageSize: pageSize,
+            pageIndex: pageIndex
+        };
+        return http.get(url + '/hot_word', {params: formData});
+    }
 }
