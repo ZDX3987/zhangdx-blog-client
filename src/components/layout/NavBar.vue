@@ -108,6 +108,7 @@ export default {
       this.$api.oauthApi.logout(this.userInfo.source, localStorage.getItem('oauth_token')).then(res => {
         this.$store.commit('updateUserInfo', {});
         localStorage.removeItem('oauth_token');
+        localStorage.removeItem('oauth_type');
         this.$message.success(res.msg);
       }).catch(error => {
       });
