@@ -3,7 +3,7 @@
     <el-container>
       <bg></bg>
       <div class="fixed-header">
-        <nav-bar></nav-bar>
+        <nav-bar @openLoginDialog="showLoginDialog"></nav-bar>
         <el-collapse-transition>
           <search v-show="searchShow"></search>
         </el-collapse-transition>
@@ -17,7 +17,8 @@
         <Footer/>
       </footer>
     </el-container>
-    <BackTop/>
+    <back-top/>
+    <login-dialog ref="loginDialog"/>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import '../../../static/js/back-top.js'
 import Search from "../common/Search";
 import BreadcrumbRouter from "../common/BreadcrumbRouter";
 import Bg from './Bg';
+import LoginDialog from '../common/LoginDialog';
 
 export default {
   name: "Layout",
@@ -41,9 +43,11 @@ export default {
     ArticleList,
     Footer,
     BackTop,
+    LoginDialog
   },
   data() {
     return {
+      loginDialogShow: false
     }
   },
   computed: {
@@ -51,7 +55,21 @@ export default {
       return this.$store.state.showSearch;
     }
   },
+  created() {
+    let token = localStorage.getItem('oauth_token');
+    let type = localStorage.getItem('oauth_type');
+    if (!token || !type) {
+      return;
+    }
+    this.$api.oauthApi.getUserInfo(type, token).then(res => {
+      this.$store.commit('updateUserInfo', res.data);
+      this.$message.success('欢迎！' + res.data.nickname);
+    }).catch(error => this.$message.error('登录失败'));
+  },
   methods: {
+    showLoginDialog(value) {
+      this.$refs.loginDialog.dialogVisible = value;
+    }
   }
 };
 </script>

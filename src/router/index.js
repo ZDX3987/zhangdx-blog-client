@@ -11,6 +11,7 @@ import TopicItem from "../components/topic/TopicItem";
 import Layout from '../components/layout/Layout';
 import Home from '../components/home/Home';
 import SearchResult from '../components/search/SearchResult';
+import ReceiveToken from '../components/common/ReceiveToken';
 
 Vue.use(Router)
 
@@ -96,6 +97,14 @@ const router = new Router({
         },
       ]
     },
+      {
+          path: '/receive_token',
+          name: 'ReceiveToken',
+          component: ReceiveToken,
+          meta: {
+              title: '授权登录'
+          }
+      },
     {
       path: '/error',
       name: 'Error',
