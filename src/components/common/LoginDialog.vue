@@ -25,8 +25,10 @@ export default {
   },
   methods: {
     launchLogin(type) {
+      // 解决Safari无法打卡新窗口问题
+      let newWindow = window.open('', '_blank', "width=1000,height=600,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true");
       this.$api.oauthApi.login(type).then(res => {
-        window.open(res.data, '_blank', "width=1000,height=500,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true");
+        newWindow.location = res.data;
       }).catch(error => this.$message.error(error));
     }
   }

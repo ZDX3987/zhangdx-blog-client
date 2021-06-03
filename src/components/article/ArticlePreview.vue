@@ -52,6 +52,7 @@
             </el-button>
           </div>
         </div>
+        <article-direction :main-article-id="articleId" />
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
         <div
@@ -89,6 +90,7 @@ import "vditor/dist/index.css";
 import ArticleDirectory from "./ArticleDirectory";
 import ArticleSkeleton from "../skeleton/ArticleSkeleton";
 import RelatedArticles from './RelatedArticles';
+import ArticleDirection from './ArticleDirection';
 
 export default {
   name: "ArticlePreview",
@@ -108,7 +110,8 @@ export default {
   components: {
     ArticleSkeleton,
     ArticleDirectory,
-    RelatedArticles
+    RelatedArticles,
+    ArticleDirection
   },
   created() {
     VditorPreview.mermaidRender(document);
@@ -149,7 +152,6 @@ export default {
         if (article.source === 2) {
           let that = this;
           VditorPreview.preview(this.$refs.showText, article.text, {
-            speech: {enable: true},
             after() {
               // 动态加载侧边栏目录
               that.directoryShow = true;
@@ -256,6 +258,8 @@ export default {
 .article-footer >>> button {
   outline: none;
   font-size: 16px;
+  width: 200px;
+  height: 50px;
 }
 
 #articleDirectory {

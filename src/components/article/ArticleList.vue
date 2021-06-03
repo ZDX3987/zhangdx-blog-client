@@ -68,7 +68,8 @@ export default {
       this.$api.articleApi
           .getArticleByPage(formData)
           .then((res) => {
-            this.articleList = this.articleList.concat(res.data.elements);
+            this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
+                : res.data.elements;
             if (res.data.totalCount === this.articleList.length) {
               this.listEnd = true;
             }
