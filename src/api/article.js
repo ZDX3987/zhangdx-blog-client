@@ -20,5 +20,9 @@ export default {
 
   praiseArticle(type, articleId) {
     return http.put(url + '/article/praise/' + articleId, {type: type})
+  },
+
+  getPrevAndNextArticle(articleId) {
+    return http.get(url + '/prev-next-article/' + articleId);
   }
 }
