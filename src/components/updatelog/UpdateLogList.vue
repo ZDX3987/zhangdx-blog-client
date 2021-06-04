@@ -29,7 +29,7 @@ export default {
       total: 0,
       loading: false,
       updateLogList: [],
-      queryStatus: [1, 2]
+      queryStatus: [3]
     }
   },
   created() {
