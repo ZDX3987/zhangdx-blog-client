@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10558508",
+      "name": "QQ 空间",
+      "font_class": "QQkongjian",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "21230506",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1330571",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
       "icon_id": "12383468",
       "name": "QQ",
       "font_class": "QQ",

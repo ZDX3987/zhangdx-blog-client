@@ -1,6 +1,9 @@
 <template>
   <div class="article-preview">
     <el-row type="flex" justify="center">
+      <el-col :xl="1" :md="2" class="hidden-sm-and-down">
+        <shared-side/>
+      </el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <article-skeleton></article-skeleton>
@@ -64,6 +67,7 @@
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
+      <el-col :md="1"></el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <related-articles/>
       </el-col>
@@ -91,6 +95,7 @@ import ArticleDirectory from "./ArticleDirectory";
 import ArticleSkeleton from "../skeleton/ArticleSkeleton";
 import RelatedArticles from './RelatedArticles';
 import ArticleDirection from './ArticleDirection';
+import SharedSide from '../side/SharedSide';
 
 export default {
   name: "ArticlePreview",
@@ -111,7 +116,8 @@ export default {
     ArticleSkeleton,
     ArticleDirectory,
     RelatedArticles,
-    ArticleDirection
+    ArticleDirection,
+    SharedSide
   },
   created() {
     VditorPreview.mermaidRender(document);
