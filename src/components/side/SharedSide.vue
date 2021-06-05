@@ -1,6 +1,6 @@
 <template>
   <div class="shared-content-fixed" ref="sharedContent">
-    <ul class="shared-ul p-0 mt-5">
+    <ul class="shared-ul p-0 pt-5">
       <li>分享</li>
       <li v-for="shared of sharedType" :key="shared.text">
         <span class="shared-type-item" :class="shared.icon" :title="shared.text"
@@ -72,8 +72,9 @@ export default {
     },
     handleScroll(scrollTop, articleContentOffsetHeight) {
       let sharedSideDom = this.$refs.sharedContent;
-      let currentHeight = sharedSideDom.offsetHeight + sharedSideDom.offsetTop;
+      let currentHeight = sharedSideDom.offsetHeight;
       if (scrollTop >= articleContentOffsetHeight - currentHeight) {
+        console.log(currentHeight, articleContentOffsetHeight)
         sharedSideDom.className = 'shared-content';
         sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
       } else {
