@@ -60,6 +60,12 @@ export default {
   components: {
     vueQr
   },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll, true);
+  },
   methods: {
     handleShared(shared) {
       if (shared.type === 'qrcode') {
@@ -70,9 +76,14 @@ export default {
         window.open(url);
       }
     },
-    handleScroll(scrollTop, articleContentOffsetHeight) {
+    handleScroll() {
+      let scrollTop =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
       let sharedSideDom = this.$refs.sharedContent;
       let currentHeight = sharedSideDom.offsetHeight;
+      let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
       if (scrollTop >= articleContentOffsetHeight - currentHeight) {
         sharedSideDom.className = 'shared-content';
         sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
