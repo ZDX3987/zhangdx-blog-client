@@ -1,11 +1,14 @@
 <template>
   <div class="article-preview">
     <el-row type="flex" justify="center">
+      <el-col :xl="1" :md="2" class="hidden-sm-and-down">
+        <shared-side ref="sharedSide" :article="article"/>
+      </el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <article-skeleton></article-skeleton>
         </div>
-        <div id="article-content" class="article-content" v-if="!isLoading">
+        <div id="article-content" ref="articleContent" class="article-content" v-if="!isLoading">
           <el-row>
             <el-col :span="24">
               <h2 class="article-title">{{ article.title }}</h2>
@@ -52,18 +55,14 @@
             </el-button>
           </div>
         </div>
-        <article-direction :main-article-id="articleId" />
+        <article-direction :main-article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
-        <div
-            id="articleDirectory"
-            :class="articleDirectoryClassName"
-            ref="articleDirectory">
-          <article-directory :directoryShow="directoryShow"></article-directory>
-        </div>
+        <article-directory ref="articleDirectory" :directoryShow="directoryShow"></article-directory>
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
+      <el-col :xl="1" :md="2" class="hidden-sm-and-down"></el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <related-articles/>
       </el-col>
@@ -91,6 +90,7 @@ import ArticleDirectory from "./ArticleDirectory";
 import ArticleSkeleton from "../skeleton/ArticleSkeleton";
 import RelatedArticles from './RelatedArticles';
 import ArticleDirection from './ArticleDirection';
+import SharedSide from '../side/SharedSide';
 
 export default {
   name: "ArticlePreview",
@@ -111,7 +111,8 @@ export default {
     ArticleSkeleton,
     ArticleDirectory,
     RelatedArticles,
-    ArticleDirection
+    ArticleDirection,
+    SharedSide
   },
   created() {
     VditorPreview.mermaidRender(document);
@@ -173,26 +174,14 @@ export default {
           window.pageYOffset ||
           document.documentElement.scrollTop ||
           document.body.scrollTop;
-      this.handleFixedDirectory(scrollTop);
+      this.$refs.sharedSide.handleScroll(scrollTop, this.$refs.articleContent.offsetHeight);
+      this.$refs.articleDirectory.handleScroll(scrollTop, this.$refs.articleContent.offsetHeight);
     },
     praiseArticle() {
       this.praising = true;
       this.$api.articleApi.praiseArticle(1, this.article.id).then(() => {
         this.article.praise++;
       }).catch(error => this.$message.error('点赞失败'));
-    },
-    handleFixedDirectory(scrollTop) {
-      // let scroll = scrollTop - this.scrollHeight;
-      // this.scrollHeight = scrollTop;
-      // if (scroll < 0 && document.body.offsetHeight - this.scrollHeight > 650) {
-      //   this.articleDirectoryClassName = "article-directory-fixed";
-      // } else if (scroll >= 0) {
-      //   let element1 = $("#article-content").height();
-      //   let element2 = $("#articleDirectory").offset().top;
-      //   if (element1 <= element2 + 320.3) {
-      //     this.articleDirectoryClassName = "article-directory";
-      //   }
-      // }
     }
   }
 };
@@ -260,24 +249,6 @@ export default {
   font-size: 16px;
   width: 200px;
   height: 50px;
-}
-
-#articleDirectory {
-  font-size: 14px;
-  padding-right: 20px;
-  /*background-color: var(--bgColor);*/
-  text-align: left;
-  color: var(--fontColor);
-  margin-left: 3%;
-}
-
-.article-directory {
-  position: absolute;
-  bottom: 0;
-}
-
-.article-directory-fixed {
-  position: fixed;
 }
 
 .side-drawer-btn {
