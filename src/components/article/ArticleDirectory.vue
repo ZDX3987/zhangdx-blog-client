@@ -1,5 +1,5 @@
 <template>
-  <div :class="changeClassName" class="directory-content-base pl-5" ref="directoryContent">
+  <div :class="changeClassName" class="directory-content-base" ref="directoryContent">
     <side-catalog v-if="directoryShow" v-bind="catalogProps">
       <template #default="{level, isActive}">
         <span v-if="isActive" class="iconfont iconchichi"></span>
@@ -23,13 +23,24 @@ export default {
   props: {
     directoryShow: Boolean
   },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll, true);
+  },
   components: {
     SideCatalog
   },
   methods: {
-    handleScroll(scrollTop, articleContentOffsetHeight) {
+    handleScroll() {
+      let scrollTop =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
       let directoryContent = this.$refs.directoryContent;
       let currentHeight = directoryContent.offsetHeight;
+      let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
       if (scrollTop >= articleContentOffsetHeight - currentHeight) {
         this.changeClassName = 'directory-content';
         directoryContent.style.top = (articleContentOffsetHeight - currentHeight) + 'px';

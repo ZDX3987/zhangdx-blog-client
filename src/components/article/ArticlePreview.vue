@@ -58,7 +58,7 @@
         <article-direction :main-article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
-        <article-directory ref="articleDirectory" :directoryShow="directoryShow"></article-directory>
+        <article-directory class="pl-5" ref="articleDirectory" :directoryShow="directoryShow"></article-directory>
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
@@ -77,7 +77,7 @@
           direction="rtl"
           :class="'drawer-content'"
           size="40%">
-        <article-directory :directoryShow="directoryShow"></article-directory>
+        <article-directory class="pl-2" :directoryShow="directoryShow"></article-directory>
       </el-drawer>
     </div>
   </div>
@@ -128,7 +128,7 @@ export default {
         .catch(error => this.$message.error("文章内容加载失败"));
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll, true);
+    // window.addEventListener("scroll", this.handleScroll, true);
   },
   computed: {
     codeTheme() {
