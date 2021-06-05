@@ -74,7 +74,6 @@ export default {
       let sharedSideDom = this.$refs.sharedContent;
       let currentHeight = sharedSideDom.offsetHeight;
       if (scrollTop >= articleContentOffsetHeight - currentHeight) {
-        console.log(currentHeight, articleContentOffsetHeight)
         sharedSideDom.className = 'shared-content';
         sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
       } else {
