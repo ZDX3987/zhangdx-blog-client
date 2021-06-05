@@ -2,13 +2,13 @@
   <div class="article-preview">
     <el-row type="flex" justify="center">
       <el-col :xl="1" :md="2" class="hidden-sm-and-down">
-        <shared-side/>
+        <shared-side class="shared-side" ref="sharedSide" :article="article"/>
       </el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
           <article-skeleton></article-skeleton>
         </div>
-        <div id="article-content" class="article-content" v-if="!isLoading">
+        <div id="article-content" ref="articleContent" class="article-content" v-if="!isLoading">
           <el-row>
             <el-col :span="24">
               <h2 class="article-title">{{ article.title }}</h2>
@@ -67,7 +67,7 @@
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
-      <el-col :md="1"></el-col>
+      <el-col :xl="1" :md="2" class="hidden-sm-and-down"></el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <related-articles/>
       </el-col>
@@ -180,6 +180,8 @@ export default {
           document.documentElement.scrollTop ||
           document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
+      let documentHeight = document.documentElement.offsetHeight;
+      console.log(this.$refs.articleContent)
     },
     praiseArticle() {
       this.praising = true;
@@ -266,6 +268,10 @@ export default {
   font-size: 16px;
   width: 200px;
   height: 50px;
+}
+
+.shared-side {
+  position: fixed;
 }
 
 #articleDirectory {
