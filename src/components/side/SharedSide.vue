@@ -1,6 +1,6 @@
 <template>
-  <div class="shared-content mt-5" ref="sharedContent">
-    <ul class="shared-ul p-0">
+  <div class="shared-content-fixed" ref="sharedContent">
+    <ul class="shared-ul p-0 mt-5">
       <li>分享</li>
       <li v-for="shared of sharedType" :key="shared.text">
         <span class="shared-type-item" :class="shared.icon" :title="shared.text"
@@ -27,14 +27,7 @@ export default {
           color: 'rgb(236,184,47)',
           text: 'QQ空间',
           url: 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey',
-          queryParams: [
-            {key: 'url', value: 'http://www.zhangdx.cn/article/6.html'}, {key: 'title', value: this.article.title},
-            {key: 'summary', value: this.article.digest || ''}, {
-              key: 'desc',
-              value: encodeURIComponent('我在看 #' + this.article.title + '#')
-            },
-            {key: 'pics', value: this.article.coverImg}
-          ]
+          queryParams: []
         },
         {
           type: 'window',
@@ -42,14 +35,7 @@ export default {
           color: 'rgb(213,104,93)',
           text: '微博',
           url: 'http://v.t.sina.com.cn/share/share.php',
-          queryParams: [
-            {key: 'url', value: 'http://www.zhangdx.cn/article/6.html'},
-            {
-              key: 'title',
-              value: encodeURIComponent('我在看 #' + this.article.title + '#')
-            },
-            {key: 'content', value: this.article.digest || ''}, {key: 'pic', value: this.article.coverImg}
-          ]
+          queryParams: []
         },
         {
           type: 'qrcode',
@@ -66,6 +52,11 @@ export default {
   props: {
     article: {}
   },
+  watch: {
+    article() {
+      this.setQueryParams();
+    }
+  },
   components: {
     vueQr
   },
@@ -79,6 +70,35 @@ export default {
         window.open(url);
       }
     },
+    handleScroll(scrollTop, articleContentOffsetHeight) {
+      let sharedSideDom = this.$refs.sharedContent;
+      let currentHeight = sharedSideDom.offsetHeight + sharedSideDom.offsetTop;
+      if (scrollTop >= articleContentOffsetHeight - currentHeight) {
+        sharedSideDom.className = 'shared-content';
+        sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
+      } else {
+        sharedSideDom.className = 'shared-content-fixed';
+        sharedSideDom.style.top = 'auto';
+      }
+    },
+    setQueryParams() {
+      this.sharedType[0].queryParams = [
+        {key: 'url', value: this.currentUrl}, {key: 'title', value: this.article.title},
+        {key: 'summary', value: this.article.digest || ''}, {
+          key: 'desc',
+          value: encodeURIComponent('我在看 #' + this.article.title + '#')
+        },
+        {key: 'pics', value: this.article.coverImg}
+      ];
+      this.sharedType[1].queryParams = [
+        {key: 'url', value: this.currentUrl},
+        {
+          key: 'title',
+          value: encodeURIComponent('我在看 #' + this.article.title + '#')
+        },
+        {key: 'content', value: this.article.digest || ''}, {key: 'pic', value: this.article.coverImg}
+      ];
+    }
   }
 }
 </script>
@@ -86,8 +106,12 @@ export default {
 <style scoped>
 @import "../../../static/icon/iconfont/iconfont.css";
 
+.shared-content-fixed {
+  position: fixed;
+}
+
 .shared-content {
-  /*position: fixed;*/
+  position: relative;
 }
 
 .shared-ul {

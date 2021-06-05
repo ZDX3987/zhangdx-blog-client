@@ -2,7 +2,7 @@
   <div class="article-preview">
     <el-row type="flex" justify="center">
       <el-col :xl="1" :md="2" class="hidden-sm-and-down">
-        <shared-side class="shared-side" ref="sharedSide" :article="article"/>
+        <shared-side ref="sharedSide" :article="article"/>
       </el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
@@ -55,7 +55,7 @@
             </el-button>
           </div>
         </div>
-        <article-direction :main-article-id="articleId" />
+        <article-direction :main-article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
         <div
@@ -180,8 +180,7 @@ export default {
           document.documentElement.scrollTop ||
           document.body.scrollTop;
       this.handleFixedDirectory(scrollTop);
-      let documentHeight = document.documentElement.offsetHeight;
-      console.log(this.$refs.articleContent)
+      this.$refs.sharedSide.handleScroll(scrollTop, this.$refs.articleContent.offsetHeight);
     },
     praiseArticle() {
       this.praising = true;
@@ -268,10 +267,6 @@ export default {
   font-size: 16px;
   width: 200px;
   height: 50px;
-}
-
-.shared-side {
-  position: fixed;
 }
 
 #articleDirectory {
