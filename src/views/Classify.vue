@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import ClassifyList from "./ClassifyList";
-import ArticleList from "../article/ArticleList";
+import ClassifyList from "../components/classify/ClassifyList";
+import ArticleList from "../components/article/ArticleList";
 
 export default {
   name: "Classify",

@@ -86,11 +86,11 @@
 <script>
 import VditorPreview from "vditor/dist/method.min";
 import "vditor/dist/index.css";
-import ArticleDirectory from "./ArticleDirectory";
-import ArticleSkeleton from "../skeleton/ArticleSkeleton";
-import RelatedArticles from './RelatedArticles';
-import ArticleDirection from './ArticleDirection';
-import SharedSide from '../side/SharedSide';
+import ArticleDirectory from "../components/article/ArticleDirectory";
+import ArticleSkeleton from "../components/skeleton/ArticleSkeleton";
+import RelatedArticles from '../components/article/RelatedArticles';
+import ArticleDirection from '../components/article/ArticleDirection';
+import SharedSide from '../components/side/SharedSide';
 
 export default {
   name: "ArticlePreview",

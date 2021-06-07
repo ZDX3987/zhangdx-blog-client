@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import ArchivesList from "./ArchivesList";
-import ArchivesTimeline from "./ArchivesTimeline";
+import ArchivesList from "../components/archives/ArchivesList";
+import ArchivesTimeline from "../components/archives/ArchivesTimeline";
 
 export default {
   name: "Archives",

@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import UpdateLogTitle from "./UpdateLogTitle";
-import UpdateLogList from "./UpdateLogList";
+import UpdateLogTitle from "../components/updatelog/UpdateLogTitle";
+import UpdateLogList from "../components/updatelog/UpdateLogList";
 
 export default {
   name: "UpdateLog",

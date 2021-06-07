@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ArticlePreview from "../components/article/ArticlePreview";
-import Error from '../components/common/Error'
-import CateList from "../components/category/CateList";
-import Classify from "../components/classify/Classify";
-import Archives from "../components/archives/Archives";
-import UpdateLog from "../components/updatelog/UpdateLog";
-import TopicList from "../components/topic/TopicList";
-import TopicItem from "../components/topic/TopicItem";
-import Layout from '../components/layout/Layout';
-import Home from '../components/home/Home';
-import SearchResult from '../components/search/SearchResult';
-import ReceiveToken from '../components/common/ReceiveToken';
+import ArticlePreview from "../views/ArticlePreview";
+import Error from '../views/Error'
+import CateList from "../views/CateList";
+import Classify from "../views/Classify";
+import Archives from "../views/Archives";
+import UpdateLog from "../views/UpdateLog";
+import TopicList from "../views/TopicList";
+import TopicItem from "../views/TopicItem";
+import Layout from '../views/Layout';
+import Home from '../views/Home';
+import SearchResult from '../views/SearchResult';
+import ReceiveToken from '../views/ReceiveToken';
 
 Vue.use(Router)
 

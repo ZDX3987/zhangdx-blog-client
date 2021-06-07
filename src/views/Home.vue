@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import ArticleList from "../article/ArticleList";
-import CateCloud from "../category/CateCloud";
-import TopicSide from "../topic/TopicSide";
-import WebSiteInfo from './WebSiteInfo';
+import ArticleList from "../components/article/ArticleList";
+import CateCloud from "../components/category/CateCloud";
+import TopicSide from "../components/topic/TopicSide";
+import WebSiteInfo from '../components/home/WebSiteInfo';
 
 export default {
   name: "Home",

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import TopicCard from "./TopicCard";
+import TopicCard from "../components/topic/TopicCard";
 
 export default {
   name: "TopicList",

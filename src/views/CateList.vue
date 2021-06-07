@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import ArticleList from "../article/ArticleList";
+import ArticleList from "../components/article/ArticleList";
 
 export default {
   name: "CateList",

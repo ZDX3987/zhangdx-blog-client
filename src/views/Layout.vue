@@ -23,15 +23,15 @@
 </template>
 
 <script>
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import ArticleList from "../article/ArticleList";
-import BackTop from "../common/BackTop";
-import '../../../static/js/back-top.js'
-import Search from "../common/Search";
-import BreadcrumbRouter from "../common/BreadcrumbRouter";
-import Bg from './Bg';
-import LoginDialog from '../common/LoginDialog';
+import NavBar from "../components/layout/NavBar";
+import Footer from "../components/layout/Footer";
+import ArticleList from "../components/article/ArticleList";
+import BackTop from "../components/common/BackTop";
+import '../../static/js/back-top.js'
+import Search from "../components/common/Search";
+import BreadcrumbRouter from "../components/common/BreadcrumbRouter";
+import Bg from '../components/layout/Bg';
+import LoginDialog from '../components/common/LoginDialog';
 
 export default {
   name: "Layout",

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ArticleSingleList from '../article/ArticleSingleList';
+import ArticleSingleList from '../components/article/ArticleSingleList';
 
 export default {
   name: "SearchResult",
