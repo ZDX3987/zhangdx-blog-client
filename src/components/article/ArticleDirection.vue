@@ -6,7 +6,7 @@
         上一篇：{{ articleList[0].title }}
       </router-link>
       <p v-else>
-        下一篇：无
+        上一篇：无
       </p>
     </el-col>
     <div class="dividing-line"></div>

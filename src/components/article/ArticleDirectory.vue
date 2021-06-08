@@ -1,6 +1,6 @@
 <template>
-  <div :class="changeClassName" class="directory-content-base" ref="directoryContent">
-    <side-catalog v-if="directoryShow" v-bind="catalogProps">
+  <div class="directory-content-fixed" ref="directoryContent">
+    <side-catalog v-if="directoryShow" v-bind="catalogProps" class="directory-content-base ml-5">
       <template #default="{level, isActive}">
         <span v-if="isActive" class="iconfont iconchichi"></span>
       </template>
@@ -17,7 +17,6 @@ export default {
   data() {
     return {
       catalogProps: {container: '#showText', activeColor: '#55bd66', title: '目录：'},
-      changeClassName: 'directory-content-fixed',
     }
   },
   props: {
@@ -42,10 +41,10 @@ export default {
       let currentHeight = directoryContent.offsetHeight;
       let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
       if (scrollTop >= articleContentOffsetHeight - currentHeight) {
-        this.changeClassName = 'directory-content';
+        directoryContent.className = 'directory-content';
         directoryContent.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
       } else {
-        this.changeClassName = 'directory-content-fixed';
+        directoryContent.className = 'directory-content-fixed';
         directoryContent.style.top = 'auto';
       }
     }
@@ -56,18 +55,18 @@ export default {
 <style scoped>
 @import "../../../static/icon/iconfont/iconfont.css";
 
-.directory-content-base {
-  font-size: 14px;
-  color: var(--fontColor);
-  text-align: left;
-}
-
 .directory-content-fixed {
   position: fixed;
 }
 
 .directory-content {
   position: relative;
+}
+
+.directory-content-base {
+  font-size: 14px;
+  color: var(--fontColor);
+  text-align: left;
 }
 
 </style>

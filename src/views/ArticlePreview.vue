@@ -58,7 +58,7 @@
         <article-direction :main-article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
-        <article-directory class="pl-5" ref="articleDirectory" :directoryShow="directoryShow"></article-directory>
+        <article-directory ref="articleDirectory" :directoryShow="directoryShow"/>
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
@@ -127,9 +127,6 @@ export default {
         })
         .catch(error => this.$message.error("文章内容加载失败"));
   },
-  mounted() {
-    // window.addEventListener("scroll", this.handleScroll, true);
-  },
   computed: {
     codeTheme() {
       return this.$store.state.themeToggle;
@@ -167,15 +164,6 @@ export default {
           this.$refs.showText.innerHTML = article.text;
         }
       });
-    },
-    handleScroll() {
-      // 页面滚动距顶部距离
-      let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
-      this.$refs.sharedSide.handleScroll(scrollTop, this.$refs.articleContent.offsetHeight);
-      this.$refs.articleDirectory.handleScroll(scrollTop, this.$refs.articleContent.offsetHeight);
     },
     praiseArticle() {
       this.praising = true;
