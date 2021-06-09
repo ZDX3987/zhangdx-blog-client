@@ -16,6 +16,23 @@ export default {
     }
     this.printLog();
   },
+  metaInfo() {
+    return {
+      title: this.$route.meta.title + ' - ZHANGDX的博客',
+      meta: [
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'Java，技术博客，程序员，编程，学习，分享，ZHANGDX'
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: '一个软件开发工程师的技术学习分享博客'
+        }
+      ]
+    }
+  },
   methods: {
     printLog() {
       bannerPrint();

@@ -116,10 +116,7 @@ const router = new Router({
     {
       path: '/**',
       name: 'UnKnown',
-      redirect: 'Error',
-      meta: {
-        title: '页面出错了'
-      }
+      redirect: {name: 'Error'}
     }
   ]
 })

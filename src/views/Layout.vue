@@ -10,8 +10,7 @@
       </div>
       <el-main class="main-content">
         <breadcrumb-router></breadcrumb-router>
-        <router-view class="main-router" v-wechat-title="$route.meta.title + ' - ZHANGDX的博客'"
-                     :key="$route.fullPath"/>
+        <router-view class="main-router" :key="$route.fullPath"/>
       </el-main>
       <footer>
         <Footer/>
@@ -78,6 +77,7 @@ export default {
 .index-content {
   min-height: 100%;
 }
+
 .fixed-header {
   width: 100%;
   position: fixed;
@@ -86,6 +86,7 @@ export default {
   transition: all 0.5s;
 
 }
+
 .el-container {
   display: flex;
   min-height: 100vh;

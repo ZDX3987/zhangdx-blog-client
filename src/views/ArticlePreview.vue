@@ -121,11 +121,28 @@ export default {
         .getArticleById(this.articleId)
         .then((res) => {
           this.article = res.data;
-          document.title = this.article.title + ' - ZHANGDX的博客';
+          // document.title = this.article.title + ' - ZHANGDX的博客';
           this.isLoading = false;
           this.renderArticle(this.article);
         })
         .catch(error => this.$message.error("文章内容加载失败"));
+  },
+  metaInfo() {
+    return {
+      title: this.article.title + ' - ZHANGDX的博客',
+      meta: [
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: this.article.categories ? this.article.categories.map(tag => tag.cateName).join('，') : ''
+        },
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.article.digest
+        }
+      ]
+    }
   },
   computed: {
     codeTheme() {
