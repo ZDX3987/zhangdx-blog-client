@@ -31,6 +31,14 @@ export default {
   },
   components: {
     EmptyList
+  },
+  props: {
+    articleId: ""
+  },
+  created() {
+    this.$api.articleApi.getRelatedArticles(this.articleId).then(res => {
+      this.relatedArticles = res.data;
+    }).catch(error => this.$message.error('相关文章加载失败'))
   }
 }
 </script>

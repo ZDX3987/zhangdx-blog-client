@@ -24,5 +24,9 @@ export default {
 
   getPrevAndNextArticle(articleId) {
     return http.get(url + '/prev-next-article/' + articleId);
+  },
+
+  getRelatedArticles(articleId) {
+    return http.get(url + '/related-articles/' + articleId);
   }
 }

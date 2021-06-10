@@ -64,7 +64,7 @@
     <el-row type="flex" justify="center">
       <el-col :xl="1" :md="2" class="hidden-sm-and-down"></el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
-        <related-articles/>
+        <related-articles :article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down"></el-col>
     </el-row>
