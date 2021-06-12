@@ -19,7 +19,7 @@
               :to="{ name: 'ArticlePreview', params: { id: article.id } }"
               v-html="article.title"></router-link>
         </h2>
-        <p v-if="article.digest" class="item-text text-wrap text-truncate" v-html="article.digest"></p>
+        <p v-if="article.digest" class="item-digest text-wrap" v-html="article.digest"></p>
         <div class="item-tags">
                 <span v-for="(tag, index) of article.categories" :key="tag.id">
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}
@@ -28,14 +28,20 @@
                   </router-link>
                 </span>
         </div>
-        <el-row class="item-date">
-          <el-col :span="7">
-            <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
-            {{ article.createDate | dateFormat("yyyy-MM-DD") }}
-          </el-col>
-          <el-col :span="6">
+        <el-row class="item-info">
+          <el-col :span="14">
+            <span class="mr-4">
+            <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;
+            {{ article.author.nickname }}
+            </span>
+            <span class="mr-4">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
             {{ article.praise }}
+            </span>
+            <span>
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
+            {{ article.createDate | dateFormat("yyyy-MM-DD") }}
+            </span>
           </el-col>
         </el-row>
       </el-col>
@@ -94,13 +100,11 @@ export default {
   color: var(--mainThemeColor);
 }
 
-.item-text {
+.item-digest {
   text-align: justify;
-  font-size: 13px;
+  font-size: 14px;
   margin: 10px 0;
-  height: 60px;
-  overflow: hidden;
-  font-weight: 300;
+  width: 100%;
   color: var(--subFontColor);
 }
 
@@ -119,11 +123,10 @@ export default {
   color: var(--mainThemeColor);
 }
 
-.item-date {
-  font-weight: 300;
-  font-size: 12px;
+.item-info {
+  font-size: 13px;
   text-align: left;
   margin-top: 10px;
-  color: var(--dateColor);
+  color: var(--subFontColor);
 }
 </style>

@@ -67,6 +67,7 @@ export default {
   text-align: left;
   padding: 30px 50px;
   margin-bottom: 30px;
+  min-height: 50vh;
 }
 
 .load-more {

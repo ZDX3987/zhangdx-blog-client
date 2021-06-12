@@ -43,5 +43,6 @@ export default {
   margin-bottom: 30px;
   text-align: left;
   padding: 20px;
+  min-height: 65vh;
 }
 </style>

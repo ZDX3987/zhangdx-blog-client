@@ -16,8 +16,8 @@
 
 <script>
 import ArticleList from "../components/article/ArticleList";
-import CateCloud from "../components/category/CateCloud";
-import TopicSide from "../components/topic/TopicSide";
+import CateCloud from "../components/home/CateCloud";
+import TopicSide from "../components/home/TopicSide";
 import WebSiteInfo from '../components/home/WebSiteInfo';
 
 export default {
