@@ -1,8 +1,13 @@
 <template>
   <div class="article-preview">
+    <el-row type="flex" justify="center" class="hidden-md-and-up">
+      <el-col>
+        <article-preview-title :directoryShow="directoryShow"/>
+      </el-col>
+    </el-row>
     <el-row type="flex" justify="center">
       <el-col :xl="1" :md="2" class="hidden-sm-and-down">
-        <shared-side ref="sharedSide" :article="article"/>
+        <shared-side v-if="!isLoading" ref="sharedSide" :article="article"/>
       </el-col>
       <el-col :lg="12" :md="15" :xs="22" :sm="22">
         <div class="article-content" v-if="isLoading">
@@ -58,7 +63,7 @@
         <article-direction :main-article-id="articleId"/>
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down">
-        <article-directory ref="articleDirectory" :directoryShow="directoryShow"/>
+        <article-directory v-if="!isLoading" ref="articleDirectory" :directoryShow="directoryShow"/>
       </el-col>
     </el-row>
     <el-row type="flex" justify="center">
@@ -68,18 +73,6 @@
       </el-col>
       <el-col :md="5" class="hidden-sm-and-down"></el-col>
     </el-row>
-    <div class="hidden-md-and-up">
-      <a @click="drawer = true" class="side-drawer-btn fa fa-caret-left"
-         :class="drawer ? 'side-drawer-show-btn' : ''">
-      </a>
-      <el-drawer
-          :visible.sync="drawer"
-          direction="rtl"
-          :class="'drawer-content'"
-          size="40%">
-        <article-directory class="pl-2" :directoryShow="directoryShow"></article-directory>
-      </el-drawer>
-    </div>
   </div>
 </template>
 
@@ -91,6 +84,7 @@ import ArticleSkeleton from "../components/skeleton/ArticleSkeleton";
 import RelatedArticles from '../components/article/RelatedArticles';
 import ArticleDirection from '../components/article/ArticleDirection';
 import SharedSide from '../components/side/SharedSide';
+import ArticlePreviewTitle from '../components/article/ArticlePreviewTitle';
 
 export default {
   name: "ArticlePreview",
@@ -112,7 +106,8 @@ export default {
     ArticleDirectory,
     RelatedArticles,
     ArticleDirection,
-    SharedSide
+    SharedSide,
+    ArticlePreviewTitle
   },
   created() {
     VditorPreview.mermaidRender(document);
@@ -179,6 +174,7 @@ export default {
           });
         } else {
           this.$refs.showText.innerHTML = article.text;
+          this.directoryShow = true;
         }
       });
     },
@@ -254,35 +250,5 @@ export default {
   font-size: 16px;
   width: 200px;
   height: 50px;
-}
-
-.side-drawer-btn {
-  position: fixed;
-  right: 0;
-  top: 200px;
-  width: 30px;
-  height: 40px;
-  line-height: 40px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.5s;
-  background: var(--bgColor);
-  color: var(--fontColor);
-  font-size: 28px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-}
-
-.side-drawer-show-btn {
-  transform: translateX(-150px);
-}
-
-.drawer-content {
-  text-align: left;
-  font-size: 14px;
-  color: var(--fontColor);
-}
-
-.drawer-content >>> .el-drawer {
-  background-color: var(--bgColor) !important;
 }
 </style>
