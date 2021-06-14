@@ -61,7 +61,7 @@ export default {
         if (currentScrollHeight < 0) {
           this.$refs.articlePreviewTitle.style.transform = 'translateY(-95px)';
         } else {
-          this.$refs.articlePreviewTitle.style.transform = 'translateY(-159px)';
+          this.$refs.articlePreviewTitle.style.transform = 'translateY(-160px)';
         }
         this.oldScroll = scrollTop;
       } else {
