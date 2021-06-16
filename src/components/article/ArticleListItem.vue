@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list-item">
+  <div class="article-list-item" v-lazy-container="{ selector: 'img' }">
     <el-row>
       <el-col v-if="article.coverImg" :sm="8" class="item-left">
         <router-link

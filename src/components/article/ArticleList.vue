@@ -1,9 +1,11 @@
 <template>
   <div class="list-content">
     <ul class="article-ul">
-      <li v-for="(article, index) of articleList" :key="index">
-        <article-list-item :article="article" />
-      </li>
+      <lazy-component v-for="(article, index) of articleList" :key="index">
+        <li>
+          <article-list-item :article="article" />
+        </li>
+      </lazy-component>
       <ul class="article-ul" v-if="isLoading">
         <li v-for="i of emptyListLength" :key="i">
           <article-list-skeleton />
