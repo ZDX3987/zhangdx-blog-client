@@ -56,6 +56,7 @@ export default {
 .article-direction-item {
   height: 80px;
   line-height: 80px;
+  color: var(--fontColor);
 }
 
 .article-direction-item:nth-of-type(1) {

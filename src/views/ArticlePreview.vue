@@ -51,7 +51,7 @@
               <el-image :src="errorImgUrl" fit="scale-down"></el-image>
             </div>
           </el-image>
-          <div id="showText" ref="showText" class="article-text" v-viewer.rebuild></div>
+          <div id="showText" ref="showText" class="article-text vditor-reset" v-viewer.rebuild></div>
           <el-divider>End</el-divider>
           <div class="article-footer">
             <el-button type="primary" round plain @click="praiseArticle" :disabled="praising">
@@ -149,8 +149,10 @@ export default {
       handler(newVal, oldVal) {
         if (newVal === 'light') {
           VditorPreview.setCodeTheme('github');
+          VditorPreview.setContentTheme('light', 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/css/content-theme');
         } else {
           VditorPreview.setCodeTheme('native');
+          VditorPreview.setContentTheme('dark', 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/css/content-theme');
         }
       },
       immediate: true
@@ -170,7 +172,8 @@ export default {
             hljs: {
               style: that.codeTheme === 'light' ? 'github' : 'native',
               lineNumber: true
-            }
+            },
+            theme: 'dark'
           });
         } else {
           this.$refs.showText.innerHTML = article.text;
