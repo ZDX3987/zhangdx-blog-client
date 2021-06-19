@@ -12,6 +12,7 @@ import Layout from '../views/Layout';
 import Home from '../views/Home';
 import SearchResult from '../views/SearchResult';
 import ReceiveToken from '../views/ReceiveToken';
+import UserCenter from '../views/UserCenter';
 
 Vue.use(Router)
 
@@ -95,6 +96,14 @@ const router = new Router({
             title: '搜索结果'
           }
         },
+          {
+              path: '/usercenter',
+              name: 'UserCenter',
+              component: UserCenter,
+              meta: {
+                  title: '个人中心'
+              }
+          },
       ]
     },
       {

@@ -5,6 +5,6 @@ export const navData = [
   {
     index: 4, text: '关于博客', href: '', icon: 'fa fa-graduation-cap', children: [
       {index: 4 - 1, text: '更新日志', href: '/updatelog', icon: 'fa fa-'},
-      {index: 4 - 2, text: '关于博主', href: '/me', icon: 'fa fa-'}
+      {index: 4 - 2, text: '关于博主', href: '/usercenter', icon: 'fa fa-'}
     ]
   }]
