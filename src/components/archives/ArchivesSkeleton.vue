@@ -24,7 +24,7 @@ export default {
   name: "ArchivesSkeleton",
   methods: {
     dateFormat(date) {
-      return this.$options.filters['dateFormat'](date, 'yyyy-MM-dd')
+      return this.$options.filters['dateFormat'](date, 'yyyy-MM-DD')
     }
   }
 }

@@ -9,6 +9,7 @@
           <router-link :to="{ name: 'ArticlePreview', params: { id: article.id } }">
             <h4 class="article-title">{{ article.title }}</h4>
           </router-link>
+          <p>{{article.digest}}</p>
           <p>
             <span v-for="(tag, index) of article.categories" :key="tag.id">
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}

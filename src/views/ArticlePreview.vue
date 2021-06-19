@@ -18,11 +18,11 @@
             <el-col :span="24">
               <h2 class="article-title">{{ article.title }}</h2>
               <el-row class="article-info">
-                <el-col :xs="9" :sm="5" class="article-date">
+                <el-col :xs="9" :sm="5" :xl="3" class="article-date">
                   <span class="fa fa-calendar-o"></span>
                   {{ article.createDate | dateFormat("yyyy-MM-DD") }}
                 </el-col>
-                <el-col :xs="9" :sm="5" class="article-author">
+                <el-col :xs="9" :sm="5" :xl="3" class="article-author">
                   <el-avatar
                       :src="article.author.avatar"
                       size="small"
@@ -30,7 +30,7 @@
                   ></el-avatar>
                   {{ article.author.username }}
                 </el-col>
-                <el-col v-if="article.categories.length !==0" :xs="9" :sm="10">
+                <el-col v-if="article.categories.length !==0" :xs="20" :sm="10">
                   <i class="fa fa-tags"></i>
                   <span v-for="(tag, index) of article.categories" :key="tag.id">
                     {{ index != 0 ? '&nbsp/&nbsp' : '' }}
@@ -44,7 +44,6 @@
           </el-row>
           <el-divider></el-divider>
           <el-image v-if="article.coverImg"
-                    class="article-coverImg"
                     :src="article.coverImg"
                     fit="scale-down">
             <div slot="error">
@@ -52,7 +51,7 @@
             </div>
           </el-image>
           <div id="showText" ref="showText" class="article-text vditor-reset" v-viewer.rebuild></div>
-          <el-divider>End</el-divider>
+          <el-divider></el-divider>
           <div class="article-footer">
             <el-button type="primary" round plain @click="praiseArticle" :disabled="praising">
               <i class="fa fa-thumbs-o-up"></i>
@@ -98,7 +97,8 @@ export default {
       directoryShow: false,
       drawer: false,
       errorImgUrl: '/static/images/notfound.gif',
-      praising: false
+      praising: false,
+      vditorThemeCDN: 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/css/content-theme'
     };
   },
   components: {
@@ -149,10 +149,10 @@ export default {
       handler(newVal, oldVal) {
         if (newVal === 'light') {
           VditorPreview.setCodeTheme('github');
-          VditorPreview.setContentTheme('light', 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/css/content-theme');
+          VditorPreview.setContentTheme('light', this.vditorThemeCDN);
         } else {
           VditorPreview.setCodeTheme('native');
-          VditorPreview.setContentTheme('dark', 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/css/content-theme');
+          VditorPreview.setContentTheme('dark', this.vditorThemeCDN);
         }
       },
       immediate: true
@@ -172,8 +172,7 @@ export default {
             hljs: {
               style: that.codeTheme === 'light' ? 'github' : 'native',
               lineNumber: true
-            },
-            theme: 'dark'
+            }
           });
         } else {
           this.$refs.showText.innerHTML = article.text;
