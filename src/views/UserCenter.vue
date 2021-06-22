@@ -7,8 +7,6 @@
           <div class="user-info">
             <el-row>
               <el-col :md="4" :sm="6" :xs="8">
-<!--                <el-avatar shape="square" fit="fill"-->
-<!--                           :src="userAvatarImg"></el-avatar>-->
                 <div class="user-avatar p-1">
                   <img :src="userAvatarImg" :alt="userInfo.nickname">
                 </div>
@@ -25,6 +23,9 @@
           </div>
         </div>
         <div class="user-profile my-3 p-2">
+          <ul class="user-profile-tabs">
+            <li v-for="i of 5" class="tabs-item float-left">收藏</li>
+          </ul>
           <account-setting/>
         </div>
       </el-col>
@@ -87,5 +88,12 @@ export default {
 .user-profile {
   height: 600px;
   background-color: var(--bgColor);
+}
+.user-profile-tabs {
+list-style: none;
+  border-bottom: 1px solid var(--borderColor);
+}
+.tabs-item {
+
 }
 </style>
