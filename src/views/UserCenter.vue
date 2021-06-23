@@ -23,10 +23,13 @@
           </div>
         </div>
         <div class="user-profile my-3 p-2">
-          <ul class="user-profile-tabs">
-            <li v-for="i of 5" class="tabs-item float-left">收藏</li>
+          <ul class="pl-0 user-profile-tabs">
+            <li v-for="component of componentList" :key="component.no" class="mx-4 tabs-item float-left"
+                @click="switchComponent(component)" :class="component.no === activeTab ? 'tabs-item-active' : ''">
+              {{ component.text }}
+            </li>
           </ul>
-          <account-setting/>
+          <component :is="activeComponentName"></component>
         </div>
       </el-col>
     </el-row>
@@ -45,11 +48,22 @@ export default {
       },
       userCoverImg: 'https://pic2.zhimg.com/80/v2-262a0b84e2d05c5e431032cbf589e35e_r.jpg',
       userAvatarImg: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
-      currentTab: '2'
+      activeTab: 1,
+      componentList: [
+        {no: 1, name: '', text: '收藏'},
+        {no: 2, name: 'AccountSetting', text: '账号设置'},
+      ],
+      activeComponentName: '',
     }
   },
   components: {
     AccountSetting
+  },
+  methods: {
+    switchComponent(component) {
+      this.activeTab = component.no;
+      this.activeComponentName = component.name;
+    }
   }
 }
 </script>
@@ -75,6 +89,7 @@ export default {
   margin: 0 auto;
   border-radius: 2px;
 }
+
 .user-avatar img {
   width: 100%;
   height: 100%;
@@ -89,11 +104,21 @@ export default {
   height: 600px;
   background-color: var(--bgColor);
 }
+
 .user-profile-tabs {
-list-style: none;
+  list-style: none;
+  min-height: 30px;
   border-bottom: 1px solid var(--borderColor);
 }
-.tabs-item {
 
+.tabs-item {
+  height: 30px;
+  color: var(--fontColor);
+  cursor: pointer;
+}
+
+.tabs-item-active {
+  font-weight: 600;
+  border-bottom: 2px solid var(--mainThemeColor);
 }
 </style>
