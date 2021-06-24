@@ -96,8 +96,9 @@ export default {
 }
 .social-avatar span {
   font-size: 30px;
+  background-color: var(--bgColor);
 }
 .social-info {
-
+  color: var(--fontColor);
 }
 </style>
