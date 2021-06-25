@@ -17,6 +17,10 @@
             <input class="pl-2" type="email" v-model="userInfo.email">
           </div>
           <div class="account-input my-4">
+            <label class="mr-3">个人主页</label>
+            <input class="pl-2" type="text" v-model="userInfo.website">
+          </div>
+          <div class="account-input my-4">
             <label class="mr-3">个人介绍</label>
             <input class="pl-2" type="text" v-model="userInfo.introduce">
           </div>
@@ -50,7 +54,7 @@ export default {
   name: "AccountSetting",
   data() {
     return {
-      userInfo: {nickname: 'ZHANGDX', password: '123456', email: 'zdx3987@163.com', introduce: ''},
+      userInfo: {nickname: 'ZHANGDX', password: '123456', email: 'zdx3987@163.com', website: 'https://www.zhangdx.cn', introduce: ''},
       socialUserList: [
         {
           type: 'QQ',
