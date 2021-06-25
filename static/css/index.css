@@ -10,10 +10,12 @@ html body {
 
 /*鼠标右键选中内容背景颜色*/
 ::selection {
-  background: #55bd66 !important;
+  background: var(--mainThemeColor) !important;
+    color: #FFF;
 }
 ::-moz-selection {
-  background: #55bd66 !important;
+  background: var(--mainThemeColor) !important;
+    color: #FFF;
 }
 
 /*搜索结果关键字高亮*/

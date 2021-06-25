@@ -2,34 +2,38 @@
   <div class="account-content text-left">
     <el-row>
       <el-col :sm="16">
-        <el-form ref="form" :model="userInfo" label-width="80px">
-          <el-form-item label="昵称">
-            <el-input v-model="userInfo.nickname"></el-input>
-          </el-form-item>
-          <el-form-item label="密码">
-            <el-input type="password" v-model="userInfo.password"></el-input>
-          </el-form-item>
-          <el-form-item label="邮箱">
-            <el-input type="email" v-model="userInfo.email"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-          </el-form-item>
-        </el-form>
+        <h6 class="ml-4 account-subtitle">基本资料</h6>
+        <div class="ml-5">
+          <div class="account-input my-4">
+            <label class="mr-3">昵称</label>
+            <input class="pl-2" type="text" v-model="userInfo.nickname">
+          </div>
+          <div class="account-input my-4">
+            <label class="mr-3">密码</label>
+            <input class="pl-2" type="password" v-model="userInfo.password">
+          </div>
+          <div class="account-input my-4">
+            <label class="mr-3">邮箱</label>
+            <input class="pl-2" type="email" v-model="userInfo.email">
+          </div>
+          <button class="account-btn" type="button">保存修改</button>
+        </div>
       </el-col>
     </el-row>
+    <el-divider></el-divider>
     <el-row>
       <el-col>
+        <h6 class="ml-4 account-subtitle">第三方账号</h6>
         <ul class="social-list">
           <li class="social-item pr-5" v-for="socialUser of socialUserList" :key="socialUser.type">
             <el-avatar class="social-avatar align-middle mr-2" :src="socialUser.avatar">
               <span :style="{color:socialUser.color}" :class="socialUser.icon"></span>
             </el-avatar>
-            <span class="social-info" v-if="socialUser.available">
-              <span>{{socialUser.nickname}}</span>
-              <el-button type="text">解绑</el-button>
+            <span class="social-info align-middle" v-if="socialUser.available">
+              <span class="d-inline-block">{{ socialUser.nickname }}</span>
+              <el-button class="p-0" type="text">解绑</el-button>
             </span>
-            <el-button class="align-middle" v-else type="text">{{'绑定' + socialUser.text}}</el-button>
+            <el-button class="align-middle" v-else type="text">{{ '绑定' + socialUser.text }}</el-button>
           </li>
         </ul>
       </el-col>
@@ -80,24 +84,58 @@ export default {
 <style scoped>
 @import "../../../static/icon/iconfont/iconfont.css";
 
+.account-content {
+  color: var(--fontColor);
+}
+
+.account-input input {
+  border: 1px solid var(--borderColor);
+  height: 40px;
+  width: 85%;
+  background-color: var(--bgColor);
+  color: var(--subFontColor);
+}
+
+.account-input input:focus {
+  border: 1px solid var(--mainThemeColor);
+}
+
+.account-btn {
+  width: 100px;
+  height: 35px;
+  border: none;
+  color: var(--btnText);
+  background-color: var(--mainThemeColor);
+  transition: all 0.5s;
+  font-size: 15px;
+}
+
+.account-btn:hover {
+  background-color: #68cd79;
+}
+
 .social-list {
   list-style: none;
   height: 40px;
 }
+
 .social-item {
   float: left;
   height: 40px;
   line-height: 40px;
 }
+
 .social-avatar {
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
+
 .social-avatar span {
   font-size: 30px;
   background-color: var(--bgColor);
 }
+
 .social-info {
   color: var(--fontColor);
 }
