@@ -16,13 +16,10 @@
                   <h4>{{ userInfo.nickname }}</h4>
                 </div>
               </el-col>
-              <el-col :md="4" :sm="5" :xs="6">
-                <el-button class="align-bottom" type="primary">编辑资料</el-button>
-              </el-col>
             </el-row>
           </div>
         </div>
-        <div class="user-profile my-3 p-2">
+        <div class="user-profile my-3 p-2 pb-5">
           <ul class="pl-0 user-profile-tabs">
             <li v-for="component of componentList" :key="component.no" class="mx-4 tabs-item float-left"
                 @click="switchComponent(component)" :class="component.no === activeTab ? 'tabs-item-active' : ''">
@@ -51,7 +48,8 @@ export default {
       activeTab: 1,
       componentList: [
         {no: 1, name: '', text: '收藏'},
-        {no: 2, name: 'AccountSetting', text: '账号设置'},
+        {no: 2, name: '', text: '评论'},
+        {no: 3, name: 'AccountSetting', text: '账号设置'},
       ],
       activeComponentName: '',
     }
@@ -101,7 +99,6 @@ export default {
 }
 
 .user-profile {
-  height: 600px;
   background-color: var(--bgColor);
 }
 

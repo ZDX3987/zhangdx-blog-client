@@ -5,16 +5,20 @@
         <h6 class="ml-4 account-subtitle">基本资料</h6>
         <div class="ml-5">
           <div class="account-input my-4">
-            <label class="mr-3">昵称</label>
+            <label class="mr-5">昵称</label>
             <input class="pl-2" type="text" v-model="userInfo.nickname">
           </div>
           <div class="account-input my-4">
-            <label class="mr-3">密码</label>
+            <label class="mr-5">密码</label>
             <input class="pl-2" type="password" v-model="userInfo.password">
           </div>
           <div class="account-input my-4">
-            <label class="mr-3">邮箱</label>
+            <label class="mr-5">邮箱</label>
             <input class="pl-2" type="email" v-model="userInfo.email">
+          </div>
+          <div class="account-input my-4">
+            <label class="mr-3">个人介绍</label>
+            <input class="pl-2" type="text" v-model="userInfo.introduce">
           </div>
           <button class="account-btn" type="button">保存修改</button>
         </div>
@@ -46,7 +50,7 @@ export default {
   name: "AccountSetting",
   data() {
     return {
-      userInfo: {nickname: 'ZHANGDX', password: '123456', email: 'zdx3987@163.com'},
+      userInfo: {nickname: 'ZHANGDX', password: '123456', email: 'zdx3987@163.com', introduce: ''},
       socialUserList: [
         {
           type: 'QQ',
