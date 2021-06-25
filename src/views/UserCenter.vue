@@ -99,6 +99,7 @@ export default {
 }
 
 .user-profile {
+  min-height: 300px;
   background-color: var(--bgColor);
 }
 
