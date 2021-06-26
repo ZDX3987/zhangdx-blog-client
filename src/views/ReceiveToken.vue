@@ -11,12 +11,12 @@ export default {
     }
   },
   created() {
-    this.accessToken = this.$route.query.accessToken;
-    this.type = this.$route.query.type;
-    localStorage.setItem('oauth_token', this.accessToken);
-    localStorage.setItem('oauth_type', this.type);
-    window.opener.location.reload();
-    window.close();
+    let accessToken = this.$route.query.accessToken;
+    let username = this.$route.query.username;
+    this.$api.oauthApi.realLogin(username, accessToken).then(res => {
+      window.opener.location.reload();
+      window.close();
+    });
   }
 }
 </script>

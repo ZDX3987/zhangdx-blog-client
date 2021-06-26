@@ -1,4 +1,5 @@
 import http from '../http';
+import {getStorageItem} from '../util/storage-unit';
 
 const url = '/api/client/oauth';
 export default {
@@ -7,12 +8,32 @@ export default {
         return http.get(url + '/login/' + type);
     },
 
-    logout(type, token) {
-        return http.get(url + '/revoke/' + type + '/' + token);
+    getUserInfo() {
+        return http.get('/api/user/curruser', {
+            headers: {
+                'Authorization': getStorageItem('Authorization')
+            }
+        });
     },
 
-    getUserInfo(type, token) {
-        return http.get(url + '/' + type + '/userinfo', {params: {'token': token}});
-    }
+    realLogin(username, accessToken) {
+        let params = {
+            username: username,
+            password: accessToken
+        };
+        return http.post('/api/login', params, {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            }
+        });
+    },
+
+    logout() {
+        return http.get('/api/logout', {
+            headers: {
+                'Authorization': getStorageItem('Authorization')
+            }
+        });
+    },
 
 }

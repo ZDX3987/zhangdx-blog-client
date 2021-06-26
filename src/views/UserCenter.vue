@@ -8,7 +8,7 @@
             <el-row>
               <el-col :md="4" :sm="6" :xs="8">
                 <div class="user-avatar p-1">
-                  <img :src="userAvatarImg" :alt="userInfo.nickname">
+                  <img :src="userInfo.avatar" :alt="userInfo.nickname">
                 </div>
               </el-col>
               <el-col :md="16" :sm="13" :xs="11">
@@ -40,9 +40,7 @@ export default {
   name: "UserCenter",
   data() {
     return {
-      userInfo: {
-        nickname: 'ZHANGDX'
-      },
+      userInfo: this.$store.state.userInfo,
       userCoverImg: 'https://pic2.zhimg.com/80/v2-262a0b84e2d05c5e431032cbf589e35e_r.jpg',
       userAvatarImg: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
       activeTab: 1,

@@ -60,7 +60,7 @@
                        :title="userInfo.nickname"></el-avatar>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="fa fa-user">个人中心</el-dropdown-item>
+            <el-dropdown-item icon="fa fa-user" command="userCenter">个人中心</el-dropdown-item>
             <el-dropdown-item icon="fa fa-sign-out" divided command="logout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -72,6 +72,7 @@
 
 <script>
 import {navData} from "../../util/nav-data";
+import {removeStorageItem} from '../../util/storage-unit';
 
 export default {
   name: "NavBar",
@@ -104,11 +105,14 @@ export default {
     userCommand(command) {
       this[command]();
     },
+    userCenter() {
+      this.$router.push({name: 'UserCenter'})
+    },
     logout() {
-      this.$api.oauthApi.logout(this.userInfo.source, localStorage.getItem('oauth_token')).then(res => {
+      this.$api.oauthApi.logout().then(res => {
         this.$store.commit('updateUserInfo', {});
-        localStorage.removeItem('oauth_token');
-        localStorage.removeItem('oauth_type');
+        this.$router.push({name: 'Home'});
+        removeStorageItem('Authorization');
         this.$message.success(res.msg);
       }).catch(error => {
       });

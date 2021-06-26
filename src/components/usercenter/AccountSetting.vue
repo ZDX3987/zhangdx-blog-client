@@ -54,7 +54,7 @@ export default {
   name: "AccountSetting",
   data() {
     return {
-      userInfo: {nickname: 'ZHANGDX', password: '123456', email: 'zdx3987@163.com', website: 'https://www.zhangdx.cn', introduce: ''},
+      userInfo: this.$store.state.userInfo,
       socialUserList: [
         {
           type: 'QQ',
