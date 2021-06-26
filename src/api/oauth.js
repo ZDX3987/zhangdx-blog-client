@@ -40,4 +40,12 @@ export default {
         });
     },
 
+    getSocialUserById(sysUserId) {
+        return http.get('/api/user/social-users/' + sysUserId, {
+            headers: {
+                'Authorization': getStorageItem('Authorization')
+            }
+        });
+    }
+
 }

@@ -41,7 +41,9 @@
               <span class="d-inline-block">{{ socialUser.nickname }}</span>
               <el-button class="p-0" type="text">解绑</el-button>
             </span>
-            <el-button class="align-middle" v-else type="text" @click="bindSocialUser(socialUser.type)">{{ '绑定' + socialUser.text }}</el-button>
+            <el-button class="align-middle" v-else type="text" @click="bindSocialUser(socialUser.type)">
+              {{ '绑定' + socialUser.text }}
+            </el-button>
           </li>
         </ul>
       </el-col>
@@ -85,6 +87,19 @@ export default {
         },
       ]
     }
+  },
+  created() {
+    this.$api.oauthApi.getSocialUserById(this.userInfo.id).then(res => {
+      let socialUsers = res.data;
+      this.socialUserList.forEach(socialUser => {
+        let destUser = socialUsers.find(user => socialUser.type == user.source);
+        if (destUser) {
+          socialUser.available = true;
+          socialUser.nickname = destUser.nickname;
+          socialUser.avatar = destUser.avatar;
+        }
+      })
+    });
   },
   methods: {
     bindSocialUser(type) {
