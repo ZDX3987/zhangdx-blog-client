@@ -27,7 +27,7 @@ export default {
     launchLogin(type) {
       // 解决Safari无法打卡新窗口问题
       let newWindow = window.open('', '_blank', "width=1000,height=600,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true");
-      this.$api.oauthApi.login(type).then(res => {
+      this.$api.oauthApi.login(type, 'LOGIN', -1).then(res => {
         newWindow.location = res.data;
       }).catch(error => this.$message.error(error));
     }

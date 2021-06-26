@@ -4,8 +4,12 @@ import {getStorageItem} from '../util/storage-unit';
 const url = '/api/client/oauth';
 export default {
 
-    login(type) {
-        return http.get(url + '/login/' + type);
+    login(type, method, sysUserId) {
+        let params = {
+            method: method,
+            sysUserId: sysUserId
+        }
+        return http.get(url + '/login/' + type, {params: params});
     },
 
     getUserInfo() {

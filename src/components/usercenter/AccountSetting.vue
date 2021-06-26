@@ -41,7 +41,7 @@
               <span class="d-inline-block">{{ socialUser.nickname }}</span>
               <el-button class="p-0" type="text">解绑</el-button>
             </span>
-            <el-button class="align-middle" v-else type="text">{{ '绑定' + socialUser.text }}</el-button>
+            <el-button class="align-middle" v-else type="text" @click="bindSocialUser(socialUser.type)">{{ '绑定' + socialUser.text }}</el-button>
           </li>
         </ul>
       </el-col>
@@ -84,6 +84,15 @@ export default {
           nickname: ''
         },
       ]
+    }
+  },
+  methods: {
+    bindSocialUser(type) {
+      // 解决Safari无法打卡新窗口问题
+      let newWindow = window.open('', '_blank', "width=1000,height=600,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true");
+      this.$api.oauthApi.login(type, 'BIND', this.userInfo.id).then(res => {
+        newWindow.location = res.data;
+      }).catch(error => this.$message.error(error));
     }
   }
 }

@@ -13,6 +13,11 @@ export default {
   created() {
     let accessToken = this.$route.query.accessToken;
     let username = this.$route.query.username;
+    if (!accessToken || !username) {
+      window.opener.location.reload();
+      window.close();
+      return;
+    }
     this.$api.oauthApi.realLogin(username, accessToken).then(res => {
       window.opener.location.reload();
       window.close();
