@@ -61,9 +61,9 @@ export default {
           icon: 'iconfont iconQQ',
           color: 'rgb(94,164,210)',
           text: 'QQ',
-          available: true,
-          avatar: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
-          nickname: 'ZHANGDX'
+          available: false,
+          avatar: '',
+          nickname: ''
         },
         {
           type: 'GITEE',
