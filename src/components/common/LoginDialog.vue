@@ -6,6 +6,11 @@
               :style="{color:type.color}" @click="launchLogin(type.type)"></span>
       </el-col>
     </el-row>
+    <el-row>
+      <el-col>
+        <p class="agreement-info mt-3 mb-0">授权登录即表示同意获取用户信息注册本系统账号</p>
+      </el-col>
+    </el-row>
   </el-dialog>
 </template>
 
@@ -40,5 +45,8 @@ export default {
 
 .login-type-item {
   font-size: 30px;
+}
+.agreement-info {
+  color: #8c939d;
 }
 </style>

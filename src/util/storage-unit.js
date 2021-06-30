@@ -9,3 +9,7 @@ export function removeStorageItem(key) {
 export function getStorageItem(key) {
   return localStorage.getItem(key);
 }
+
+export function getAuthorization() {
+    return getStorageItem('Authorization');
+}

@@ -5,13 +5,17 @@
         <h6 class="ml-4 account-subtitle">基本资料</h6>
         <div class="ml-5">
           <div class="account-input my-4">
+            <label class="mr-4">用户名&nbsp;&nbsp;</label>
+            <input class="pl-2" type="text" v-model="userInfo.username" readonly>
+          </div>
+          <div class="account-input my-4">
             <label class="mr-5">昵称</label>
             <input class="pl-2" type="text" v-model="userInfo.nickname">
           </div>
-          <div class="account-input my-4">
-            <label class="mr-5">密码</label>
-            <input class="pl-2" type="password" v-model="userInfo.password">
-          </div>
+<!--          <div class="account-input my-4">-->
+<!--            <label class="mr-5">密码</label>-->
+<!--            <input class="pl-2" type="password" v-model="userInfo.password">-->
+<!--          </div>-->
           <div class="account-input my-4">
             <label class="mr-5">邮箱</label>
             <input class="pl-2" type="email" v-model="userInfo.email">
@@ -24,7 +28,7 @@
             <label class="mr-3">个人介绍</label>
             <input class="pl-2" type="text" v-model="userInfo.introduce">
           </div>
-          <button class="account-btn" type="button">保存修改</button>
+          <button v-auth class="account-btn" type="button">保存修改</button>
         </div>
       </el-col>
     </el-row>
@@ -41,7 +45,9 @@
               <span class="d-inline-block">{{ socialUser.nickname }}</span>
               <el-button class="p-0" type="text">解绑</el-button>
             </span>
-            <el-button class="align-middle" v-else type="text" @click="bindSocialUser(socialUser.type)">{{ '绑定' + socialUser.text }}</el-button>
+            <el-button class="align-middle" v-else type="text" @click="bindSocialUser(socialUser.type)">
+              {{ '绑定' + socialUser.text }}
+            </el-button>
           </li>
         </ul>
       </el-col>
@@ -54,7 +60,6 @@ export default {
   name: "AccountSetting",
   data() {
     return {
-      userInfo: this.$store.state.userInfo,
       socialUserList: [
         {
           type: 'QQ',
@@ -86,6 +91,9 @@ export default {
       ]
     }
   },
+  props: {
+    userInfo: {}
+  },
   methods: {
     bindSocialUser(type) {
       // 解决Safari无法打卡新窗口问题
@@ -116,7 +124,9 @@ export default {
 .account-input input:focus {
   border: 1px solid var(--mainThemeColor);
 }
-
+.account-input input[readonly] {
+  background-color: #dcdee0;
+}
 .account-btn {
   width: 100px;
   height: 35px;
