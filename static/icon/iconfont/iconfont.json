@@ -6,6 +6,132 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "60399",
+      "name": "微信",
+      "font_class": "weixin1",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "743766",
+      "name": "微博",
+      "font_class": "weibo1193419easyiconnet",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "1013743",
+      "name": "茶杯",
+      "font_class": "coffee",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "5512099",
+      "name": "标签",
+      "font_class": "biaoqian",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "8140784",
+      "name": "月亮",
+      "font_class": "yueliang",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "10679972",
+      "name": "主页",
+      "font_class": "zhuye",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "11077792",
+      "name": "放大镜",
+      "font_class": "fangdajing",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "14541668",
+      "name": "太阳",
+      "font_class": "taiyang",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "14715376",
+      "name": "博士帽",
+      "font_class": "boshimao",
+      "unicode": "e87d",
+      "unicode_decimal": 59517
+    },
+    {
+      "icon_id": "17067972",
+      "name": "标签",
+      "font_class": "biaoqian1",
+      "unicode": "e7a6",
+      "unicode_decimal": 59302
+    },
+    {
+      "icon_id": "19962904",
+      "name": "分类",
+      "font_class": "leimupinleifenleileibie2",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "20285352",
+      "name": "头 像 ",
+      "font_class": "touxiang",
+      "unicode": "e6d9",
+      "unicode_decimal": 59097
+    },
+    {
+      "icon_id": "20351978",
+      "name": "关  闭",
+      "font_class": "guanbi",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "20670369",
+      "name": "归档",
+      "font_class": "guidang",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "21215318",
+      "name": "向上",
+      "font_class": "up",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "21811241",
+      "name": "时 间",
+      "font_class": "shijian",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "22100033",
+      "name": "拇指",
+      "font_class": "tubiao5",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "10189083",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
       "icon_id": "14990638",
       "name": "吃吃",
       "font_class": "chichi",

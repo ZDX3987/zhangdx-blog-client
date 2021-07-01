@@ -116,8 +116,6 @@ export default {
 </script>
 
 <style scoped>
-@import "../../../static/icon/iconfont/iconfont.css";
-
 .account-content {
   color: var(--fontColor);
 }

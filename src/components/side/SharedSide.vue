@@ -115,8 +115,6 @@ export default {
 </script>
 
 <style scoped>
-@import "../../../static/icon/iconfont/iconfont.css";
-
 .shared-content-fixed {
   position: fixed;
 }

@@ -53,8 +53,6 @@ export default {
 </script>
 
 <style scoped>
-@import "../../../static/icon/iconfont/iconfont.css";
-
 .directory-content-fixed {
   position: fixed;
 }
