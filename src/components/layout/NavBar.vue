@@ -72,7 +72,7 @@
 
 <script>
 import {navData} from "../../util/nav-data";
-import {removeStorageItem} from '../../util/storage-unit';
+import {removeAuthorization} from '../../util/storage-unit';
 
 export default {
   name: "NavBar",
@@ -112,7 +112,7 @@ export default {
       this.$api.oauthApi.logout().then(res => {
         this.$store.commit('updateUserInfo', {});
         this.$router.push({name: 'Home'});
-        removeStorageItem('Authorization');
+        removeAuthorization();
         this.$message.success(res.msg);
       }).catch(error => {
       });

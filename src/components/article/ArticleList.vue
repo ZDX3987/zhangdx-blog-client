@@ -1,6 +1,6 @@
 <template>
   <div class="list-content">
-    <ul class="article-ul">
+    <ul v-if="!isEmpty" class="article-ul">
       <lazy-component v-for="(article, index) of articleList" :key="index">
         <li>
           <article-list-item :article="article" />
@@ -18,12 +18,14 @@
         </div>
       </li>
     </ul>
+    <empty-list v-else/>
   </div>
 </template>
 
 <script>
 import ArticleListSkeleton from '../skeleton/ArticleListSkeleton';
 import ArticleListItem from './ArticleListItem';
+import EmptyList from '../common/EmptyList';
 
 export default {
   name: "ArticleList",
@@ -36,12 +38,14 @@ export default {
       pageIndex: 0,
       isLoading: true,
       listEnd: false,
-      emptyListLength: 3,
+      emptyListLength: 1,
+      isEmpty: false
     };
   },
   components: {
     ArticleListSkeleton,
     ArticleListItem,
+    EmptyList
   },
   props: {
     queryCateId: 0
@@ -70,6 +74,10 @@ export default {
       this.$api.articleApi
           .getArticleByPage(formData)
           .then((res) => {
+            if (res.data.totalCount === 0) {
+              this.isEmpty = true;
+              return;
+            }
             this.articleList = pageIndex ? this.articleList.concat(res.data.elements)
                 : res.data.elements;
             if (res.data.totalCount === this.articleList.length) {

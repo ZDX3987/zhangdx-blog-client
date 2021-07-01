@@ -1,5 +1,5 @@
 import http from '../http';
-import {getStorageItem} from '../util/storage-unit';
+import {getAuthorization} from '../util/storage-unit';
 
 const url = '/api/client/oauth';
 export default {
@@ -15,7 +15,7 @@ export default {
     getUserInfo() {
         return http.get('/api/user/curruser', {
             headers: {
-                'Authorization': getStorageItem('Authorization')
+                'Authorization': getAuthorization()
             }
         });
     },
@@ -35,7 +35,7 @@ export default {
     logout() {
         return http.get('/api/logout', {
             headers: {
-                'Authorization': getStorageItem('Authorization')
+                'Authorization': getAuthorization()
             }
         });
     },

@@ -5,12 +5,12 @@
         <h6 class="ml-4 account-subtitle">基本资料</h6>
         <div class="ml-5">
           <div class="account-input my-4">
-            <label class="mr-5">昵称</label>
-            <input class="pl-2" type="text" v-model="userInfo.nickname">
+            <label class="mr-4">用户名&nbsp;&nbsp;</label>
+            <input class="pl-2" type="text" v-model="userInfo.username" readonly>
           </div>
           <div class="account-input my-4">
-            <label class="mr-5">密码</label>
-            <input class="pl-2" type="password" v-model="userInfo.password">
+            <label class="mr-5">昵称</label>
+            <input class="pl-2" type="text" v-model="userInfo.nickname">
           </div>
           <div class="account-input my-4">
             <label class="mr-5">邮箱</label>
@@ -56,16 +56,15 @@ export default {
   name: "AccountSetting",
   data() {
     return {
-      userInfo: this.$store.state.userInfo,
       socialUserList: [
         {
           type: 'QQ',
           icon: 'iconfont iconQQ',
           color: 'rgb(94,164,210)',
           text: 'QQ',
-          available: true,
-          avatar: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
-          nickname: 'ZHANGDX'
+          available: false,
+          avatar: '',
+          nickname: ''
         },
         {
           type: 'GITEE',
@@ -87,6 +86,9 @@ export default {
         },
       ]
     }
+  },
+  props: {
+    userInfo: {}
   },
   created() {
     this.$api.oauthApi.getSocialUserById(this.userInfo.id).then(res => {
@@ -130,6 +132,10 @@ export default {
 
 .account-input input:focus {
   border: 1px solid var(--mainThemeColor);
+}
+
+.account-input input[readonly] {
+  background-color: #dcdee0;
 }
 
 .account-btn {

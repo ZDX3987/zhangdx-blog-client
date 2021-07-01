@@ -18,14 +18,14 @@
             }}</span>
         </li>
       </ul>
-      <div v-if="topicList.length === 0" class="no-topic">
-        <p>暂无专题</p>
-      </div>
+      <empty-list v-if="topicList.length === 0" :empty-size="10"/>
     </div>
   </div>
 </template>
 
 <script>
+import EmptyList from '../common/EmptyList';
+
 export default {
   name: "TopicSide",
   data() {
@@ -33,6 +33,9 @@ export default {
       topicList: [],
       pageSize: 5
     }
+  },
+  components: {
+    EmptyList
   },
   created() {
     this.query(0);
@@ -100,13 +103,5 @@ export default {
   color: var(--subFontColor);
   font-size: 14px;
   width: 40%;
-}
-
-.no-topic {
-  height: 300px;
-  padding: 125px 0;
-  color: var(--fontColor);
-  font-size: 14px;
-  text-align: center;
 }
 </style>

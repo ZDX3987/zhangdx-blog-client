@@ -28,7 +28,7 @@ Vue.use(VueLazyload, {
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 Vue.prototype.$api = api
 Vue.config.productionTip = false
-/* eslint-disable no-new */
+
 new Vue({
     el: '#app',
     router,

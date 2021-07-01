@@ -38,7 +38,7 @@ export default {
       this.loading = true;
       this.$api.articleApi.getArchivesTimeline().then(result => {
         this.timelineMap = result.data;
-        this.selectDefaultQueryDateStr(this.timelineMap);
+        this.selectDefaultQueryDateStr();
       }).catch(error => this.$message.error('时间线查询失败')).finally(() => this.loading = false);
     },
     getYearCount(key) {
@@ -50,7 +50,10 @@ export default {
       this.queryDateStr = dateStr;
       this.$emit('query-date', dateStr);
     },
-    selectDefaultQueryDateStr(timelineMap) {
+    selectDefaultQueryDateStr() {
+      if (!this.timelineMap.length) {
+        return;
+      }
       let queryDateStr = Object.values(this.timelineMap).flatMap(timeline => timeline).sort()[0];
       this.selectTimeline(queryDateStr.timeline);
     }

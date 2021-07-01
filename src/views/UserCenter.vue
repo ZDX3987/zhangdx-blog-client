@@ -26,7 +26,7 @@
               {{ component.text }}
             </li>
           </ul>
-          <component :is="activeComponentName"></component>
+          <component :is="activeComponentName" :userInfo="userInfo"></component>
         </div>
       </el-col>
     </el-row>
@@ -40,7 +40,6 @@ export default {
   name: "UserCenter",
   data() {
     return {
-      userInfo: this.$store.state.userInfo,
       userCoverImg: 'https://pic2.zhimg.com/80/v2-262a0b84e2d05c5e431032cbf589e35e_r.jpg',
       userAvatarImg: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
       activeTab: 1,
@@ -54,6 +53,11 @@ export default {
   },
   components: {
     AccountSetting
+  },
+  computed: {
+    userInfo() {
+      return this.$store.state.userInfo;
+    }
   },
   methods: {
     switchComponent(component) {
