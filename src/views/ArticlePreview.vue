@@ -53,10 +53,10 @@
           <div id="showText" ref="showText" class="article-text vditor-reset" v-viewer.rebuild></div>
           <el-divider></el-divider>
           <div class="article-footer">
-            <el-button type="primary" round plain @click="praiseArticle" :disabled="praising">
-              <i class="fa fa-thumbs-o-up"></i>
+            <button class="article-praise-btn" @click="praiseArticle" :disabled="praising">
+              <i class="iconfont icontubiao5"></i>
               {{ article.praise }}
-            </el-button>
+            </button>
           </div>
         </div>
         <article-direction :main-article-id="articleId"/>
@@ -84,6 +84,7 @@ import RelatedArticles from '../components/article/RelatedArticles';
 import ArticleDirection from '../components/article/ArticleDirection';
 import SharedSide from '../components/side/SharedSide';
 import ArticlePreviewTitle from '../components/article/ArticlePreviewTitle';
+import {getAuthorization} from '../util/storage-unit';
 
 export default {
   name: "ArticlePreview",
@@ -181,6 +182,10 @@ export default {
       });
     },
     praiseArticle() {
+      if (!getAuthorization()) {
+        this.$message.warning('请先登录以后操作！');
+        return;
+      }
       this.praising = true;
       this.$api.articleApi.praiseArticle(1, this.article.id).then(() => {
         this.article.praise++;
@@ -247,10 +252,22 @@ export default {
   text-align: center;
 }
 
-.article-footer >>> button {
-  outline: none;
-  font-size: 16px;
+.article-praise-btn {
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
   width: 200px;
   height: 50px;
+  border-radius: 50px;
+  color: var(--fontColor);
+  font-size: 20px;
+  transition: all 0.5s;
+}
+.article-praise-btn:hover {
+  border: 1px solid var(--mainThemeColor);
+  background-color: var(--mainThemeColor);
+  color: #FFF;
+}
+.article-praise-btn i {
+  font-size: 20px;
 }
 </style>

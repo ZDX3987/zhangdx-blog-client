@@ -52,15 +52,11 @@ export default {
   props: {
     article: {}
   },
-  watch: {
-    article() {
-      this.setQueryParams();
-    }
-  },
   components: {
     vueQr
   },
   mounted() {
+    this.setQueryParams();
     window.addEventListener("scroll", this.handleScroll, true);
   },
   destroyed() {

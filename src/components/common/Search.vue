@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import {getAuthorization} from '../../util/storage-unit';
-
 export default {
   name: "Search",
   data() {
@@ -38,10 +36,6 @@ export default {
   },
   methods: {
     submitSearch(keyword) {
-      if (!getAuthorization()) {
-        this.$message.warning('请先登录以后操作！');
-        return;
-      }
       this.closeSearch();
       this.$router.push({name: 'SearchResult', query: {keyword: keyword}});
     },
