@@ -16,7 +16,6 @@ import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 import VueMeta from 'vue-meta';
 import VueLazyload from 'vue-lazyload'
-import auth from './directives/auth-directive';
 
 Vue.use(skeleton)
 Vue.use(ElementUI)
@@ -29,7 +28,6 @@ Vue.use(VueLazyload, {
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 Vue.prototype.$api = api
 Vue.config.productionTip = false
-Vue.directive('auth', auth);
 
 new Vue({
     el: '#app',

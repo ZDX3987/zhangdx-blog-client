@@ -4,7 +4,7 @@
       <div class="search-form align-middle">
         <input type="text" v-model="searchForm.searchWord" class="search-input" placeholder="请输入关键字"
                @keyup.enter="submitSearch(searchForm.searchWord)"></input>
-        <button type="button" v-auth class="search-btn" @click="submitSearch(searchForm.searchWord)"><i
+        <button type="button" class="search-btn" @click="submitSearch(searchForm.searchWord)"><i
             class="fa fa-search"></i></button>
       </div>
       <div class="hot-word-list text-justify">
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import {getAuthorization} from '../../util/storage-unit';
+
 export default {
   name: "Search",
   data() {
@@ -36,7 +38,10 @@ export default {
   },
   methods: {
     submitSearch(keyword) {
-      console.log(6666)
+      if (!getAuthorization()) {
+        this.$message.warning('请先登录以后操作！');
+        return;
+      }
       this.closeSearch();
       this.$router.push({name: 'SearchResult', query: {keyword: keyword}});
     },

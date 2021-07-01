@@ -28,7 +28,7 @@
             <label class="mr-3">个人介绍</label>
             <input class="pl-2" type="text" v-model="userInfo.introduce">
           </div>
-          <button v-auth class="account-btn" type="button">保存修改</button>
+          <button class="account-btn" type="button">保存修改</button>
         </div>
       </el-col>
     </el-row>

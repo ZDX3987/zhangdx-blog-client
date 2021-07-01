@@ -13,3 +13,7 @@ export function getStorageItem(key) {
 export function getAuthorization() {
     return getStorageItem('Authorization');
 }
+
+export function removeAuthorization() {
+    removeStorageItem('Authorization');
+}

@@ -31,7 +31,7 @@ import Search from "../components/common/Search";
 import BreadcrumbRouter from "../components/common/BreadcrumbRouter";
 import Bg from '../components/layout/Bg';
 import LoginDialog from '../components/common/LoginDialog';
-import {getStorageItem, removeStorageItem} from '../util/storage-unit';
+import {getAuthorization, removeAuthorization} from '../util/storage-unit';
 
 export default {
   name: "Layout",
@@ -56,14 +56,14 @@ export default {
     }
   },
   created() {
-    if (!getStorageItem('Authorization')) {
+    if (!getAuthorization()) {
       return;
     }
     this.$api.oauthApi.getUserInfo().then(res => {
       this.$store.commit('updateUserInfo', res.data);
     }).catch(error => {
       this.$message.error('登录失败');
-      removeStorageItem('Authorization');
+      removeAuthorization();
     });
   },
   methods: {
