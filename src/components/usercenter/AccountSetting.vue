@@ -12,10 +12,6 @@
             <label class="mr-5">昵称</label>
             <input class="pl-2" type="text" v-model="userInfo.nickname">
           </div>
-<!--          <div class="account-input my-4">-->
-<!--            <label class="mr-5">密码</label>-->
-<!--            <input class="pl-2" type="password" v-model="userInfo.password">-->
-<!--          </div>-->
           <div class="account-input my-4">
             <label class="mr-5">邮箱</label>
             <input class="pl-2" type="email" v-model="userInfo.email">
