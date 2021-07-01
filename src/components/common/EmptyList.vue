@@ -1,7 +1,7 @@
 <template>
-<el-row class="empty-content">
-  <el-col class="my-5" :span="24">
-    列表为空
+<el-row class="empty-content" type="flex" justify="center">
+  <el-col class="my-5" :span="4">
+    <el-empty></el-empty>
   </el-col>
 </el-row>
 </template>

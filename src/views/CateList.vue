@@ -26,8 +26,6 @@
         <article-list :query-cate-id="$route.params.id"/>
       </el-col>
     </el-row>
-
-
   </div>
 </template>
 
