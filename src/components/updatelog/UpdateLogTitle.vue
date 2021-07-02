@@ -22,7 +22,7 @@ export default {
 .title-mask {
   width: 100%;
   height: 200px;
-  background: url("https://file.zhangdx.cn/hp-bg.jpg") no-repeat center;
+  background: url("https://file.zhangdx.cn/updatelog.jpg") no-repeat center;
   background-size: cover;
   position: absolute;
   top: 0;
