@@ -8,6 +8,7 @@
         <el-col :md="18" :sm="18" :xs="24">
           <archives-list v-if="queryDateStr"
                          :query-date-str="queryDateStr"></archives-list>
+          <archives-skeleton v-else></archives-skeleton>
         </el-col>
       </el-row>
     </el-col>
@@ -17,6 +18,7 @@
 <script>
 import ArchivesList from "../components/archives/ArchivesList";
 import ArchivesTimeline from "../components/archives/ArchivesTimeline";
+import ArchivesSkeleton from '../components/archives/ArchivesSkeleton';
 
 export default {
   name: "Archives",
@@ -27,7 +29,8 @@ export default {
   },
   components: {
     ArchivesTimeline,
-    ArchivesList
+    ArchivesList,
+    ArchivesSkeleton
   },
   methods: {
     setQueryDateStr(value) {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-timeline>
-      <el-timeline-item v-for="i of 3" :key="i"
+      <el-timeline-item v-for="i of 1" :key="i"
                         :timestamp="dateFormat(new Date())"
                         placement="top">
         <el-card class="article-card">

@@ -3,7 +3,14 @@ import http from '../http/index'
 const url = '/api/client/article';
 
 export default {
-  getArticleByPage(formData) {
+  getArticleByPage(pageSize, pageIndex, queryStatus, sort, queryCateId) {
+    let formData = {
+      pageSize: pageSize,
+      pageIndex: pageIndex,
+      articleStatus: queryStatus,
+      sort: sort,
+      cateId: queryCateId
+    };
     return http.get(url + '/articles', {params: formData});
   },
   getArticleById(id) {

@@ -136,5 +136,10 @@ Router.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
 }
 
+router.afterEach(() => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+});
+
 export default router
 

@@ -51,7 +51,7 @@ export default {
       this.$emit('query-date', dateStr);
     },
     selectDefaultQueryDateStr() {
-      if (!this.timelineMap.length) {
+      if (!Object.keys(this.timelineMap).length) {
         return;
       }
       let queryDateStr = Object.values(this.timelineMap).flatMap(timeline => timeline).sort()[0];
