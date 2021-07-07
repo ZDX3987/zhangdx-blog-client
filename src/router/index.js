@@ -1,18 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ArticlePreview from "../views/ArticlePreview";
-import Error from '../views/Error'
-import CateList from "../views/CateList";
-import Classify from "../views/Classify";
-import Archives from "../views/Archives";
-import UpdateLog from "../views/UpdateLog";
-import TopicList from "../views/TopicList";
-import TopicItem from "../views/TopicItem";
 import Layout from '../views/Layout';
 import Home from '../views/Home';
-import SearchResult from '../views/SearchResult';
-import ReceiveToken from '../views/ReceiveToken';
-import UserCenter from '../views/UserCenter';
 
 Vue.use(Router)
 
@@ -35,7 +24,7 @@ const router = new Router({
         {
           path: '/article/:id.html',
           name: 'ArticlePreview',
-          component: ArticlePreview,
+          component: () => import('../views/ArticlePreview'),
           meta: {
             title: '文章详情'
           }
@@ -43,7 +32,7 @@ const router = new Router({
         {
           path: '/cate/:id.html',
           name: 'CateList',
-          component: CateList,
+          component: () => import('../views/CateList'),
           meta: {
             title: '分类标签'
           }
@@ -51,7 +40,7 @@ const router = new Router({
         {
           path: '/classify',
           name: 'Classify',
-          component: Classify,
+          component: () => import('../views/Classify'),
           meta: {
             title: '文章分类'
           }
@@ -59,7 +48,7 @@ const router = new Router({
         {
           path: '/archives',
           name: 'Archives',
-          component: Archives,
+          component: () => import('../views/Archives'),
           meta: {
             title: '归档'
           }
@@ -67,7 +56,7 @@ const router = new Router({
         {
           path: '/topics',
           name: 'TopicList',
-          component: TopicList,
+          component: () => import('../views/TopicList'),
           meta: {
             title: '所有专题'
           }
@@ -75,7 +64,7 @@ const router = new Router({
         {
           path: '/topic/:id.html',
           name: 'TopicItem',
-          component: TopicItem,
+          component: () => import('../views/TopicItem'),
           meta: {
             title: '专题'
           }
@@ -83,7 +72,7 @@ const router = new Router({
         {
           path: '/updatelog',
           name: 'UpdateLog',
-          component: UpdateLog,
+          component: () => import('../views/UpdateLog'),
           meta: {
             title: '更新日志'
           }
@@ -91,7 +80,7 @@ const router = new Router({
         {
           path: '/search/_a',
           name: 'SearchResult',
-          component: SearchResult,
+          component: () => import('../views/SearchResult'),
           meta: {
             title: '搜索结果'
           }
@@ -99,7 +88,7 @@ const router = new Router({
           {
               path: '/usercenter',
               name: 'UserCenter',
-              component: UserCenter,
+              component: () => import('../views/UserCenter'),
               meta: {
                   title: '个人中心'
               }
@@ -109,7 +98,7 @@ const router = new Router({
       {
           path: '/receive_token',
           name: 'ReceiveToken',
-          component: ReceiveToken,
+          component: () => import('../views/ReceiveToken'),
           meta: {
               title: '授权登录'
           }
@@ -117,7 +106,7 @@ const router = new Router({
     {
       path: '/error',
       name: 'Error',
-      component: Error,
+      component: () => import('../views/Error'),
       meta: {
         title: '页面出错了'
       }
