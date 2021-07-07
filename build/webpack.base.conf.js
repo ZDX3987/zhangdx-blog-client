@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const webpack = require('webpack')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -85,6 +86,42 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       "windows.jQuery": "jquery"
-    })
+    }),
+      new HtmlWebpackExternalsPlugin({
+          externals: [{
+              module: 'vue',
+              entry: 'https://cdn.bootcdn.net/ajax/libs/vue/2.5.2/vue.min.js',
+              global: 'Vue'
+          },
+              {
+                  module: 'element-ui',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.3/index.min.js',
+                  global: 'ELEMENT'
+              },
+              {
+                  module: 'vue-router',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.min.js',
+                  global: 'VueRouter'
+              },
+              {
+                  module: 'axios',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js',
+                  global: 'axios'
+              },
+              {
+                  module: 'vuex',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vuex/3.6.0/vuex.min.js',
+                  global: 'Vuex'
+              },
+              {
+                  module: 'jquery',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js',
+                  global: '$'
+              },
+              {
+                  module: 'bootstrap',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js'
+              }]
+      })
   ]
 }
