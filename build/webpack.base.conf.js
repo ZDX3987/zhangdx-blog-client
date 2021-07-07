@@ -100,7 +100,7 @@ module.exports = {
               },
               {
                   module: 'vue-router',
-                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.min.js',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.js',
                   global: 'VueRouter'
               },
               {
@@ -120,7 +120,27 @@ module.exports = {
               },
               {
                   module: 'bootstrap',
-                  entry: 'https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js'
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js',
+                  global: 'bootstrap'
+              },
+              {
+                  module: 'font-awesome',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+                  global: 'font-awesome'
+              },
+              {
+                  module: 'vue-meta',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-meta/2.4.0/vue-meta.min.js',
+                  global: 'VueMeta'
+              },
+              {
+                  module: 'vue-lazyload',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-lazyload/1.3.3/vue-lazyload.js',
+                  global: 'VueLazyload'
+              },
+              {
+                  module: 'vditor',
+                  entry: 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/index.min.js'
               }]
       })
   ]
