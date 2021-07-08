@@ -141,6 +141,11 @@ module.exports = {
               {
                   module: 'vditor',
                   entry: 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/index.min.js'
+              },
+              {
+                  module: 'moment',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js',
+                  global: 'moment'
               }]
       })
   ]
