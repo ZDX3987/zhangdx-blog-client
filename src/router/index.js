@@ -122,7 +122,7 @@ const router = new Router({
 // 自定义路由push跳转逻辑，解决路由自己跳转自己的错误
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
-    return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location);
 }
 
 router.afterEach(() => {

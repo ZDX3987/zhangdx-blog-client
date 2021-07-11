@@ -100,7 +100,7 @@ module.exports = {
               },
               {
                   module: 'vue-router',
-                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.js',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.min.js',
                   global: 'VueRouter'
               },
               {
