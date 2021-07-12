@@ -12,6 +12,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = require('../config/prod.env')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -115,7 +116,68 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+      new HtmlWebpackExternalsPlugin({
+          externals: [{
+              module: 'vue',
+              entry: 'https://cdn.bootcdn.net/ajax/libs/vue/2.5.2/vue.min.js',
+              global: 'Vue'
+          },
+              {
+                  module: 'element-ui',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.3/index.min.js',
+                  global: 'ELEMENT'
+              },
+              {
+                  module: 'vue-router',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-router/3.0.1/vue-router.js',
+                  global: 'VueRouter'
+              },
+              {
+                  module: 'axios',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js',
+                  global: 'axios'
+              },
+              {
+                  module: 'vuex',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vuex/3.6.0/vuex.min.js',
+                  global: 'Vuex'
+              },
+              {
+                  module: 'jquery',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js',
+                  global: '$'
+              },
+              {
+                  module: 'bootstrap',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js',
+                  global: 'bootstrap'
+              },
+              {
+                  module: 'font-awesome',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+                  global: 'font-awesome'
+              },
+              {
+                  module: 'vue-meta',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-meta/2.4.0/vue-meta.min.js',
+                  global: 'VueMeta'
+              },
+              {
+                  module: 'vue-lazyload',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-lazyload/1.3.3/vue-lazyload.js',
+                  global: 'VueLazyload'
+              },
+              {
+                  module: 'vditor',
+                  entry: 'https://cdn.jsdelivr.net/npm/vditor@3.8.5/dist/index.min.js'
+              },
+              {
+                  module: 'moment',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js',
+                  global: 'moment'
+              }]
+      })
   ]
 })
 
