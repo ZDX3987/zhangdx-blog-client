@@ -1,15 +1,13 @@
 <template>
-  <div class="article-list-item" v-lazy-container="{ selector: 'img' }">
+  <div class="article-list-item">
     <el-row>
       <el-col v-if="article.coverImg" :sm="8" class="item-left">
         <router-link
             :to="{ name: 'ArticlePreview', params: { id: article.id } }"
         >
-          <el-image :src="article.coverImg" fit="cover">
-            <div slot="error">
-              <el-image :src="errorImgUrl" fit="cover"></el-image>
-            </div>
-          </el-image>
+          <div class="cover-img">
+            <img v-lazy="article.coverImg">
+          </div>
         </router-link>
       </el-col>
       <el-col :sm="article.coverImg ? 16 : 24" class="item-right">
@@ -64,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-.item-left >>> .el-image {
+.item-left >>> .cover-img {
   width: 100%;
   height: 150px;
   transition: all 0.5s;
@@ -73,7 +71,10 @@ export default {
 }
 
 .item-left >>> img {
+  width: 100%;
+  height: 150px;
   transition: all 0.5s;
+  object-fit: cover;
 }
 
 .item-left >>> img:hover {

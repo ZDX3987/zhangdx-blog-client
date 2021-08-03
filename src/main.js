@@ -22,8 +22,9 @@ Vue.use(ElementUI)
 Vue.use(Viewer)
 Vue.use(VueMeta)
 Vue.use(VueLazyload, {
-    preLoad: 1,
-    lazyComponent: true
+    preLoad: 1.3,
+    lazyComponent: true,
+    attempt: 1
 })
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 Vue.prototype.$api = api
