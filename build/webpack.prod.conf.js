@@ -165,7 +165,7 @@ const webpackConfig = merge(baseWebpackConfig, {
               },
               {
                   module: 'vue-lazyload',
-                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-lazyload/1.3.3/vue-lazyload.js',
+                  entry: 'https://cdn.bootcdn.net/ajax/libs/vue-lazyload/1.3.4/vue-lazyload.js',
                   global: 'VueLazyload'
               },
               {
