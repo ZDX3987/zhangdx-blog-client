@@ -68,6 +68,7 @@ export default {
   transition: all 0.5s;
   opacity: 1;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .item-left >>> img {
