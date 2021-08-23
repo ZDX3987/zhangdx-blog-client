@@ -4,13 +4,13 @@
       <el-col>
         <ul>
           <li :class="currentCateId === 0 ? 'active-cate-li' : ''" @click="chooseCate(null, 0)">
-            <a>全部（{{ getParentCategoriesCount() }}）</a>
+            <span>全部（{{ getParentCategoriesCount() }}）</span>
           </li>
           <li v-for="cate of getAllParentCategories()" :key="cate.id" :class="currentCateId === cate.id
            ? 'active-cate-li' : ''" @click="chooseCate(cate, 0)">
-            <a>
+            <span>
               {{ cate.cateName + '(' + cate.articleCount + ')' }}
-            </a>
+            </span>
           </li>
         </ul>
       </el-col>
@@ -20,13 +20,13 @@
         <el-col>
           <ul>
             <li :class="currentChildCateId === 0 ? 'active-cate-li' : ''" @click="chooseCate(null, 1)">
-              <a>全部（{{ getChildCategoriesCount() }}）</a>
+              <span>全部（{{ getChildCategoriesCount() }}）</span>
             </li>
             <li v-for="cate of childCateList" :key="cate.id" :class="currentChildCateId === cate.id
            ? 'active-cate-li' : ''" @click="chooseCate(cate, 1)">
-              <a>
+              <span>
                 {{ cate.cateName + '(' + cate.articleCount + ')' }}
-              </a>
+              </span>
             </li>
           </ul>
         </el-col>
@@ -74,6 +74,7 @@ export default {
           ? this.currentChildCateId : this.currentCateId) : 0;
       this.$emit('query-category', queryCateId);
     },
+    // TODO 标签文章总和计算，暂时结果不准确
     getParentCategoriesCount() {
       return this.getAllParentCategories().reduce((prev, current) => {
         return prev + current.articleCount;
@@ -114,7 +115,7 @@ export default {
   margin: 0 20px;
 }
 
-.classify-list-content a {
+.classify-list-content span {
   color: var(--aBg);
   font-size: 13px;
   text-decoration: none;
@@ -122,7 +123,7 @@ export default {
   cursor: pointer;
 }
 
-.classify-list-content li:not(.active-cate-li):hover a {
+.classify-list-content li:not(.active-cate-li):hover span {
   color: var(--mainThemeColor);
 }
 
@@ -130,7 +131,7 @@ export default {
   background-color: var(--mainThemeColor);
 }
 
-.active-cate-li a {
+.active-cate-li span {
   color: #FFF;
 }
 
