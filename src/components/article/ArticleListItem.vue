@@ -38,7 +38,7 @@
             </span>
             <span>
             <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
-            {{ article.updateDate | dateFormat("yyyy-MM-DD") }}
+            {{ article.publishDate | dateFormat("yyyy-MM-DD") }}
             </span>
           </el-col>
         </el-row>

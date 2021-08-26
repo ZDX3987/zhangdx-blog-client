@@ -3,7 +3,7 @@
     <archives-skeleton v-if="loading"></archives-skeleton>
     <el-timeline v-else>
       <el-timeline-item v-for="article of articleList" :key="article.id"
-                        :timestamp="dateFormat(article.createDate)"
+                        :timestamp="dateFormat(article.publishDate)"
                         placement="top">
         <el-card class="article-card">
           <router-link :to="{ name: 'ArticlePreview', params: { id: article.id } }">
@@ -15,7 +15,7 @@
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}
                   {{ tag.cateName }}
                 </span>
-            {{ article.createDate | dateFormat("yyyy-MM-DD") }}</p>
+            {{ article.publishDate | dateFormat("yyyy-MM-DD") }}</p>
         </el-card>
       </el-timeline-item>
     </el-timeline>
