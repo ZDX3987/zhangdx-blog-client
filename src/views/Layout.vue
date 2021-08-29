@@ -32,6 +32,7 @@ import BreadcrumbRouter from "../components/common/BreadcrumbRouter";
 import Bg from '../components/layout/Bg';
 import LoginDialog from '../components/common/LoginDialog';
 import {getAuthorization, removeAuthorization} from '../util/storage-unit';
+import {closeWebSocket, initAnonymousWebSocket, initWebSocket} from '../websocket';
 
 export default {
   name: "Layout",
@@ -56,15 +57,18 @@ export default {
     }
   },
   created() {
-    if (!getAuthorization()) {
-      return;
+    if (getAuthorization()) {
+      this.$api.oauthApi.getUserInfo().then(res => {
+        this.$store.commit('updateUserInfo', res.data);
+        closeWebSocket();
+        initWebSocket(res.data.username);
+      }).catch(error => {
+        this.$message.error('登录失败');
+        removeAuthorization();
+      });
+    } else {
+      initAnonymousWebSocket();
     }
-    this.$api.oauthApi.getUserInfo().then(res => {
-      this.$store.commit('updateUserInfo', res.data);
-    }).catch(error => {
-      this.$message.error('登录失败');
-      removeAuthorization();
-    });
   },
   methods: {
     showLoginDialog(value) {

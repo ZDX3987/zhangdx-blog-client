@@ -1,5 +1,5 @@
 <template>
-<div>接收token的组件</div>
+<div>登录成功</div>
 </template>
 
 <script>

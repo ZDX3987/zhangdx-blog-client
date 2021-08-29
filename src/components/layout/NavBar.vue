@@ -73,6 +73,7 @@
 <script>
 import {navData} from "../../util/nav-data";
 import {removeAuthorization} from '../../util/storage-unit';
+import {closeWebSocket, initAnonymousWebSocket} from '../../websocket';
 
 export default {
   name: "NavBar",
@@ -113,6 +114,8 @@ export default {
         this.$store.commit('updateUserInfo', {});
         this.$router.push({name: 'Home'});
         removeAuthorization();
+        closeWebSocket();
+        initAnonymousWebSocket();
         this.$message.success(res.msg);
       }).catch(error => {
       });

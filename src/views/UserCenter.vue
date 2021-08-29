@@ -80,6 +80,7 @@ export default {
 
 .user-cover-image {
   height: 280px;
+  display: block;
 }
 
 .user-avatar {
