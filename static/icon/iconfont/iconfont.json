@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "19368141",
+      "name": "作者",
+      "font_class": "zuozhe",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "19783697",
+      "name": "查看",
+      "font_class": "chakan",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
+      "icon_id": "13659882",
+      "name": "日期",
+      "font_class": "riqi",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "12713504",
+      "name": "点赞",
+      "font_class": "zan",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "19598450",
+      "name": "评 论",
+      "font_class": "pinglun",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
       "icon_id": "60399",
       "name": "微信",
       "font_class": "weixin1",

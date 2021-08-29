@@ -19,7 +19,7 @@
         </h2>
         <p v-if="article.digest" class="item-digest text-wrap" v-html="article.digest"></p>
         <div class="item-tags">
-          <span>{{ article.articleType }}</span>
+          <p class="item-type">【{{ article.articleType }}】</p>
           <span v-for="(tag, index) of article.categories" :key="tag.id">
                   {{ index != 0 ? '&nbsp/&nbsp' : '' }}
                   <router-link :to="{name: 'CateList', params: {id: tag.id}}">
@@ -30,16 +30,26 @@
         <el-row class="item-info">
           <el-col :span="14">
             <span class="mr-4">
-            <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;
+            <i class="iconfont iconzuozhe" aria-hidden="true"/>&nbsp;
             {{ article.author.nickname }}
             </span>
-            <span class="mr-4">
-            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
+            <span>
+            <i class="iconfont iconriqi" aria-hidden="true"/>&nbsp;
+            {{ article.publishDate | dateFormat("yyyy-MM-DD") }}
+            </span>
+          </el-col>
+          <el-col :span="10" class="text-right">
+            <span class="mr-3">
+            <i class="iconfont iconchakan" aria-hidden="true"/>&nbsp;
+            {{ article.readCount }}
+            </span>
+            <span class="mr-3">
+            <i class="iconfont iconzan" aria-hidden="true"/>&nbsp;
             {{ article.praise }}
             </span>
             <span>
-            <i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;
-            {{ article.publishDate | dateFormat("yyyy-MM-DD") }}
+            <i class="iconfont iconpinglun" aria-hidden="true"/>&nbsp;
+            {{ article.commentCount }}
             </span>
           </el-col>
         </el-row>
@@ -120,6 +130,12 @@ export default {
   color: #B2BAC2;
   font-size: 14px;
   text-decoration: none;
+}
+
+.item-type {
+  display: inline;
+  color: var(--mainThemeColor);
+  line-height: 100%;
 }
 
 .item-tags a:hover {
