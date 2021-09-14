@@ -4,7 +4,7 @@
       <el-col :md="12">
         <ul class="other-links">
           <li v-for="(link, i) of otherLinks" :key="i">
-            <a :href="link.linkUrl">{{ link.linkName }}</a>
+            <a target="_blank" :href="link.linkUrl">{{ link.linkName }}</a>
           </li>
         </ul>
         <p class="copyright">

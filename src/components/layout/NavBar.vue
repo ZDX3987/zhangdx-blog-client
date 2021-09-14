@@ -116,6 +116,7 @@ export default {
         removeAuthorization();
         closeWebSocket();
         initAnonymousWebSocket();
+        location.reload();
         this.$message.success(res.msg);
       }).catch(error => {
       });

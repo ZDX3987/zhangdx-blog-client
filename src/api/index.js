@@ -5,7 +5,7 @@ import topicApi from './topic'
 import updateLogApi from './updatelog'
 import searchApi from './search'
 import oauthApi from './oauth'
-
+import commonApi from './common'
 export default {
   articleApi,
   categoryApi,
@@ -13,5 +13,6 @@ export default {
   topicApi,
   updateLogApi,
   searchApi,
-  oauthApi
+  oauthApi,
+  commonApi
 }
