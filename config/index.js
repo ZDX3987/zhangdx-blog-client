@@ -28,7 +28,6 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-    webSocket: 'ws://localhost:8888/websocket/',
 
     /**
      * Source Maps
