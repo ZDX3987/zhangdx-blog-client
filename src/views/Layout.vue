@@ -8,7 +8,7 @@
           <search v-show="searchShow"></search>
         </el-collapse-transition>
       </div>
-      <el-main class="main-content">
+      <el-main class="main-content" @click.native="mainClickCallback">
         <breadcrumb-router></breadcrumb-router>
         <router-view class="main-router" :key="$route.fullPath"/>
       </el-main>
@@ -73,6 +73,10 @@ export default {
   methods: {
     showLoginDialog(value) {
       this.$refs.loginDialog.dialogVisible = value;
+    },
+    mainClickCallback() {
+      // 点击页面主体，隐藏搜索框
+      this.$store.commit('showSearchBar', false);
     }
   }
 };
